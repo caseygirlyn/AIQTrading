@@ -23,7 +23,7 @@ const StockSearch = (props) => {
 
         try {
             //const response = await fetch(BASEURL + query + APIKEY);
-            const response = await fetch(`http://localhost:5173/AAPL.json`);
+            const response = await fetch(`/AAPL.json`);
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -101,7 +101,7 @@ const StockSearch = (props) => {
 
             <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
                 {searchResults.length > 0 && (
-                    <LineChart symbol="AAPL" />
+                    <LineChart symbol={query} />
                 )}
             </div>
 

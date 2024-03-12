@@ -24,7 +24,7 @@ const LineChart = (props) => {
   // https://financialmodelingprep.com/api/v3/historical-chart/5min/AAPL?from=2024-03-01&to=2024-03-01&apikey=MEMq3hGb4CgnNvgWqBSZkhHpSank9EtR (working final :))
 
   useEffect(() => {
-    fetch(`http://localhost:5173/AAPL-5min.json`) 
+    fetch(`/AAPL-5min.json`) 
       .then(response => response.json())
       .then(data => {
         if (data) {

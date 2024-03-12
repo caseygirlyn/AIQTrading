@@ -10,7 +10,7 @@ const News = () => {
         const fetchNews = async () => {
             try {
                 //const response = await axios.get('https://newsapi.org/v2/everything?q=stocks&apiKey=602085a63c3a4b98b4e7c82ba09ce268');
-                const response = await axios.get('http://localhost:5173/newsApi.json');
+                const response = await axios.get('/newsApi.json');
                 setNews(response.data.articles);
                 setLoading(false);
             } catch (error) {

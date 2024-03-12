@@ -243,6 +243,22 @@ i.bi.bi-list{
   color: #ff5262 !important;
 }
 
+.table > :not(caption) > * > * {
+  font-size: 13px;
+}
+
+.darkMode .table > :not(caption) > * > * {
+  color: #fff;
+  background-color: #2f3442;
+  border-width: 0;
+  cursor: pointer;
+}
+
+.darkMode .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: #3d4354;
+}
+
+
 @media(max-width:576px) {
   .reverse-col-mobile > .row{
     flex-direction: column-reverse;

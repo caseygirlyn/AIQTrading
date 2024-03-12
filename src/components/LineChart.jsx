@@ -16,15 +16,22 @@ ChartJS.register(
 
 const LineChart = (props) => {
 
-  console.log(new Date().toLocaleString());
-
   const [stockData, setStockData] = useState([]);
-  
-  // http://localhost:5173/sample.json 
-  // https://financialmodelingprep.com/api/v3/historical-chart/5min/AAPL?from=2024-03-01&to=2024-03-01&apikey=MEMq3hGb4CgnNvgWqBSZkhHpSank9EtR (working final :))
 
   useEffect(() => {
-    fetch(`/AAPL-5min.json`) 
+
+    const symbol = props.symbol;
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    //const endPoint = `https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?from=${formattedDate}&to=${formattedDate}&apikey=MEMq3hGb4CgnNvgWqBSZkhHpSank9EtR`; 
+    
+
+    fetch(`/AAPL-5min.json`) // replace this and use your API key :)
       .then(response => response.json())
       .then(data => {
         if (data) {

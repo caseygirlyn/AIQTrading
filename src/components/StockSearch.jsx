@@ -37,7 +37,7 @@ const StockSearch = (props) => {
 
         try {
             //const response = await fetch(BASEURL + query + APIKEY);
-            const responsePC = await fetch(`http://localhost:5173/AAPL-PC.json`);
+            const responsePC = await fetch(`/AAPL-PC.json`);
             if (!responsePC.ok) {
                 throw new Error('Failed to fetch data');
             }

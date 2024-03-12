@@ -1,0 +1,966 @@
+{
+    "status": "ok",
+    "totalResults": 26746,
+    "articles": [
+        {
+            "title": "AI stocks: 5 of the most popular AI companies to buy shares in",
+            "author": "Suswati Basu",
+            "source": {
+                "id": null,
+                "name": "ReadWrite"
+            },
+            "publishedAt": "2024-02-13T20:23:03Z",
+            "url": "https://readwrite.com/ai-stocks-5-of-the-most-popular-ai-companies-to-buy-shares-in/"
+        },
+        {
+            "title": "Supreme Court seems torn over bump stock ban",
+            "author": "Nina Totenberg",
+            "source": {
+                "id": null,
+                "name": "NPR"
+            },
+            "publishedAt": "2024-02-28T21:49:39Z",
+            "url": "https://www.npr.org/2024/02/28/1234624487/supreme-court-seems-torn-over-bump-stock-ban"
+        },
+        {
+            "title": "Why stocks will rise in 2024 with or without a rate cut, according to BofA",
+            "author": "mfox@businessinsider.com (Matthew Fox)",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-12T16:28:13Z",
+            "url": "https://markets.businessinsider.com/news/stocks/federal-reserve-interest-rate-cuts-stock-market-outlook-investing-bofa-2024-2"
+        },
+        {
+            "title": "The stock market is looking a lot like it did before the dot-com and '08 crashes, top economist says",
+            "author": "jsor@insider.com (Jennifer Sor)",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-12T16:44:05Z",
+            "url": "https://markets.businessinsider.com/news/stocks/stock-market-outlook-recession-2008-crash-dot-com-sp500-bubble-2024-2"
+        },
+        {
+            "title": "Stocks will likely keep rising under the Fed's policy regime as the 'roaring 1990s' returns, market vet says",
+            "author": "jsor@businessinsider.com (Jennifer Sor)",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-26T14:59:54Z",
+            "url": "https://markets.businessinsider.com/news/stocks/stock-market-outlook-fed-rate-cuts-economy-inflation-roaring-90s-2024-2"
+        },
+        {
+            "title": "Supreme Court hears challenge to Trump-era ban on bump stocks for guns",
+            "author": "Nina Totenberg",
+            "source": {
+                "id": null,
+                "name": "NPR"
+            },
+            "publishedAt": "2024-02-28T10:00:41Z",
+            "url": "https://www.npr.org/2024/02/28/1234248032/supreme-court-bump-stocks"
+        },
+        {
+            "title": "Optimism about the U.S. economy sends stocks to a new record",
+            "author": "David Gura",
+            "source": {
+                "id": null,
+                "name": "NPR"
+            },
+            "publishedAt": "2024-02-09T14:30:11Z",
+            "url": "https://www.npr.org/2024/02/09/1230086474/stocks-sp-record-5000-wall-street-new-high-economy"
+        },
+        {
+            "title": "Market prophet Gary Shilling warns stocks could crash 30% — and says the odds are 'very much in favor of a recession'",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-03-05T12:18:19Z",
+            "url": "https://markets.businessinsider.com/news/stocks/stock-market-forecast-crash-shilling-recession-economy-dollar-housing-debt-2024-3"
+        },
+        {
+            "title": "Gary Shilling says the S&P 500 may crash 30%, a recession will hit — and bitcoin and AI are both overhyped",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-08T09:36:13Z",
+            "url": "https://markets.businessinsider.com/news/stocks/gary-shilling-stock-market-outlook-crash-spx-recession-bitcoin-ai-2024-2"
+        },
+        {
+            "title": "Warren Buffett's $168 billion cash pile signals he expects stocks to slide and a recession to strike, says top economist Steve Hanke",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-28T13:59:03Z",
+            "url": "https://markets.businessinsider.com/news/stocks/warren-buffett-record-cash-berkshire-hathaway-hanke-stock-market-recession-2024-2"
+        },
+        {
+            "title": "The US is heading towards stagflation, which would be terrible news for stocks, JPMorgan says",
+            "author": "Yuheng Zhan",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-21T20:42:49Z",
+            "url": "https://markets.businessinsider.com/news/stocks/us-economy-market-outlook-stagflation-portfolio-allocation-impact-stocks-bonds-2024-2"
+        },
+        {
+            "title": "The epic stock rally will end badly, the AI bubble will burst, and the economy will sink, warns elite investor Jeremy Grantham",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-15T13:39:27Z",
+            "url": "https://markets.businessinsider.com/news/stocks/jeremy-grantham-stock-market-outlook-ai-bubble-crash-recession-economy-2024-2"
+        },
+        {
+            "title": "The stock market's strong year is a good sign for Biden's reelection hopes",
+            "author": "Matthew Fox",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-03-02T13:46:01Z",
+            "url": "https://markets.businessinsider.com/news/stocks/stock-market-signal-presidential-reelection-joe-biden-incumbent-donald-trump-2024-3"
+        },
+        {
+            "title": "Warren Buffett calls out stock-market gamblers and honors the late Charlie Munger in his annual letter",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-24T14:51:38Z",
+            "url": "https://www.businessinsider.com/warren-buffett-letter-munger-berkshire-annual-shareholder-stock-speculation-ai-2024-2"
+        },
+        {
+            "title": "The S&P 500 just cracked 5,000 points — but don't count on its stellar returns continuing",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-09T13:00:25Z",
+            "url": "https://markets.businessinsider.com/news/stocks/spx-record-stock-market-returns-buffett-siegel-cooperman-malkiel-shilling-2024-2"
+        },
+        {
+            "title": "Chinese stocks struggle as govt. tries to stabilize markets",
+            "author": null,
+            "source": {
+                "id": null,
+                "name": "Yahoo Entertainment"
+            },
+            "publishedAt": "2024-02-05T16:27:22Z",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_16accf9e-c167-4bf3-bd9c-08f70d9634c9"
+        },
+        {
+            "title": "Pricey stocks and homes, shaky banks, office turmoil, and people's debt woes are all worrying the Fed",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-22T14:29:46Z",
+            "url": "https://www.businessinsider.com/fed-minutes-stocks-house-prices-banks-commercial-real-estate-debt-2024-2"
+        },
+        {
+            "title": "A 4,400,000% return and a $168 billion cash pile. Here are 6 juicy nuggets from Warren Buffett's new letter.",
+            "author": "tmohamed@insider.com (Theron Mohamed)",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-26T16:18:42Z",
+            "url": "https://www.businessinsider.com/warren-buffett-berkshire-hathaway-shareholder-letter-cash-stocks-portfolio-return-2024-2"
+        },
+        {
+            "title": "Why the S&P 500 keeps crushing record highs in 2024",
+            "author": "prosen@insider.com (Phil Rosen)",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-08T18:17:01Z",
+            "url": "https://markets.businessinsider.com/news/stocks/stock-market-outlook-sp500-record-highs-investors-finance-wall-street-2024-2"
+        },
+        {
+            "title": "All eyes are on Nvidia in what could be the most important earnings report of the season",
+            "author": "ddefrancesco@businessinsider.com (Dan DeFrancesco)",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-21T12:20:46Z",
+            "url": "https://www.businessinsider.com/nvidia-earnings-report-ai-tech-markets-stocks-jensen-huang-2024-2"
+        },
+        {
+            "title": "Big deals are back with a $53 billion bang",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-21T11:17:56Z",
+            "url": "https://www.businessinsider.com/deals-mergers-acquisitions-comeback-walmart-truist-capital-fed-rates-recession-2024-2"
+        },
+        {
+            "title": "Jeff Bezos sells nearly 12 million Amazon shares worth at least $2 billion",
+            "author": "The Associated Press",
+            "source": {
+                "id": null,
+                "name": "NPR"
+            },
+            "publishedAt": "2024-02-11T11:16:53Z",
+            "url": "https://www.npr.org/2024/02/11/1230650932/jeff-bezos-sells-nearly-12-million-amazon-shares-worth-at-least-2-billion"
+        },
+        {
+            "title": "Supreme Court divided over ban on rapid-fire rifle bump stocks",
+            "author": "Devin Dwyer",
+            "source": {
+                "id": "abc-news",
+                "name": "ABC News"
+            },
+            "publishedAt": "2024-02-28T22:50:04Z",
+            "url": "https://abcnews.go.com/Politics/supreme-court-divided-ban-rapid-fire-rifle-bump/story?id=107646810"
+        },
+        {
+            "title": "Steep rate cuts are coming as the job market looks poised to weaken, Wells Fargo strategist says",
+            "author": "Jennifer Sor",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-20T17:09:05Z",
+            "url": "https://www.businessinsider.com/fed-rate-cuts-outlook-recession-economy-job-market-unemployment-rate-2024-2"
+        },
+        {
+            "title": "Stock market today: S&P and Nasdaq futures rise as retail sales dip calms inflation fears",
+            "author": "tmohamed@insider.com (Theron Mohamed)",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-16T10:52:12Z",
+            "url": "https://markets.businessinsider.com/news/stocks/stock-market-news-today-spx-nasdaq-futures-retail-sales-inflation-2024-2"
+        },
+        {
+            "title": "I have $1.5 million in stocks and bonds. I asked my broker to convert my bonds to cash. He didn’t and my portfolio fell by $100,000. Can I sue?",
+            "author": "Quentin Fottrell",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-20T18:44:00Z",
+            "url": "https://www.marketwatch.com/story/i-have-1-5-million-in-stocks-and-bonds-i-asked-my-broker-to-convert-my-bonds-to-cash-he-didnt-and-my-portfolio-fell-by-100-000-can-i-sue-b3b6dc7b"
+        },
+        {
+            "title": "'Step Away From CNBC'",
+            "author": "msmash",
+            "source": {
+                "id": null,
+                "name": "Slashdot.org"
+            },
+            "publishedAt": "2024-02-20T06:02:00Z",
+            "url": "https://slashdot.org/story/24/02/20/0325234/step-away-from-cnbc"
+        },
+        {
+            "title": "Berkshire trims Apple, sheds four stocks, mum on new investment",
+            "author": null,
+            "source": {
+                "id": null,
+                "name": "Yahoo Entertainment"
+            },
+            "publishedAt": "2024-02-14T21:37:48Z",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_cde74115-8b0b-43d1-8868-1dff672a0f11"
+        },
+        {
+            "title": "AT&T outage, Royal Caribbean, Planet Fitness: Top Stocks",
+            "author": "Seana Smith",
+            "source": {
+                "id": null,
+                "name": "Yahoo Entertainment"
+            },
+            "publishedAt": "2024-02-22T15:33:04Z",
+            "url": "https://finance.yahoo.com/video/t-outage-royal-caribbean-planet-153304121.html"
+        },
+        {
+            "title": "Jeff Bezos' Miami move could save him $600 million in taxes on stock sale",
+            "author": "Tom Carter",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-13T13:04:41Z",
+            "url": "https://www.businessinsider.com/jeff-bezos-amazon-miami-move-save-600-million-in-taxes-2024-2"
+        },
+        {
+            "title": "Jeff Bezos' great big February stock sell-off is complete",
+            "author": "Sarah Jackson",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-21T20:34:01Z",
+            "url": "https://www.businessinsider.com/jeff-bezos-50-million-amazon-shares-sell-off-is-complete-2024-2"
+        },
+        {
+            "title": "30-year mortgage rate rises to the highest level in 2 months",
+            "author": "Yuheng Zhan",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-14T17:19:59Z",
+            "url": "https://www.businessinsider.com/30-year-mortgage-rates-rate-cuts-housing-january-inflation-data-2024-2"
+        },
+        {
+            "title": "Small-cap ETFs saw record inflows last week: Why fund managers see opportunities in this ‘underloved’ segment of the market",
+            "author": "Isabel Wang",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-22T21:37:00Z",
+            "url": "https://www.marketwatch.com/story/small-cap-etfs-saw-record-inflows-last-week-why-fund-managers-see-opportunities-in-this-underloved-segment-of-the-market-3b9a882c"
+        },
+        {
+            "title": "Why these four ‘Magnificent Seven’ stocks are earnings-season winners",
+            "author": "Philip van Doorn",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-13T15:40:00Z",
+            "url": "https://www.marketwatch.com/story/why-these-four-magnificent-seven-stocks-are-earnings-season-winners-0cf3f0a3"
+        },
+        {
+            "title": "Mining stocks slip as China woes hit iron ore prices",
+            "author": "Jamie Chisholm",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-20T13:11:00Z",
+            "url": "https://www.marketwatch.com/story/mining-stocks-slip-as-china-woes-hit-iron-ore-prices-33b79529"
+        },
+        {
+            "title": "Some investors switch direction as Nvidia and AI stocks soar",
+            "author": "Philip van Doorn",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-23T17:29:00Z",
+            "url": "https://www.marketwatch.com/story/some-investors-switch-direction-as-nvidia-and-ai-stocks-soar-fe4acc06"
+        },
+        {
+            "title": "Citi is betting big on high-profile executives to turn things around",
+            "author": "Dan DeFrancesco",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-27T14:17:24Z",
+            "url": "https://www.businessinsider.com/citi-new-executive-hires-viswas-raghavan-2024-2"
+        },
+        {
+            "title": "Apple's EV exit shows the challenges of the once red-hot market",
+            "author": "Dan DeFrancesco",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-28T14:30:36Z",
+            "url": "https://www.businessinsider.com/apple-ev-car-exit-electric-vehicles-market-difficul-2024-2"
+        },
+        {
+            "title": "Why Amazon and Uber investors might wish the stocks hadn’t joined the Dow",
+            "author": "Mark Hulbert",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-26T12:11:00Z",
+            "url": "https://www.marketwatch.com/story/why-amazon-and-uber-investors-might-wish-the-stocks-hadnt-joined-the-dow-8c0df3f7"
+        },
+        {
+            "title": "The rise of 'zombie' VCs puts startups that took funding from them in a difficult spot",
+            "author": "Dan DeFrancesco",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-03-04T14:09:28Z",
+            "url": "https://www.businessinsider.com/zombie-venture-capital-startups-risk-funding-tech-2024-3"
+        },
+        {
+            "title": "Growth vs. value stocks in the ‘greater fool’ stage: Stifel’s Bannister sees this risky trading strategy playing out in Big Tech-dominated rally",
+            "author": "Isabel Wang",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-06T19:53:00Z",
+            "url": "https://www.marketwatch.com/story/growth-vs-value-stocks-in-the-greater-fool-stage-stifels-bannister-sees-this-risky-trading-strategy-playing-out-in-big-tech-dominated-rally-37aceb97"
+        },
+        {
+            "title": "This popular Dell 2-in-1 laptop is $250 off while stocks last",
+            "author": "Jennifer Allen",
+            "source": {
+                "id": null,
+                "name": "Digital Trends"
+            },
+            "publishedAt": "2024-02-12T09:39:52Z",
+            "url": "https://www.digitaltrends.com/computing/dell-inspiron-14-2-in-1-laptop-deal-dell-february-2024/"
+        },
+        {
+            "title": "An earnings typo sent Lyft's stock price into the stratosphere",
+            "author": "Lawrence Bonk",
+            "source": {
+                "id": null,
+                "name": "Yahoo Entertainment"
+            },
+            "publishedAt": "2024-02-14T19:39:04Z",
+            "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_5f4b09f6-efe6-4eac-a896-030d9ba4bfd5"
+        },
+        {
+            "title": "How Seven Companies Took Over the Stock Market",
+            "author": "Lora Kelley",
+            "source": {
+                "id": null,
+                "name": "The Atlantic"
+            },
+            "publishedAt": "2024-02-06T23:43:00Z",
+            "url": "https://www.theatlantic.com/newsletters/archive/2024/02/how-seven-companies-took-over-the-stock-market/677370/?utm_source=feed"
+        },
+        {
+            "title": "The industry most favored by these stock-market experts might surprise you",
+            "author": "Mark Hulbert",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-12T16:20:00Z",
+            "url": "https://www.marketwatch.com/story/the-industry-most-favored-by-these-stock-market-experts-might-surprise-you-28a81cda"
+        },
+        {
+            "title": "These mutual-fund and ETF investing tips can give your portfolio new momentum",
+            "author": "MarketWatch",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-29T20:14:00Z",
+            "url": "https://www.marketwatch.com/story/these-mutual-fund-and-etf-investing-tips-can-give-your-portfolio-new-momentum-b03181b8"
+        },
+        {
+            "title": "No soft landing: The US economy is going to fall into recession in the middle of 2024, Citi's chief economist says",
+            "author": "asoni@insider.com (Aruni Soni)",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-15T18:21:46Z",
+            "url": "https://www.businessinsider.com/recession-outlook-us-economy-job-market-unemployment-soft-landing-citi-2024-2"
+        },
+        {
+            "title": "U.S. investors may be chasing the wrong target",
+            "author": "Brett Arends",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-03-05T15:19:00Z",
+            "url": "https://www.marketwatch.com/story/u-s-investors-may-be-chasing-the-wrong-target-1013d677"
+        },
+        {
+            "title": "AI stocks in the S&P 500 have outperformed this year — and not just the ‘Magnificent Seven’",
+            "author": "Christine Idzelis",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-20T18:45:00Z",
+            "url": "https://www.marketwatch.com/story/ai-stocks-in-the-s-p-500-have-outperformed-this-year-and-not-just-the-magnificent-seven-0faeee1d"
+        },
+        {
+            "title": "Japanese stocks are at a record high, revealing a primary lesson about investing",
+            "author": "Mark Hulbert",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-26T21:38:00Z",
+            "url": "https://www.marketwatch.com/story/japanese-stocks-are-at-a-record-high-revealing-a-primary-lesson-about-investing-32cdb8f1"
+        },
+        {
+            "title": "How a government shutdown could affect you and your money",
+            "author": "Robert Schroeder",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-27T18:50:00Z",
+            "url": "https://www.marketwatch.com/story/how-a-government-shutdown-could-affect-you-and-your-money-d154d0c6"
+        },
+        {
+            "title": "This stock-market predictor with a great record is even more bullish now than it was last year",
+            "author": "Mark Hulbert",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-13T21:00:00Z",
+            "url": "https://www.marketwatch.com/story/this-stock-market-predictor-with-a-great-record-is-even-more-bullish-now-than-it-was-last-year-9bd3f0b9"
+        },
+        {
+            "title": "Rivian, Lucid stocks tumble as slowing EV demand upsets ramp-up plans",
+            "author": "Reuters",
+            "source": {
+                "id": null,
+                "name": "Autoblog"
+            },
+            "publishedAt": "2024-02-22T17:27:00Z",
+            "url": "https://www.autoblog.com/2024/02/22/rivian-lucid-stocks-tumble-as-slowing-ev-demand-upsets-ramp-up-plans/"
+        },
+        {
+            "title": "These mutual fund and ETF investing tips can help you avoid the market’s traps",
+            "author": "MarketWatch",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-15T13:18:00Z",
+            "url": "https://www.marketwatch.com/story/these-mutual-fund-and-etf-investing-tips-can-help-you-avoid-the-markets-traps-bdbd19dd"
+        },
+        {
+            "title": "Has it become easier to beat index funds?",
+            "author": "Mark Hulbert",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-20T16:54:00Z",
+            "url": "https://www.marketwatch.com/story/has-it-become-easier-to-beat-index-funds-da42854b"
+        },
+        {
+            "title": "China's economic turmoil won't stop its manufacturing dominance",
+            "author": "Phil Rosen",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-12T18:17:55Z",
+            "url": "https://www.businessinsider.com/china-economy-markets-manufacturing-powerhouse-investors-finance-real-estate-property-2024-2"
+        },
+        {
+            "title": "A trusted indicator is fueling recession warnings from Jeremy Grantham and other gurus. What you should know about the Leading Economic Index.",
+            "author": "Theron Mohamed",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-21T12:26:04Z",
+            "url": "https://www.businessinsider.com/leading-economic-index-recession-indicator-outlook-grantham-rosenberg-gundlach-shilling-2024-2"
+        },
+        {
+            "title": "The new champions of the stock market: millennials",
+            "author": "Emily Stewart",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-14T10:03:02Z",
+            "url": "https://www.businessinsider.com/millennials-gen-z-stock-market-baby-boomers-wealth-investing-2024-2"
+        },
+        {
+            "title": "With Miami Move, Jeff Bezos Proves Zip Codes Do Matter",
+            "author": "BeauHD",
+            "source": {
+                "id": null,
+                "name": "Slashdot.org"
+            },
+            "publishedAt": "2024-02-10T01:40:00Z",
+            "url": "https://news.slashdot.org/story/24/02/09/2154258/with-miami-move-jeff-bezos-proves-zip-codes-do-matter"
+        },
+        {
+            "title": "Oil edges higher, shaking off big buildup in U.S. crude inventories",
+            "author": "William Watts",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-14T11:53:00Z",
+            "url": "https://www.marketwatch.com/story/oil-edges-higher-shaking-off-big-buildup-in-u-s-crude-inventories-96bb0321"
+        },
+        {
+            "title": "Investors are hoping the power of Xi's personal attention will rescue China's floundering markets",
+            "author": "Huileng Tan",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-07T07:53:07Z",
+            "url": "https://www.businessinsider.com/china-xi-jinping-personal-attention-markets-rout-boosts-stocks-sentiment-2024-2"
+        },
+        {
+            "title": "A booming stock market means homebuyers will be more tolerant of high mortgage rates, Compass CEO says",
+            "author": "Aruni Soni",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-22T19:28:03Z",
+            "url": "https://www.businessinsider.com/us-stock-market-housing-market-outlook-high-mortgage-rates-fed-2024-2"
+        },
+        {
+            "title": "Ukraine shot down 3 Russian fighter jets in one morning, says air force chief",
+            "author": "Rebecca Rommen",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-17T15:38:14Z",
+            "url": "https://www.businessinsider.com/ukraine-shoots-down-3-russian-jets-one-morning-air-chief-2024-2"
+        },
+        {
+            "title": "Founders Fund partner Sam Blond has left the firm",
+            "author": "Melia Russell",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-03-04T18:28:17Z",
+            "url": "https://www.businessinsider.com/founders-fund-partner-sam-blond-has-left-the-firm-2024-3"
+        },
+        {
+            "title": "Stocks can get more expensive, but don’t get in front of FOMO for now, says strategist",
+            "author": "Barbara Kollmeyer",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-22T11:45:00Z",
+            "url": "https://www.marketwatch.com/story/stocks-can-get-more-expensive-but-dont-get-in-front-of-fomo-for-now-says-strategist-e05fb2da"
+        },
+        {
+            "title": "There's 'no chance' China's property market rebounds to what it was, researcher says",
+            "author": "Aruni Soni",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-08T14:19:16Z",
+            "url": "https://www.businessinsider.com/china-economy-crash-real-estate-collapse-property-market-rebound-evergrande-2024-2"
+        },
+        {
+            "title": "Citigroup just boosted its CEO's pay to $26 million even as it plans to slash thousands of jobs",
+            "author": "Hannah Getahun",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-21T03:05:25Z",
+            "url": "https://www.businessinsider.com/citigroup-ceo-jane-fraser-pay-increase-to-26-million-2024-2"
+        },
+        {
+            "title": "North Korea's arms factories are going full-tilt making weapons and ammo for Russia's war, says South Korea",
+            "author": "Matthew Loh",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-02-29T05:42:05Z",
+            "url": "https://www.businessinsider.com/north-korean-arms-factories-full-tilt-russias-war-south-korea-2024-2"
+        },
+        {
+            "title": "Corporate greed is pushing prices up even as the main drivers of inflation keep falling, Fundstrat's Tom Lee says",
+            "author": "Jennifer Sor",
+            "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "publishedAt": "2024-03-04T15:28:46Z",
+            "url": "https://markets.businessinsider.com/news/stocks/us-economic-outlook-inflation-stock-market-greedflation-fundstrat-tom-lee-2024-3"
+        },
+        {
+            "title": "Tech stocks likely headed for a pullback. These 5 charts show their momentum is starting to fade.",
+            "author": "Joseph Adinolfi",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-26T19:11:00Z",
+            "url": "https://www.marketwatch.com/story/tech-stocks-likely-headed-for-a-pullback-these-5-charts-show-their-momentum-is-starting-to-fade-6b550d51"
+        },
+        {
+            "title": "Akihabara still shows off Japan’s love for physical media",
+            "author": "Sam Byford",
+            "source": {
+                "id": "the-verge",
+                "name": "The Verge"
+            },
+            "publishedAt": "2024-02-28T15:30:00Z",
+            "url": "https://www.theverge.com/24055863/akihabara-japan-retro-video-games-physical-media"
+        },
+        {
+            "title": "How U.S. stock markets have fared in March following a strong February",
+            "author": "Isabel Wang",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-03-01T18:40:00Z",
+            "url": "https://www.marketwatch.com/story/how-u-s-stock-markets-have-fared-in-march-following-a-strong-february-2a8b7d18"
+        },
+        {
+            "title": "A second Trump term may benefit these stock-market sectors most",
+            "author": "Joseph Adinolfi",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-27T15:46:00Z",
+            "url": "https://www.marketwatch.com/story/a-second-trump-term-may-benefit-these-stock-market-sectors-most-07bfc12a"
+        },
+        {
+            "title": "S&P 500 has ‘room to rally’ before Fed rate cut, according to this stock ‘playbook’",
+            "author": "Christine Idzelis",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-14T20:02:00Z",
+            "url": "https://www.marketwatch.com/story/s-p-500-has-room-to-rally-before-fed-rate-cut-according-to-this-stock-playbook-66755a47"
+        },
+        {
+            "title": "Alibaba’s stock surges ahead of earnings, and Nio’s bounces sharply off four-year low",
+            "author": "Tomi Kilgore",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-06T20:00:00Z",
+            "url": "https://www.marketwatch.com/story/alibabas-stock-surges-ahead-of-earnings-and-nios-bounces-sharply-off-four-year-low-e2049441"
+        },
+        {
+            "title": "S&P 500 scores gains last seen in 1971 as AI hopes fuel ‘second’ leg of rally",
+            "author": "Christine Idzelis",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-03-02T13:00:00Z",
+            "url": "https://www.marketwatch.com/story/s-p-500-scores-gains-last-seen-in-1971-as-ai-hopes-fuel-second-leg-of-rally-fe673bde"
+        },
+        {
+            "title": "Short sellers boosted by ‘Hedge Fund Nirvana’ that sees most heavily-shorted companies suffer",
+            "author": "Louis Goss",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-12T12:47:00Z",
+            "url": "https://www.marketwatch.com/story/short-sellers-boosted-by-hedge-fund-nirvana-that-sees-most-heavily-shorted-companies-suffer-5be59096"
+        },
+        {
+            "title": "Here’s proof that underdog stocks can make you more money than the market’s ‘best in show’",
+            "author": "Mark Hulbert",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-06T23:00:00Z",
+            "url": "https://www.marketwatch.com/story/heres-proof-that-underdog-stocks-can-make-you-more-money-than-the-markets-best-in-show-9ed566f6"
+        },
+        {
+            "title": "Bullish bets on Nvidia, other ‘Magnificent Seven’ members near their most crowded levels in the past year",
+            "author": "Joseph Adinolfi",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-13T19:26:00Z",
+            "url": "https://www.marketwatch.com/story/bullish-bets-on-nvidia-other-magnificent-seven-members-near-their-most-crowded-levels-in-the-past-year-5a30fb90"
+        },
+        {
+            "title": "Small-cap stocks haven’t been this volatile in nearly a year. What it means for the long-suffering sector.",
+            "author": "Isabel Wang",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-17T11:00:00Z",
+            "url": "https://www.marketwatch.com/story/small-cap-stocks-havent-been-this-volatile-in-nearly-a-year-what-it-means-for-the-long-suffering-sector-d79a2567"
+        },
+        {
+            "title": "European stocks hit new record for first time in two years as Nvidia sparks semiconductor rally",
+            "author": "Jamie Chisholm",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-22T10:07:00Z",
+            "url": "https://www.marketwatch.com/story/european-stocks-hit-new-record-for-first-time-in-two-years-as-nvidia-sparks-semiconductor-rally-f73aef12"
+        },
+        {
+            "title": "U.S. stocks are off to their best start to a year since 2019 – and the rally is not just about the Magnificent Seven",
+            "author": "Isabel Wang",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-29T16:30:00Z",
+            "url": "https://www.marketwatch.com/story/u-s-stocks-are-off-to-their-best-start-to-a-year-since-2019-and-the-rally-is-not-just-about-the-magnificent-seven-a0627fb6"
+        },
+        {
+            "title": "Tech stocks vulnerable to sharp selloff as investors’ positioning becomes dangerously stretched, Citi warns",
+            "author": "Joseph Adinolfi",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-06T13:58:00Z",
+            "url": "https://www.marketwatch.com/story/tech-stocks-vulnerable-to-sharp-selloff-as-investors-positioning-becomes-dangerously-stretched-citi-warns-873ac633"
+        },
+        {
+            "title": "Regional-bank stocks continue to slide as Fed’s Powell plays down chances of March rate cut",
+            "author": "Joseph Adinolfi",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-05T19:30:00Z",
+            "url": "https://www.marketwatch.com/story/regional-bank-stocks-continue-to-slide-as-feds-powell-plays-down-chances-of-march-rate-cut-c8af35f8"
+        },
+        {
+            "title": "Inflation data jolted stocks and bonds. This will decide what happens next.",
+            "author": "Vivien Lou Chen",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-14T20:32:00Z",
+            "url": "https://www.marketwatch.com/story/inflation-data-jolted-stocks-and-bonds-this-will-decide-what-happens-next-63df42d1"
+        },
+        {
+            "title": "These mutual fund and ETF investing tips can get you in step with the market",
+            "author": "MarketWatch",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-22T13:11:00Z",
+            "url": "https://www.marketwatch.com/story/these-mutual-fund-and-etf-investing-tips-can-get-you-in-step-with-the-market-319d0993"
+        },
+        {
+            "title": "Think the S&P 500 is top-heavy? Five stocks command 60% of this market.",
+            "author": "Mark Hulbert",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-12T17:05:00Z",
+            "url": "https://www.marketwatch.com/story/think-the-s-p-500-is-top-heavy-five-stocks-command-60-of-this-market-628fb529"
+        },
+        {
+            "title": "Regional bank stocks look ‘very risky’ after ‘barely’ growing dividend payouts since 2006",
+            "author": "Christine Idzelis",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-06T18:11:00Z",
+            "url": "https://www.marketwatch.com/story/regional-bank-stocks-look-very-risky-after-barely-growing-dividend-payouts-since-2006-90cf66ba"
+        },
+        {
+            "title": "Stocks are heading up and inflation is coming down as this ‘Roaring 2020s’ market rolls on",
+            "author": "Ed Yardeni",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-26T12:05:00Z",
+            "url": "https://www.marketwatch.com/story/stocks-are-heading-up-and-inflation-is-coming-down-as-this-roaring-2020s-market-rolls-on-f9157a69"
+        },
+        {
+            "title": "Jeff Bezos Sells Nearly 12 Million Amazon Shares Worth at Least $2 Billion",
+            "author": "Associated Press",
+            "source": {
+                "id": "time",
+                "name": "Time"
+            },
+            "publishedAt": "2024-02-11T13:05:17Z",
+            "url": "https://time.com/6693620/jeff-bezos-sells-amazon-shares-billions-sec-filings/"
+        },
+        {
+            "title": "Nasdaq has gone more than 300 days without a major pullback. Does that mean a shakeout is overdue?",
+            "author": "Joseph Adinolfi",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-03-04T21:54:00Z",
+            "url": "https://www.marketwatch.com/story/nasdaq-has-gone-more-than-300-days-without-a-major-pullback-does-that-mean-a-shakeout-is-overdue-a8afb112"
+        },
+        {
+            "title": "S&P 500 has its first close above 5,000 in another winning week for Wall Street",
+            "author": "STAN CHOE AP business writer",
+            "source": {
+                "id": "abc-news",
+                "name": "ABC News"
+            },
+            "publishedAt": "2024-02-09T21:18:35Z",
+            "url": "https://abcnews.go.com/Business/wireStory/stock-market-today-tokyo-hits-30-year-high-107091165"
+        },
+        {
+            "title": "A growing number of stocks are joining the market rally — even as Big Tech still gets most of the attention",
+            "author": "Joseph Adinolfi",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-02-24T00:19:00Z",
+            "url": "https://www.marketwatch.com/story/a-growing-number-of-stocks-are-joining-the-market-rally-even-as-big-tech-still-gets-most-of-the-attention-a0231a08"
+        },
+        {
+            "title": "British investors plow billions into U.S. stocks while continuing to snub U.K. markets",
+            "author": "Louis Goss",
+            "source": {
+                "id": null,
+                "name": "MarketWatch"
+            },
+            "publishedAt": "2024-03-05T12:10:00Z",
+            "url": "https://www.marketwatch.com/story/british-investors-plow-billions-into-u-s-stocks-while-continuing-to-snub-u-k-markets-3614fc0a"
+        },
+        {
+            "title": "PS5 Sales Cut Leads to Huge Loss in Sony Stocks",
+            "author": "Mike Viray",
+            "source": {
+                "id": null,
+                "name": "Phandroid - News for Android"
+            },
+            "publishedAt": "2024-02-19T22:49:38Z",
+            "url": "https://phandroid.com/2024/02/19/ps5-sales-cut-leads-to-huge-loss-in-sony-stocks/"
+        },
+        {
+            "title": "Trader Joe's recalls frozen steamed chicken soup dumplings",
+            "author": "Kelly McCarthy",
+            "source": {
+                "id": "abc-news",
+                "name": "ABC News"
+            },
+            "publishedAt": "2024-03-04T14:16:32Z",
+            "url": "https://abcnews.go.com/GMA/Food/trader-joes-recalls-popular-frozen-item-check-freezer/story?id=107769098"
+        }
+    ]
+}

@@ -10,15 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "@emailjs/browser": "^4.2.0",
     "@popperjs/core": "^2.11.8",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.2",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "polygon.io": "^2.1.2",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.1",
     "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-google-charts": "^4.0.1",
     "react-router-dom": "^6.22.2",
     "recharts": "^2.12.2"
   },

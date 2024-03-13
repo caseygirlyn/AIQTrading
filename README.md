@@ -20,3 +20,7 @@ Smoke test: `jest smoke.test.js`
 Open the test file you want to run.
 Navigate to the "Run and Debug" (Ctrl-Shift-D) window.
 Select 'Jest Current File' from the drop down.
+
+## Netlify site
+
+<https://aiqtrading.netlify.app/>

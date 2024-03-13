@@ -1,0 +1,60 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '21'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm run test
+
+    - name: Build React App
+      run: npm run build
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifact
+        path: dist/
+
+    - name: List output files
+      run: ls -l dist/  
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifact
+        path: dist/
+
+    - name: Install Netlify CLI
+      run: npm install netlify-cli -g
+
+    - name: Deploy to Netlify
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      run: netlify deploy --prod --dir=dist

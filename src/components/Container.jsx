@@ -37,7 +37,7 @@ const Container = (props) => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
-  return <div className={isDarkMode ? 'darkMode' : 'lightMode'}>
+  return <div className={isDarkMode ? 'darkMode' : 'lightMode'} data-testid="container">
 
     <div className="form-check form-switch">
       <input

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from "axios";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale, Filler } from 'chart.js';
 import 'chartjs-adapter-date-fns';
@@ -25,6 +24,9 @@ const StockSearch = (props) => {
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState([]);
     let endPoint = '';
+
+    let color = (props.isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
+    let bgcolor = (props.isDarkMode) ? 'rgb(67 202 240 / 10%)' : 'rgb(0 0 0 / 10%)';
 
     const handleChange = event => {
         setQuery(event.target.value.toUpperCase());
@@ -146,9 +148,9 @@ const StockSearch = (props) => {
                 data: stockData.closingPrices,
                 fill: {
                     target: 'origin',
-                    above: 'rgb(67 202 240 / 10%)'
+                    above: bgcolor
                 },
-                borderColor: 'rgb(13, 202, 240)',
+                borderColor: color,
                 pointBorderWidth: 1,
             },
         ],
@@ -158,7 +160,7 @@ const StockSearch = (props) => {
         plugins: {
             legend: {
                 labels: {
-                    color: 'rgb(13, 202, 240)'
+                    color: color
                 }
             }
         },
@@ -174,7 +176,7 @@ const StockSearch = (props) => {
             },
             y: {
                 ticks: {
-                    color: 'rgb(13, 202, 240)'
+                    color: color
                 }
                 // Configuration for the y-axis
             }

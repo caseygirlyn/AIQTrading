@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import News from "./News";
-import LineChart from "./LineChart"
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import MostlyOwnedStocksTable from "./common/Tables/MostlyOwnedStocksTable";
-import PieChart from "./PieChart";
 import StockSearch from "./StockSearch";
-
 
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -59,7 +56,7 @@ const Container = (props) => {
         <Col size="md-4">
           <h2 className="fs-6 bg-secondary-color text-center p-2 rounded-2 text-white">{currentDateTime.toLocaleString()}</h2>
           <MostlyOwnedStocksTable />
-          <PieChart />
+          {/* <PieChart /> */}
         </Col>
         <Col size="md-8">
           <StockSearch isDarkMode={isDarkMode}/>

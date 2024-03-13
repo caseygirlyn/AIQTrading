@@ -24,14 +24,14 @@ const News = () => {
 
     return (
         <div className='container news'>
-            <h2 className="fs-4 mb-0">Latest News</h2>
+            <h2 className="fs-4 mb-0">Global Financial News</h2>
             {loading ? (
                 <p>Loading...</p>
             ) : error ? (
                 <p>{error}</p>
             ) : (
                 <div className='wrapper card-group pb-3'>
-                    {news.slice(0, 9).map((article, index) => (
+                    {news.slice(0, 12).map((article, index) => (
                         <div className="cardContainer col-md-4 col-sm-12 w-lg-auto py-3" key={index}>
                             <div className="card border-2 rounded-0 w-auto border-0">
                                 <div className="card-body caption py-1">

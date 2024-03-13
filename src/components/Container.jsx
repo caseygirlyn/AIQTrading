@@ -59,7 +59,7 @@ const Container = (props) => {
         <Col size="md-4">
           <h2 className="fs-6 bg-secondary-color text-center p-2 rounded-2 text-white">{currentDateTime.toLocaleString()}</h2>
           <MostlyOwnedStocksTable />
-          <PieChart />
+          {/* <PieChart /> */}
         </Col>
         <Col size="md-8">
           <StockSearch isDarkMode={isDarkMode}/>

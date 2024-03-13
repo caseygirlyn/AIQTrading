@@ -18,7 +18,11 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // for validation and submition data to server you can add more here
+    if (formData.password !== formData.confirmPassword) {
+      // Display an error message
+      console.error("Passwords do not match");
+      return;
+    }
     console.log('Form submitted:', formData);
   };
 

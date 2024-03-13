@@ -147,6 +147,8 @@ canvas {
   border-radius: 5px;
   padding: 15px;
   margin: 0 0 1rem;
+  width: 100% !important;
+  height: auto !important;
 }
 
 /* News */

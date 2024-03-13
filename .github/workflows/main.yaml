@@ -24,6 +24,9 @@ jobs:
     - name: Run tests
       run: npm run test
 
+    - name: Build React App
+      run: npm run build
+
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest

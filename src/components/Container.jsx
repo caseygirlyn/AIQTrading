@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import News from "./News";
-import LineChart from "./LineChart"
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import MostlyOwnedStocksTable from "./common/Tables/MostlyOwnedStocksTable";
-import PieChart from "./PieChart";
 import StockSearch from "./StockSearch";
-
 
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());

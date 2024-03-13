@@ -30,8 +30,11 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v2
       with:
-        name: build
-        path: build/
+        name: build-artifact
+        path: dist/
+
+    - name: List output files
+      run: ls -l dist/  
 
   deploy:
     needs: build-and-test
@@ -44,8 +47,8 @@ jobs:
     - name: Download build artifact
       uses: actions/download-artifact@v2
       with:
-        name: build
-        path: build/
+        name: build-artifact
+        path: dist/
 
     - name: Install Netlify CLI
       run: npm install netlify-cli -g

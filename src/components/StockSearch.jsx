@@ -52,15 +52,25 @@ const StockSearch = (props) => {
         const todayFormatted = formatDate(today);
         const yesterdayFormatted = formatDate(yesterday);
 
-        const APIKEY = "apikey=MEMq3hGb4CgnNvgWqBSZkhHpSank9EtR";
+        const APIKEY = "apikey=ebca039e1959992360fd8a8aacbb273f";
 
         try {
-            const BASEURL = "https://financialmodelingprep.com/api/v3/profile/";
+            const BASEURL = "https://financialmodelingprep.com/api/v3/search?";
 
-            //const response = await fetch(BASEURL + query + "?" + APIKEY);
-            const response = await fetch(`/AAPL.json`);
+            const response = await fetch(BASEURL + query + "?" + APIKEY);
+            //const response = await fetch(`/AAPL.json`);
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
+            }
+            else if (response.ok) {
+                const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
+                const stockInfo = {
+                    symbol: query,
+                    name: data.name,
+                };
+                searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
+                searchedStocks.splice(10); // Keep only the last 10 searches
+                localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
             }
             const data = await response.json();
             setSearchResults(data);

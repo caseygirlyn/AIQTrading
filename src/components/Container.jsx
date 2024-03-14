@@ -10,6 +10,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Footer from "./common/Footer";
 import BiggestGainers from "./BiggestGainers";
 import BiggestLosers from "./BiggestLosers";
+import SearchedStocksTable from './common/Tables/SearchedStocksTable';
 
 
 const Container = (props) => {
@@ -139,6 +140,7 @@ const Container = (props) => {
         </Col>
         <Col size="md-4">
           <MostlyOwnedStocksTable />
+          <SearchedStocksTable />
         </Col>
         <Col size="md-8">
           <News />

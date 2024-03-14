@@ -78,7 +78,7 @@ const Container = (props) => {
         </Col>
         <Col size="md-4">
           <MostlyOwnedStocksTable />
-          <SearchedStocksTable />
+          {/* <SearchedStocksTable /> */}
         </Col>
         <Col size="md-8">
           <News />

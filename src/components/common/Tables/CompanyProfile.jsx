@@ -22,7 +22,7 @@ const CompanyProfile = (props) => {
         return formatter.format(price);
     };
     return (
-        <div>
+        <>
             {searchResults.map(stock => (
                 <div key={stock.symbol}>
                     <table className="table table-striped mt-2 mb-0 rounded-1">
@@ -88,7 +88,7 @@ const CompanyProfile = (props) => {
                         </tbody>
                     </table></div>
             ))}
-        </div>
+        </>
     )
 }
 

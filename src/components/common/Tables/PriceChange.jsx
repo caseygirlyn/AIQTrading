@@ -3,7 +3,7 @@ import React from 'react'
 const PriceChange = (props) => {
     const priceChange = props.priceChange;
     return (
-        <div>
+        <>
             {priceChange.map(stock => (
                 <table className="table table-striped mt-2 mb-0 rounded-1" key={stock.symbol}>
                     <thead>
@@ -62,7 +62,7 @@ const PriceChange = (props) => {
                     </tbody>
                 </table>
             ))}
-        </div>
+        </>
     )
 }
 

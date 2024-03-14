@@ -52,25 +52,15 @@ const StockSearch = (props) => {
         const todayFormatted = formatDate(today);
         const yesterdayFormatted = formatDate(yesterday);
 
-        const APIKEY = "apikey=ebca039e1959992360fd8a8aacbb273f";
+        const APIKEY = "apikey=MEMq3hGb4CgnNvgWqBSZkhHpSank9EtR";
 
         try {
-            const BASEURL = "https://financialmodelingprep.com/api/v3/search?";
+            const BASEURL = "https://financialmodelingprep.com/api/v3/profile/";
 
             const response = await fetch(BASEURL + query + "?" + APIKEY);
             //const response = await fetch(`/AAPL.json`);
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
-            }
-            else if (response.ok) {
-                const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
-                const stockInfo = {
-                    symbol: query,
-                    name: data.name,
-                };
-                searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
-                searchedStocks.splice(10); // Keep only the last 10 searches
-                localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
             }
             const data = await response.json();
             setSearchResults(data);
@@ -85,9 +75,9 @@ const StockSearch = (props) => {
             //https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey=MEMq3hGb4CgnNvgWqBSZkhHpSank9EtR
 
             const BASEURLPC = "https://financialmodelingprep.com/api/v3/stock-price-change/";
-            const responsePC = await fetch(BASEURLPC + query + "?" + APIKEY);
+            //const responsePC = await fetch(BASEURLPC + query + "?" + APIKEY);
 
-            //const responsePC = await fetch(`/AAPL-PC.json`);
+            const responsePC = await fetch(`/AAPL-PC.json`);
             if (!responsePC.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -101,8 +91,8 @@ const StockSearch = (props) => {
             const BASEURLCHART = "https://financialmodelingprep.com/api/v3/historical-chart/5min/";
             const DATERANGE = `?from=${yesterdayFormatted}&to=${todayFormatted}&`
 
-            //let endPoint = BASEURLCHART + query + DATERANGE + APIKEY;
-            let endPoint = `/AAPL-5min.json`;
+            let endPoint = BASEURLCHART + query + DATERANGE + APIKEY;
+            //let endPoint = `/AAPL-5min.json`;
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {

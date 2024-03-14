@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "./common/Header";
 import News from "./News";
 import Col from "./common/Theme/Col";
@@ -11,10 +11,12 @@ import Footer from "./common/Footer";
 import BiggestGainers from "./BiggestGainers";
 import BiggestLosers from "./BiggestLosers";
 
+
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
   const [depositAmount, setDepositAmount] = useState(0);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -40,12 +42,59 @@ const Container = (props) => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
-  const updateDepositAmount = () => {
-    setDepositAmount(prevAmount => prevAmount + 100);
-    console.log(depositAmount);
+  useEffect(() => {
+    if (inputRef.current && depositAmount === 0) {
+      inputRef.current.focus();
+    }
+    inputRef.current.focus();
+  }, [inputRef, depositAmount]);
+
+  const handleDeposit = () => {
+    e.preventDefault();
+    // Convert the deposit amount to a number before processing it
+    const amount = parseFloat(depositAmount);
+    if (!isNaN(amount)) {
+      // Handle deposit logic here
+      console.log("Deposit amount:", amount);
+      // You can perform deposit-related actions here, like sending the amount to an API or updating state.
+      // Clear the input field after depositing
+      setDepositAmount('');
+    } else {
+      alert('Please enter a valid number for the deposit amount.');
+    }
   };
-  const formatDepositAmount = () => {
-    return depositAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+
+  const DepositButton = () => {
+    const handleDeposit = () => {
+      console.log("Deposit amount:", depositAmount);
+    };
+
+    const handleChange = (e) => {
+      setDepositAmount(parseFloat(e.target.value));
+      console.log("Updated deposit amount:", parseFloat(e.target.value));
+    }
+  
+    return (
+      <div>
+          <input
+          ref={inputRef}
+          type="number"
+          value={depositAmount}
+          onChange={(e) => setDepositAmount(parseFloat(e.target.value))}
+          placeholder="Enter deposit amount"
+          />
+          <button onClick={handleDeposit}>Deposit</button>
+          
+        </div>
+  );
+  
+
+    
+    
+      
+
+
   };
   
 
@@ -68,6 +117,8 @@ const Container = (props) => {
     <Header />
 
     <div className="container mb-5 mt-5 pt-5">
+      {/* Include DepositButton component */}
+      <DepositButton />
       <Row>
         <Col size="md-12">
           <StockSearch isDarkMode={isDarkMode} />
@@ -98,6 +149,37 @@ const Container = (props) => {
     <Footer />
 
   </div>
+  
 }
+
+// 
+    const DepositButton = ({ depositAmount, setDepositAmount }) => {
+      const handleDeposit = () => {
+        console.log("Deposit amount:", depositAmount);
+        // Handle deposit logic here
+        setDepositAmount
+      };
+    
+      const handleChange = (e) => {
+        // Update the deposit amount as the input value changes
+        setDepositAmount(parseFloat(e.target.value));
+        console.log("Updated deposit amount:", parseFloat(e.target.value)); 
+        
+      };
+    
+      return (
+        <div>
+          <input
+            type="number"
+            value={depositAmount}
+            onChange={handleChange}
+            placeholder="Enter deposit amount"
+          />
+          {/* Add onClick event to call handleDeposit function */}
+          <button onClick={handleDeposit}>Deposit</button>
+        </div>
+      );
+    };
+
 
 export default Container;

@@ -348,4 +348,7 @@ footer{
     line-height: inherit;
     width: 100%;
   }
+  .nav-tabs .nav-link, .tab-content{
+    font-size: smaller;
+  }
 }

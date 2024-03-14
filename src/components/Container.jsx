@@ -9,9 +9,21 @@ import PieChart from "./PieChart";
 import StockSearch from "./StockSearch";
 
 
+function debounce(func, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
+
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
+  const [depositAmount, setDepositAmount] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -37,6 +49,16 @@ const Container = (props) => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
+  const updateDepositAmount = () => {
+    setDepositAmount(prevAmount => prevAmount + 100);
+    console.log(depositAmount);
+  };
+  const formatDepositAmount = () => {
+    return depositAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  };
+  
+
+
   return <div className={isDarkMode ? 'darkMode' : 'lightMode'} data-testid="container">
 
     <div className="form-check form-switch">
@@ -60,6 +82,9 @@ const Container = (props) => {
           <h2 className="fs-6 bg-secondary-color text-center p-2 rounded-2 text-white">{currentDateTime.toLocaleString()}</h2>
           <MostlyOwnedStocksTable />
           <PieChart />
+          {/* Deposit fund button */}
+          <button className="depositButton" onClick={() => updateDepositAmount(depositAmount + 100)}>Deposit Funds</button>
+          
         </Col>
         <Col size="md-8">
           <StockSearch isDarkMode={isDarkMode}/>

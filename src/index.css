@@ -251,6 +251,21 @@ i.bi.bi-list{
   font-size: 13px;
 }
 
+.depositButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.depositButton:hover {
+  background-color: #0056b3;
+}
+
 .darkMode .table > :not(caption) > * > * {
   color: #fff;
   background-color: #2f3442;

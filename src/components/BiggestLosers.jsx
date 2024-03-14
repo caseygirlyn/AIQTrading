@@ -28,7 +28,7 @@ function BiggestLosers() {
     }, []);
 
     return (
-        <div className='container'>
+        <div className='container py-2'>
             {loading ? (
                 <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
                     <span className="visually-hidden">Loading...</span>
@@ -36,7 +36,7 @@ function BiggestLosers() {
             ) : error ? (
                 <p>{error}</p>
             ) : (
-                <div className='row pb-3'>
+                <div className='row'>
                     {marketLosers.slice(0, 20).map(stock => (
                         <div key={stock.symbol} className='my-2 text-center col-md-3 col-6'>
                             <div className='p-1 w-100'>{stock.name}</div>

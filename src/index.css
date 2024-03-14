@@ -99,7 +99,7 @@ input#darkModeSwitch {
 #search, #searchBtn {
   background: transparent;
   border-width: 0 0 1px;
-  border-color: #2f3443;
+  border-color: #404554;
 }
 
 .lightMode #searchBtn:hover{
@@ -271,5 +271,6 @@ i.bi.bi-list{
   }
   .searchForm h2{
     line-height: inherit;
+    width: 100%;
   }
 }

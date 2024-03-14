@@ -1,0 +1,352 @@
+[
+  {
+    "symbol": "LSF",
+    "name": "Laird Superfood, Inc.",
+    "change": 0.97,
+    "price": 1.9,
+    "changesPercentage": 104.301
+  },
+  {
+    "symbol": "TCON",
+    "name": "TRACON Pharmaceuticals, Inc.",
+    "change": 0.241,
+    "price": 0.631,
+    "changesPercentage": 61.7949
+  },
+  {
+    "symbol": "CXAI",
+    "name": "CXApp Inc.",
+    "change": 1.21,
+    "price": 3.24,
+    "changesPercentage": 59.6059
+  },
+  {
+    "symbol": "CURO",
+    "name": "CURO Group Holdings Corp.",
+    "change": 0.0547,
+    "price": 0.1497,
+    "changesPercentage": 57.579
+  },
+  {
+    "symbol": "VRM",
+    "name": "Vroom, Inc.",
+    "change": 6.12,
+    "price": 17.49,
+    "changesPercentage": 53.8259
+  },
+  {
+    "symbol": "GXAI",
+    "name": "Gaxos.ai Inc.",
+    "change": 2.72,
+    "price": 8.04,
+    "changesPercentage": 51.1278
+  },
+  {
+    "symbol": "ARQ",
+    "name": "Arq, Inc.",
+    "change": 1.62,
+    "price": 5.09,
+    "changesPercentage": 46.6859
+  },
+  {
+    "symbol": "KTRA",
+    "name": "Kintara Therapeutics, Inc.",
+    "change": 0.0385,
+    "price": 0.1221,
+    "changesPercentage": 46.0526
+  },
+  {
+    "symbol": "HOLO",
+    "name": "MicroCloud Hologram Inc.",
+    "change": 1.81,
+    "price": 6.7,
+    "changesPercentage": 37.0143
+  },
+  {
+    "symbol": "LICY",
+    "name": "Li-Cycle Holdings Corp.",
+    "change": 0.2128,
+    "price": 0.7997,
+    "changesPercentage": 36.2583
+  },
+  {
+    "symbol": "AISP",
+    "name": "Airship AI Holdings, Inc.",
+    "change": 2.42,
+    "price": 10.07,
+    "changesPercentage": 31.634
+  },
+  {
+    "symbol": "RAYA",
+    "name": "Erayak Power Solution Group Inc.",
+    "change": 0.2268,
+    "price": 0.954,
+    "changesPercentage": 31.1881
+  },
+  {
+    "symbol": "JZXN",
+    "name": "Jiuzi Holdings, Inc.",
+    "change": 0.51,
+    "price": 2.16,
+    "changesPercentage": 30.9091
+  },
+  {
+    "symbol": "FTK",
+    "name": "Flotek Industries, Inc.",
+    "change": 0.84,
+    "price": 3.65,
+    "changesPercentage": 29.8932
+  },
+  {
+    "symbol": "BMR",
+    "name": "Beamr Imaging Ltd.",
+    "change": 1.56,
+    "price": 7.13,
+    "changesPercentage": 28.0072
+  },
+  {
+    "symbol": "HRTX",
+    "name": "Heron Therapeutics, Inc.",
+    "change": 0.65,
+    "price": 3.01,
+    "changesPercentage": 27.5424
+  },
+  {
+    "symbol": "VERI",
+    "name": "Veritone, Inc.",
+    "change": 0.46,
+    "price": 2.17,
+    "changesPercentage": 26.9006
+  },
+  {
+    "symbol": "ANNX",
+    "name": "Annexon, Inc.",
+    "change": 1.18,
+    "price": 5.77,
+    "changesPercentage": 25.7081
+  },
+  {
+    "symbol": "SOUN",
+    "name": "SoundHound AI, Inc.",
+    "change": 1.72,
+    "price": 8.65,
+    "changesPercentage": 24.8196
+  },
+  {
+    "symbol": "BFRI",
+    "name": "Biofrontera Inc.",
+    "change": 0.32,
+    "price": 1.63,
+    "changesPercentage": 24.4275
+  },
+  {
+    "symbol": "SONX",
+    "name": "Sonendo, Inc.",
+    "change": 0.0236,
+    "price": 0.123465,
+    "changesPercentage": 23.5886
+  },
+  {
+    "symbol": "MINM",
+    "name": "Minim, Inc.",
+    "change": 1.16,
+    "price": 6.17,
+    "changesPercentage": 23.1537
+  },
+  {
+    "symbol": "AULT",
+    "name": "Ault Alliance, Inc.",
+    "change": 0.088,
+    "price": 0.478,
+    "changesPercentage": 22.5641
+  },
+  {
+    "symbol": "APVO",
+    "name": "Aptevo Therapeutics Inc.",
+    "change": 0.89,
+    "price": 4.96,
+    "changesPercentage": 21.8673
+  },
+  {
+    "symbol": "CUE",
+    "name": "Cue Biopharma, Inc.",
+    "change": 0.38,
+    "price": 2.15,
+    "changesPercentage": 21.4689
+  },
+  {
+    "symbol": "SIGA",
+    "name": "SIGA Technologies, Inc.",
+    "change": 1.13,
+    "price": 6.45,
+    "changesPercentage": 21.2406
+  },
+  {
+    "symbol": "LPCN",
+    "name": "Lipocine Inc.",
+    "change": 0.83,
+    "price": 4.79,
+    "changesPercentage": 20.9596
+  },
+  {
+    "symbol": "MGLD",
+    "name": "The Marygold Companies, Inc.",
+    "change": 0.206,
+    "price": 1.2,
+    "changesPercentage": 20.7243
+  },
+  {
+    "symbol": "NVOS",
+    "name": "Novo Integrated Sciences, Inc.",
+    "change": 0.1143,
+    "price": 0.6683,
+    "changesPercentage": 20.6318
+  },
+  {
+    "symbol": "CRDF",
+    "name": "Cardiff Oncology, Inc.",
+    "change": 0.92,
+    "price": 5.4,
+    "changesPercentage": 20.5357
+  },
+  {
+    "symbol": "GORO",
+    "name": "Gold Resource Corporation",
+    "change": 0.0679,
+    "price": 0.41,
+    "changesPercentage": 19.848
+  },
+  {
+    "symbol": "SEAC",
+    "name": "SeaChange International, Inc.",
+    "change": 0.89,
+    "price": 5.39,
+    "changesPercentage": 19.7778
+  },
+  {
+    "symbol": "EDUC",
+    "name": "Educational Development Corporation",
+    "change": 0.34,
+    "price": 2.07,
+    "changesPercentage": 19.6532
+  },
+  {
+    "symbol": "CISO",
+    "name": "Cerberus Cyber Sentinel Corporation",
+    "change": 0.22,
+    "price": 1.34,
+    "changesPercentage": 19.6429
+  },
+  {
+    "symbol": "SAI",
+    "name": "SAI.TECH Global Corporation",
+    "change": 0.19,
+    "price": 1.2,
+    "changesPercentage": 18.8119
+  },
+  {
+    "symbol": "SQFT",
+    "name": "Presidio Property Trust, Inc.",
+    "change": 0.19,
+    "price": 1.2,
+    "changesPercentage": 18.8119
+  },
+  {
+    "symbol": "CLPT",
+    "name": "ClearPoint Neuro, Inc.",
+    "change": 1.12,
+    "price": 7.17,
+    "changesPercentage": 18.5124
+  },
+  {
+    "symbol": "SKIN",
+    "name": "The Beauty Health Company",
+    "change": 0.66,
+    "price": 4.25,
+    "changesPercentage": 18.3844
+  },
+  {
+    "symbol": "DTST",
+    "name": "Data Storage Corporation",
+    "change": 1.03,
+    "price": 6.67,
+    "changesPercentage": 18.2624
+  },
+  {
+    "symbol": "QLI",
+    "name": "Qilian International Holding Group Limited",
+    "change": 0.0998,
+    "price": 0.65,
+    "changesPercentage": 18.1389
+  },
+  {
+    "symbol": "WSM",
+    "name": "Williams-Sonoma, Inc.",
+    "change": 42.82,
+    "price": 283.87,
+    "changesPercentage": 17.7639
+  },
+  {
+    "symbol": "KPLT",
+    "name": "Katapult Holdings, Inc.",
+    "change": 2.76,
+    "price": 18.4,
+    "changesPercentage": 17.6471
+  },
+  {
+    "symbol": "SWVL",
+    "name": "Swvl Holdings Corp.",
+    "change": 1.13,
+    "price": 7.63,
+    "changesPercentage": 17.3846
+  },
+  {
+    "symbol": "MRAI",
+    "name": "Marpai, Inc.",
+    "change": 0.39,
+    "price": 2.65,
+    "changesPercentage": 17.2566
+  },
+  {
+    "symbol": "DRCT",
+    "name": "Direct Digital Holdings, Inc.",
+    "change": 3.88,
+    "price": 26.79,
+    "changesPercentage": 16.9358
+  },
+  {
+    "symbol": "IVP",
+    "name": "Inspire Veterinary Partners, Inc.",
+    "change": 0.0074,
+    "price": 0.0513,
+    "changesPercentage": 16.8565
+  },
+  {
+    "symbol": "DNTH",
+    "name": "Dianthus Therapeutics, Inc.",
+    "change": 4.15,
+    "price": 29.3,
+    "changesPercentage": 16.501
+  },
+  {
+    "symbol": "LGCB",
+    "name": "Linkage Global Inc Ordinary Shares",
+    "change": 0.26,
+    "price": 1.84,
+    "changesPercentage": 16.4557
+  },
+  {
+    "symbol": "TOUR",
+    "name": "Tuniu Corporation",
+    "change": 0.1168,
+    "price": 0.828,
+    "changesPercentage": 16.4229
+  },
+  {
+    "symbol": "AIRG",
+    "name": "Airgain, Inc.",
+    "change": 0.75,
+    "price": 5.37,
+    "changesPercentage": 16.2338
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "symbol": "SRAX",
+    "name": "SRAX, Inc.",
+    "change": -0.1,
+    "price": 0.09,
+    "changesPercentage": -52.6316
+  },
+  {
+    "symbol": "VJET",
+    "name": "voxeljet AG",
+    "change": -0.5,
+    "price": 0.5,
+    "changesPercentage": -50
+  },
+  {
+    "symbol": "EFSH",
+    "name": "1847 Holdings LLC",
+    "change": -1.22,
+    "price": 1.38,
+    "changesPercentage": -46.9231
+  },
+  {
+    "symbol": "LUNA",
+    "name": "Luna Innovations Incorporated",
+    "change": -2.24,
+    "price": 4.02,
+    "changesPercentage": -35.7828
+  },
+  {
+    "symbol": "EVA",
+    "name": "Enviva Inc.",
+    "change": -0.2125,
+    "price": 0.3881,
+    "changesPercentage": -35.3813
+  },
+  {
+    "symbol": "SWIN",
+    "name": "Solowin Holdings Ordinary Share",
+    "change": -9.31,
+    "price": 19.79,
+    "changesPercentage": -31.9931
+  },
+  {
+    "symbol": "HNRA",
+    "name": "HNR Acquisition Corp",
+    "change": -1.398,
+    "price": 3.07,
+    "changesPercentage": -31.2892
+  },
+  {
+    "symbol": "SOS",
+    "name": "SOS Limited",
+    "change": -0.65,
+    "price": 1.48,
+    "changesPercentage": -30.5164
+  },
+  {
+    "symbol": "SELX",
+    "name": "Semilux International Ltd. Ordinary Shares",
+    "change": -0.79,
+    "price": 1.8,
+    "changesPercentage": -30.5019
+  },
+  {
+    "symbol": "MIRA",
+    "name": "MIRA Pharmaceuticals, Inc.",
+    "change": -0.45,
+    "price": 1.1,
+    "changesPercentage": -29.0323
+  },
+  {
+    "symbol": "SURG",
+    "name": "SurgePays, Inc.",
+    "change": -1.97,
+    "price": 5.02,
+    "changesPercentage": -28.1831
+  },
+  {
+    "symbol": "CMTL",
+    "name": "Comtech Telecommunications Corp.",
+    "change": -1.57,
+    "price": 4.19,
+    "changesPercentage": -27.2569
+  },
+  {
+    "symbol": "NAAS",
+    "name": "NaaS Technology Inc.",
+    "change": -0.4,
+    "price": 1.09,
+    "changesPercentage": -26.8456
+  },
+  {
+    "symbol": "KRBP",
+    "name": "Kiromic BioPharma, Inc.",
+    "change": -0.55,
+    "price": 1.55,
+    "changesPercentage": -26.1905
+  },
+  {
+    "symbol": "BTOG",
+    "name": "Bit Origin Limited",
+    "change": -1.38,
+    "price": 3.9,
+    "changesPercentage": -26.1364
+  },
+  {
+    "symbol": "CTNT",
+    "name": "Cheetah Net Supply Chain Service Inc.",
+    "change": -0.48,
+    "price": 1.45,
+    "changesPercentage": -24.8705
+  },
+  {
+    "symbol": "MEDS",
+    "name": "TRxADE HEALTH, Inc.",
+    "change": -7.96,
+    "price": 25.94,
+    "changesPercentage": -23.4808
+  },
+  {
+    "symbol": "COCH",
+    "name": "Envoy Medical, Inc.",
+    "change": -1.74,
+    "price": 5.86,
+    "changesPercentage": -22.8947
+  },
+  {
+    "symbol": "TNON",
+    "name": "Tenon Medical, Inc.",
+    "change": -0.33,
+    "price": 1.12,
+    "changesPercentage": -22.7586
+  },
+  {
+    "symbol": "VWE",
+    "name": "Vintage Wine Estates, Inc.",
+    "change": -0.1201,
+    "price": 0.44,
+    "changesPercentage": -21.4426
+  },
+  {
+    "symbol": "PIII",
+    "name": "P3 Health Partners Inc.",
+    "change": -0.2099,
+    "price": 0.8101,
+    "changesPercentage": -20.5784
+  },
+  {
+    "symbol": "LRE",
+    "name": "Lead Real Estate Co., Ltd American Depositary Shares",
+    "change": -0.93,
+    "price": 3.73,
+    "changesPercentage": -19.9571
+  },
+  {
+    "symbol": "BIRD",
+    "name": "Allbirds, Inc.",
+    "change": -0.1798,
+    "price": 0.7502,
+    "changesPercentage": -19.3333
+  },
+  {
+    "symbol": "RXT",
+    "name": "Rackspace Technology, Inc.",
+    "change": -0.425,
+    "price": 1.785,
+    "changesPercentage": -19.2308
+  },
+  {
+    "symbol": "PRPL",
+    "name": "Purple Innovation, Inc.",
+    "change": -0.38,
+    "price": 1.66,
+    "changesPercentage": -18.6274
+  },
+  {
+    "symbol": "ATER",
+    "name": "Aterian, Inc.",
+    "change": -0.0862,
+    "price": 0.386,
+    "changesPercentage": -18.255
+  },
+  {
+    "symbol": "NMHI",
+    "name": "Nature's Miracle Holding Inc. Common Stock",
+    "change": -0.51,
+    "price": 2.34,
+    "changesPercentage": -17.8947
+  },
+  {
+    "symbol": "APLM",
+    "name": "Apollomics, Inc.",
+    "change": -0.1272,
+    "price": 0.5838,
+    "changesPercentage": -17.8903
+  },
+  {
+    "symbol": "GRDI",
+    "name": "GRIID Infrastructure Inc. Common Stock",
+    "change": -0.29,
+    "price": 1.34,
+    "changesPercentage": -17.7914
+  },
+  {
+    "symbol": "SGBX",
+    "name": "SG Blocks, Inc.",
+    "change": -0.0462,
+    "price": 0.2305,
+    "changesPercentage": -16.6968
+  },
+  {
+    "symbol": "REVB",
+    "name": "Revelation Biosciences, Inc.",
+    "change": -0.52,
+    "price": 2.6,
+    "changesPercentage": -16.6667
+  },
+  {
+    "symbol": "VRME",
+    "name": "VerifyMe, Inc.",
+    "change": -0.24,
+    "price": 1.21,
+    "changesPercentage": -16.5517
+  },
+  {
+    "symbol": "BIMI",
+    "name": "BIMI International Medical Inc.",
+    "change": -0.55,
+    "price": 2.8,
+    "changesPercentage": -16.4179
+  },
+  {
+    "symbol": "AIRE",
+    "name": "reAlpha Tech Corp. Common Stock",
+    "change": -0.26,
+    "price": 1.34,
+    "changesPercentage": -16.25
+  },
+  {
+    "symbol": "PBM",
+    "name": "Psyence Biomedical Ltd. Common Shares",
+    "change": -0.19,
+    "price": 1.04,
+    "changesPercentage": -15.4472
+  },
+  {
+    "symbol": "AIH",
+    "name": "Aesthetic Medical International Holdings Group Limited",
+    "change": -0.0646,
+    "price": 0.3563,
+    "changesPercentage": -15.3481
+  },
+  {
+    "symbol": "TSVT",
+    "name": "2seventy bio, Inc.",
+    "change": -0.72,
+    "price": 4.01,
+    "changesPercentage": -15.222
+  },
+  {
+    "symbol": "DOMA",
+    "name": "Doma Holdings Inc.",
+    "change": -0.83,
+    "price": 4.64,
+    "changesPercentage": -15.1737
+  },
+  {
+    "symbol": "NMRA",
+    "name": "Neumora Therapeutics, Inc. Common Stock",
+    "change": -2.54,
+    "price": 14.81,
+    "changesPercentage": -14.6398
+  },
+  {
+    "symbol": "XELA",
+    "name": "Exela Technologies, Inc.",
+    "change": -0.31,
+    "price": 1.83,
+    "changesPercentage": -14.486
+  },
+  {
+    "symbol": "TACT",
+    "name": "TransAct Technologies Incorporated",
+    "change": -0.99,
+    "price": 5.88,
+    "changesPercentage": -14.4105
+  },
+  {
+    "symbol": "DLTR",
+    "name": "Dollar Tree, Inc.",
+    "change": -21.27,
+    "price": 128.42,
+    "changesPercentage": -14.2094
+  },
+  {
+    "symbol": "WORX",
+    "name": "SCWorx Corp.",
+    "change": -0.29,
+    "price": 1.76,
+    "changesPercentage": -14.1463
+  },
+  {
+    "symbol": "CRML",
+    "name": "Critical Metals Corp. Ordinary Shares",
+    "change": -1.21,
+    "price": 7.37,
+    "changesPercentage": -14.1026
+  },
+  {
+    "symbol": "GDC",
+    "name": "GD Culture Group Limited",
+    "change": -0.22,
+    "price": 1.35,
+    "changesPercentage": -14.0127
+  },
+  {
+    "symbol": "FANH",
+    "name": "Fanhua Inc.",
+    "change": -0.77,
+    "price": 4.85,
+    "changesPercentage": -13.7011
+  },
+  {
+    "symbol": "ZIM",
+    "name": "ZIM Integrated Shipping Services Ltd.",
+    "change": -1.59,
+    "price": 10.07,
+    "changesPercentage": -13.6364
+  },
+  {
+    "symbol": "PAVM",
+    "name": "PAVmed Inc.",
+    "change": -0.34,
+    "price": 2.16,
+    "changesPercentage": -13.6
+  },
+  {
+    "symbol": "GLACR",
+    "name": "Global Lights Acquisition Corp Rights",
+    "change": -0.0499,
+    "price": 0.32,
+    "changesPercentage": -13.4901
+  },
+  {
+    "symbol": "AMBO",
+    "name": "Ambow Education Holding Ltd.",
+    "change": -0.27,
+    "price": 1.75,
+    "changesPercentage": -13.3663
+  }
+]

@@ -24,6 +24,18 @@ jobs:
     - name: Run tests
       run: npm run test
 
+    - name: Build React App
+      run: npm run build
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifact
+        path: dist/
+
+    - name: List output files
+      run: ls -l dist/  
+
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -32,6 +44,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Download build artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifact
+        path: dist/
+
     - name: Install Netlify CLI
       run: npm install netlify-cli -g
 
@@ -39,4 +57,4 @@ jobs:
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      run: netlify deploy --prod --dir=build
+      run: netlify deploy --prod --dir=dist

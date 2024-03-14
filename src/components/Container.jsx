@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header";
+import Header from "./common/Header";
 import News from "./News";
-import LineChart from "./LineChart"
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import MostlyOwnedStocksTable from "./common/Tables/MostlyOwnedStocksTable";
-import PieChart from "./PieChart";
 import StockSearch from "./StockSearch";
-
-
-function debounce(func, delay) {
-  let timeoutId;
-  return function(...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(this, args);
-    }, delay);
-  };
-}
-
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import Footer from "./common/Footer";
+import BiggestGainers from "./BiggestGainers";
+import BiggestLosers from "./BiggestLosers";
 
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -76,22 +67,35 @@ const Container = (props) => {
 
     <Header />
 
-    <div className="container mb-4 mt-5 pt-5 reverse-col-mobile">
+    <div className="container mb-5 mt-5 pt-5">
       <Row>
+        <Col size="md-12">
+          <StockSearch isDarkMode={isDarkMode} />
+        </Col>
+      </Row>
+      <Row>
+        <Col size="md-12">
+          <Tabs
+            defaultActiveKey="gainers"
+          >
+            <Tab eventKey="gainers" title="Market Biggest Gainers" className="mb-5 text-center">
+              <BiggestGainers />
+            </Tab>
+            <Tab eventKey="losser" title="Market Biggest Losers" className="mb-5 text-center">
+              <BiggestLosers />
+            </Tab>
+          </Tabs>
+        </Col>
         <Col size="md-4">
-          <h2 className="fs-6 bg-secondary-color text-center p-2 rounded-2 text-white">{currentDateTime.toLocaleString()}</h2>
           <MostlyOwnedStocksTable />
-          <PieChart />
-          {/* Deposit fund button */}
-          <button className="depositButton" onClick={() => updateDepositAmount(depositAmount + 100)}>Deposit Funds</button>
-          
         </Col>
         <Col size="md-8">
-          <StockSearch isDarkMode={isDarkMode}/>
           <News />
         </Col>
       </Row>
     </div>
+
+    <Footer />
 
   </div>
 }

@@ -28,7 +28,7 @@ const SignUp = () => {
   };
 
   return (
-    <div style={{ 
+    <div data-testid="signup" style={{ 
       backgroundImage: 'url(assets/images/stock.jpeg)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
@@ -99,6 +99,3 @@ const SignUp = () => {
 }
 
 export default SignUp;
-
-
-

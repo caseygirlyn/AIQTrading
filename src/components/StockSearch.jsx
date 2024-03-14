@@ -4,6 +4,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import 'chartjs-adapter-date-fns';
 import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
+import MostlyOwnedStocksTable from './common/Tables/MostlyOwnedStocksTable';
+import CompanyNews from './CompanyNews';
 
 ChartJS.register(
     CategoryScale,
@@ -23,6 +25,7 @@ const StockSearch = (props) => {
     const [searchResults, setSearchResults] = useState([]);
     const [priceChange, setPriceChange] = useState([]);
     const [error, setError] = useState(null);
+    const [chartLoading, setChartLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState([]);
     let endPoint = '';
@@ -36,9 +39,10 @@ const StockSearch = (props) => {
     };
 
     const handleSubmit = async event => {
-        setParseQuery('');
         event.preventDefault();
+        setParseQuery('');
         setError(null);
+        setChartLoading(true);
         setLoading(true);
 
         const today = new Date();
@@ -63,6 +67,7 @@ const StockSearch = (props) => {
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
+            setLoading(false);
             setParseQuery(query);
         }
 
@@ -102,7 +107,7 @@ const StockSearch = (props) => {
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
-            setLoading(false);
+            setChartLoading(false);
             setQuery('');
         }
     };
@@ -166,7 +171,7 @@ const StockSearch = (props) => {
 
     return (
         <div className='mb-4'>
-            <form onSubmit={handleSubmit} className='searchForm'>
+            <form onSubmit={handleSubmit} className='searchForm mb-4 m-auto'>
                 <div className="input-group mb-2"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
                     <input
                         onChange={handleChange}
@@ -181,37 +186,50 @@ const StockSearch = (props) => {
                     <button className="btn btn-outline-secondary rounded-0" type="submit" id="searchBtn"><i className="bi bi-search"></i></button>
                 </div>
             </form>
-            
-            {loading && <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>}
-            {error && <p>{error}</p>}
-            {searchResults.length > 0 && (
-                <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
-                    <Line data={chartData} options={options} />
+            {
+                (loading || chartLoading) && <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
-            )}
+            }
+            {error && <p>{error}</p>}
 
-            <div className='container'>
-                <div className='row'>
-                    <div className='col-md-12 px-0'>
-                        {searchResults.length > 0 && (
-                            <div className='mb-4'>
-                                <CompanyProfile searchResults={searchResults} />
+            <div className='row reverse-col-mobile'>
+                <div className='col-md-4'>
+                    {!loading && searchResults.length > 0 && (
+                        <div className='mb-4'>
+                            <CompanyProfile searchResults={searchResults} />
+                        </div>
+                    )}
+                </div>
+                <div className='col-md-8'>
+                    {
+                        !chartLoading && searchResults.length > 0 && (
+                            <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
+                                <Line data={chartData} options={options} />
                             </div>
-                        )}
-                    </div>
-                    <div className='col-md-12 px-0'>
-                        {priceChange.length > 0 && (
-                            <div className='mb-4'>
-                                <PriceChange priceChange={priceChange} />
-                            </div>
-                        )}
-                    </div>
+                        )
+                    }
                 </div>
             </div>
-
-        </div>
+            <div className='row'>
+                <div className='col-md-4'>
+                    {!loading && priceChange.length > 0 && (
+                        <div className='mb-4'>
+                            <PriceChange priceChange={priceChange} />
+                        </div>
+                    )}
+                </div>
+                <div className='col-md-8'>
+                    {
+                        !chartLoading && searchResults.length > 0 && (
+                            <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
+                                <CompanyNews />
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+        </div >
     );
 };
 

@@ -11,9 +11,9 @@ const Header = (props) => {
             <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div className="offcanvas-body">
                     <ul className="p-0 list-inline">
-                        <li><NavLink to="/" className="text-white text-decoration-none"><i className="bi bi-speedometer2 d-block"></i>Dashboard</NavLink></li>
-                        <li><NavLink to="/invest" className="text-white text-decoration-none"><i className="bi bi-graph-up d-block"></i>Invest</NavLink></li>
-                        <li><NavLink to="signup" className="text-white text-decoration-none"><i className="bi bi-person-square d-block"></i>Sign Up</NavLink></li>
+                        <li><NavLink to="/" className="text-decoration-none"><i className="bi bi-speedometer2 d-block"></i>Dashboard</NavLink></li>
+                        <li><NavLink to="/invest" className="text-decoration-none"><i className="bi bi-graph-up d-block"></i>Invest</NavLink></li>
+                        <li><NavLink to="signup" className="text-decoration-none"><i className="bi bi-person-square d-block"></i>Sign Up</NavLink></li>
                     </ul>
                 </div>
             </div>

@@ -17,16 +17,6 @@ const Portfolio = () => {
     { symbol: 'FB', name: 'Facebook, Inc.' }
   ];
 
-  const handleOrder = async (symbol, side) => {
-    console.log('In handleOrder');
-    try {
-      const response = await placeOrder(symbol, amount, side);
-      setOrderResponse(response);
-    } catch (error) {
-      setOrderResponse(`Error: ${error.message}`);
-    }
-  };
-
   return (
     <div>
       Available stocks

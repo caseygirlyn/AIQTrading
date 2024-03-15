@@ -14,7 +14,7 @@ import BiggestLosers from "./BiggestLosers";
 
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
-  const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
+  const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,7 +28,7 @@ const Container = (props) => {
   // Function to get initial mode from localStorage if available
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
-    return savedMode || true; // If no saved mode, default to light mode
+    return savedMode || false; // If no saved mode, default to light mode
   }
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {

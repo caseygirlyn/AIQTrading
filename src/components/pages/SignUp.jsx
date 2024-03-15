@@ -28,8 +28,8 @@ const SignUp = () => {
   };
 
   return (
-    <div data-testid="signup" style={{ 
-      backgroundImage: 'url(assets/images/stock.jpeg)',
+    <div data-testid="signup" style={{
+      backgroundImage: 'url(assets/images/stock1.PNG)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       minHeight: '100vh', 
@@ -37,9 +37,9 @@ const SignUp = () => {
       justifyContent: 'center', 
       alignItems: 'center' 
     }}>
-      <Container maxWidth="sm" style={{ backgroundColor: '#ffffffb5', color: '#fff', borderStyle:"solid", borderWidth: "2px", borderColor:"#9e93c6" , paddingBottom:"30px"}}>
+      <Container maxWidth="sm" style={{ backgroundColor: '#ffffffb5', color: '#fff', borderStyle:"solid", borderWidth: "2px", borderColor:"#282D3A" , paddingBottom:"30px"}}>
         <form onSubmit={handleSubmit}>
-          <Typography variant="h4" gutterBottom sx={{ marginTop: "50px", color:"#9e93c6" }}>Sign Up</Typography>
+          <Typography variant="h4" gutterBottom sx={{ marginTop: "50px", color:"#282D3A" }}>Sign Up</Typography>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -89,7 +89,7 @@ const SignUp = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" style={{ backgroundColor: '#9e93c6', color: '#fff' }}>Sign Up</Button>
+              <Button type="submit" variant="contained" style={{ backgroundColor: '#282D3A', color: '#fff' }}>Sign Up</Button>
             </Grid>
           </Grid>
         </form>
@@ -99,3 +99,4 @@ const SignUp = () => {
 }
 
 export default SignUp;
+

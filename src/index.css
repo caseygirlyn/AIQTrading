@@ -274,6 +274,10 @@ i.bi.bi-list {
   font-size: 13px;
 }
 
+.lightMode .table-striped {
+  border: 1px solid #ccc;
+}
+
 .darkMode .table > :not(caption) > * > * {
   color: #fff;
   background-color: #2f3442;

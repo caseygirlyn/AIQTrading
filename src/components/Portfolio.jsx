@@ -18,19 +18,46 @@ const Portfolio = () => {
   ];
 
   return (
-    <div>
-      Available stocks
-      {tickers.map(ticker => (
-        <div key={ticker.symbol}>
-          {ticker.symbol} - {ticker.name}
-          <button onClick={() => setSelectedTicker(ticker)}>Trade</button>
+    <div style={{ display: 'flex', backgroundColor: '#282d3a', padding: '20px', borderRadius: '8px' }}>
+    <div style={{ flex: '1', marginRight: '20px' }}>
+      <h3 style={{ color: 'white' }}>Available stocks</h3>
+      {tickers.map((ticker, index) => (
+        <div key={ticker.symbol} style={{ 
+          backgroundColor: index % 2 === 0 ? '#ffffff' : '#f0f0f0',
+          padding: '8px',
+          borderRadius: '4px',
+          marginBottom: '10px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>
+          <button 
+            style={{ 
+              fontSize: '12px', 
+              padding: '6px 12px', 
+              backgroundColor: '#0EE682', 
+              color: '#fff', 
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+            onClick={() => setSelectedTicker(ticker)}
+          >
+            Trade
+          </button>
         </div>
       ))}
+    </div>
 
+    <div style={{ flex: '1' }}>
       {selectedTicker && (
-        <AlpacaOrder symbol={selectedTicker.symbol} />
+        <div style={{ padding: '20px', marginTop:'100px',borderRadius: '8px' }}>
+          <AlpacaOrder symbol={selectedTicker.symbol} />
+        </div>
       )}
     </div>
+  </div>
   );
 };
 

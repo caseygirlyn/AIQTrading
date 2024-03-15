@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { getBiggestLoseGainVariable } from '../utils/environment.js';
 
 function BiggestGainers() {
     const [marketGainers, setMarketGainers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiKey2 = import.meta.env.VITE_API_KEY_2;
 
     useEffect(() => {
         const fetchMarketGainers = async () => {
             try {
+                const apiKey2 = getBiggestLoseGainVariable();
                 // https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey={APIKEY}
                 const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${apiKey2}`); // PROD
                 

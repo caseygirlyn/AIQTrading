@@ -1,16 +1,16 @@
 // Gets environment variables depending on environment
 
-const getEnvVariables = () => {
+const getAlpacaVariables = () => {
   console.log("Environment: " + process.env.NODE_ENV);
 
   if (process.env.NODE_ENV !== 'production') {
-    // For development and QA use process.env
+    // For development and QA
     return {
-      apiKey: process.env.ALPACA_API_KEY,
-      secretKey: process.env.ALPACA_SECRET_KEY
+      apiKey: import.meta.env.VITE_ALPACA_API_KEY,
+      secretKey: import.meta.env.VITE_ALPACA_SECRET_KEY
     };
   } else {
-    // For production use import.meta.env from Vite
+    // For production
     return {
       apiKey: import.meta.env.VITE_ALPACA_API_KEY,
       secretKey: import.meta.env.VITE_ALPACA_SECRET_KEY
@@ -18,6 +18,38 @@ const getEnvVariables = () => {
   }
 };
 
-export default getEnvVariables;
+const getStockSearchVariable = () => {
+  console.log("Environment: " + process.env.NODE_ENV);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // For development and QA
+    return {
+      apiKey3: import.meta.env.VITE_API_KEY_3
+    };
+  } else {
+    // For production
+    return {
+      apiKey3: import.meta.env.VITE_API_KEY_3
+    };
+  }
+};
+
+const getBiggestLoseGainVariable = () => {
+  console.log("Environment: " + process.env.NODE_ENV);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // For development and QA
+    return {
+      apiKey2: import.meta.env.VITE_API_KEY_2
+    };
+  } else {
+    // For production
+    return {
+      apiKey2: import.meta.env.VITE_API_KEY_2
+    };
+  }
+};
+
+export { getAlpacaVariables, getStockSearchVariable, getBiggestLoseGainVariable };
 
   

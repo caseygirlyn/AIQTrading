@@ -10,7 +10,6 @@ import Tabs from 'react-bootstrap/Tabs';
 import Footer from "./common/Footer";
 import BiggestGainers from "./BiggestGainers";
 import BiggestLosers from "./BiggestLosers";
-import SearchedStocksTable from './common/Tables/SearchedStocksTable';
 
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -60,7 +59,7 @@ const Container = (props) => {
     <div className="container mb-5 mt-5 pt-5">
       <Row>
         <Col size="md-12">
-          <StockSearch isDarkMode={isDarkMode} />
+          <StockSearch isDarkMode={isDarkMode} apiKeys={props.apiKeys}/>
         </Col>
       </Row>
       <Row>

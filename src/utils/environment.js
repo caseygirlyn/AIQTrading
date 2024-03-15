@@ -1,6 +1,7 @@
 // Gets environment variables depending on environment
 
 const getEnvVariables = () => {
+  console.log("Environment: " + process.env.NODE_ENV);
 
   if (process.env.NODE_ENV !== 'production') {
     // For development and QA use process.env
@@ -9,7 +10,6 @@ const getEnvVariables = () => {
       secretKey: process.env.ALPACA_SECRET_KEY
     };
   } else {
-    
     // For production use import.meta.env from Vite
     return {
       apiKey: import.meta.env.VITE_ALPACA_API_KEY,

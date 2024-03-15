@@ -10,10 +10,10 @@ import('dotenv').then(dotenv => {
   dotenv.config({ path: '.secrets' });
 });
 
-const App = (props) => {
+const App = () => {
   return <>
     <Routes>
-      <Route path="/" element={<Container apiKeys={props}/>}></Route>
+      <Route path="/" element={<Container />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/portfolio" element={<Portfolio />} />
     </Routes>

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-function BiggestGainers(props) {
+function BiggestGainers() {
     const [marketGainers, setMarketGainers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiKey2 = props.apiKeys.apiKey2;
+    const apiKey2 = import.meta.env.VITE_API_KEY_2;
 
     useEffect(() => {
         const fetchMarketGainers = async () => {

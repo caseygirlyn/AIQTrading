@@ -19,6 +19,9 @@ const AlpacaOrder = ({ symbol }) => {
     };
 
     try {
+      // Debug
+      console.log(JSON.stringify(orderData));
+
       const response = await fetch(url, {
         method: 'POST',
         headers: {

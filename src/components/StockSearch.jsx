@@ -64,6 +64,7 @@ const StockSearch = (props) => {
             //const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
             console.log(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // test .env
             const response = await fetch(`/AAPL.json`); // DEV
+
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }

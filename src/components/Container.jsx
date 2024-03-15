@@ -12,7 +12,7 @@ import Footer from "./common/Footer";
 import BiggestGainers from "./BiggestGainers";
 import BiggestLosers from "./BiggestLosers";
 
-const Container = (props) => {
+const Container = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
 
@@ -60,7 +60,7 @@ const Container = (props) => {
     <div className="container mb-5 mt-5 pt-5">
       <Row>
         <Col size="md-12">
-          <StockSearch isDarkMode={isDarkMode} apiKeys={props.apiKeys} />
+          <StockSearch isDarkMode={isDarkMode} />
         </Col>
       </Row>
       <Row>
@@ -69,10 +69,10 @@ const Container = (props) => {
             defaultActiveKey="gainers"
           >
             <Tab eventKey="gainers" title="Market Biggest Gainers" className="mb-5 text-center">
-              <BiggestGainers apiKeys={props.apiKeys} />
+              <BiggestGainers />
             </Tab>
             <Tab eventKey="losser" title="Market Biggest Losers" className="mb-5 text-center">
-              <BiggestLosers apiKeys={props.apiKeys} />
+              <BiggestLosers />
             </Tab>
           </Tabs>
         </Col>

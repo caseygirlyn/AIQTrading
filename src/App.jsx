@@ -4,6 +4,12 @@ import Container from './components/Container';
 import SignUp from './components/pages/SignUp';
 import Portfolio from './components/Portfolio';
 
+// Load .env and .secrets files
+import('dotenv').then(dotenv => {
+  dotenv.config();
+  dotenv.config({ path: '.secrets' });
+});
+
 const App = (props) => {
   return <>
     <Routes>

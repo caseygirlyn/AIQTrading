@@ -7,11 +7,11 @@ function BiggestGainers() {
     const [marketGainers, setMarketGainers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiKey2 = getBiggestLoseGainVariable();
 
     useEffect(() => {
         const fetchMarketGainers = async () => {
             try {
+                const apiKey2 = getBiggestLoseGainVariable();
                 // https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey={APIKEY}
                 const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${apiKey2}`); // PROD
                 

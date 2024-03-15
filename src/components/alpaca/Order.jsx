@@ -33,7 +33,10 @@ const AlpacaOrder = ({ symbol }) => {
         body: JSON.stringify(orderData)
       });
 
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) {
+        console.log(response);
+        throw new Error('Network response was not ok');
+      }
 
       const data = await response.json();
       setResponse(JSON.stringify(data, null, 2));

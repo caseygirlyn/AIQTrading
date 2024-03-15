@@ -19,6 +19,10 @@ ChartJS.register(
     Filler
 );
 
+const apiKey1 = import.meta.env.VITE_API_KEY_1;
+const apiKey2 = import.meta.env.VITE_API_KEY_2;
+const apiKey3 = import.meta.env.VITE_API_KEY_3;
+
 const StockSearch = (props) => {
     const [query, setQuery] = useState('');
     const [parseQuery, setParseQuery] = useState('');
@@ -29,10 +33,6 @@ const StockSearch = (props) => {
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState([]);
     let endPoint = '';
-
-    const apiKey1 = props.apiKeys.apiKey1;
-    const apiKey2 = props.apiKeys.apiKey2;
-    const apiKey3 = props.apiKeys.apiKey3;
 
     let color = (props.isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
     let labelColor = (props.isDarkMode) ? 'rgb(255, 255, 255)' : 'rgb(58, 64, 80)';

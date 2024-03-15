@@ -15,8 +15,8 @@ const Header = (props) => {
                         <li><NavLink to="/" className="text-decoration-none"><i className="bi bi-speedometer2 d-block"></i>Dashboard</NavLink></li>
                         <li><NavLink to="portfolio" className="text-decoration-none"><i className="bi bi-graph-up d-block"></i>Porfolio</NavLink></li>
                         <li><NavLink to="signup" className="text-decoration-none"><i className="bi bi-person-square d-block"></i>My Account</NavLink></li>
-                        <li><NavLink to="about" className="text-decoration-none"><i class="bi bi-info-square d-block"></i>About AIQ</NavLink></li>
-                        <li><NavLink to="contact" className="text-decoration-none"><i class="bi bi-envelope d-block"></i>Get in Touch</NavLink></li>
+                        <li><NavLink to="about" className="text-decoration-none"><i className="bi bi-info-square d-block"></i>About AIQ</NavLink></li>
+                        <li><NavLink to="contact" className="text-decoration-none"><i className="bi bi-envelope d-block"></i>Get in Touch</NavLink></li>
                     </ul>
                 </div>
             </div>

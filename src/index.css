@@ -274,6 +274,7 @@ i.bi.bi-list {
   font-size: 13px;
 }
 
+<<<<<<< HEAD
 .depositButton {
   background-color: #007bff;
   color: #fff;
@@ -287,6 +288,10 @@ i.bi.bi-list {
 
 .depositButton:hover {
   background-color: #0056b3;
+=======
+.lightMode .table-striped {
+  border: 1px solid #ccc;
+>>>>>>> 3eaca0fc225e1449aa849adbf2aa104693ed8672
 }
 
 .darkMode .table > :not(caption) > * > * {

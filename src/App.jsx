@@ -4,10 +4,16 @@ import Container from './components/Container';
 import SignUp from './components/pages/SignUp';
 import Portfolio from './components/Portfolio';
 
-const App = () => {
+// Load .env and .secrets files
+import('dotenv').then(dotenv => {
+  dotenv.config();
+  dotenv.config({ path: '.secrets' });
+});
+
+const App = (props) => {
   return <>
     <Routes>
-      <Route path="/" element={<Container />}></Route>
+      <Route path="/" element={<Container apiKeys={props}/>}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/portfolio" element={<Portfolio />} />
     </Routes>

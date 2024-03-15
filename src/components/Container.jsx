@@ -4,20 +4,17 @@ import News from "./News";
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import MostlyOwnedStocksTable from "./common/Tables/MostlyOwnedStocksTable";
+import SearchedStocksTable from './common/Tables/SearchedStocksTable';
 import StockSearch from "./StockSearch";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Footer from "./common/Footer";
 import BiggestGainers from "./BiggestGainers";
 import BiggestLosers from "./BiggestLosers";
-import SearchedStocksTable from './common/Tables/SearchedStocksTable';
-
 
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
-  const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
-  const [depositAmount, setDepositAmount] = useState(0);
-  const inputRef = useRef(null);
+  const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -31,7 +28,7 @@ const Container = (props) => {
   // Function to get initial mode from localStorage if available
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
-    return savedMode || true; // If no saved mode, default to light mode
+    return savedMode || false; // If no saved mode, default to light mode
   }
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
@@ -122,7 +119,7 @@ const Container = (props) => {
       <DepositButton />
       <Row>
         <Col size="md-12">
-          <StockSearch isDarkMode={isDarkMode} />
+          <StockSearch isDarkMode={isDarkMode} apiKeys={props.apiKeys} />
         </Col>
       </Row>
       <Row>
@@ -131,16 +128,16 @@ const Container = (props) => {
             defaultActiveKey="gainers"
           >
             <Tab eventKey="gainers" title="Market Biggest Gainers" className="mb-5 text-center">
-              <BiggestGainers />
+              <BiggestGainers apiKeys={props.apiKeys} />
             </Tab>
             <Tab eventKey="losser" title="Market Biggest Losers" className="mb-5 text-center">
-              <BiggestLosers />
+              <BiggestLosers apiKeys={props.apiKeys} />
             </Tab>
           </Tabs>
         </Col>
         <Col size="md-4">
-          <MostlyOwnedStocksTable />
           <SearchedStocksTable />
+          <MostlyOwnedStocksTable />
         </Col>
         <Col size="md-8">
           <News />

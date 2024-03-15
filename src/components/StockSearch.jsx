@@ -67,8 +67,8 @@ const StockSearch = (props) => {
             }
             const data = await response.json();
             setSearchResults(data);
-            /*
-            Search History by George
+
+            /* Comment code below if you are using dummy data and not the API response */
 
             console.log(data);
             console.log(response);
@@ -86,7 +86,9 @@ const StockSearch = (props) => {
             searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
             searchedStocks.splice(10); // Keep only the last 10 searches
             localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
-            */
+
+            /* Comment code out to here */
+
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {

@@ -69,10 +69,10 @@ const Container = (props) => {
             defaultActiveKey="gainers"
           >
             <Tab eventKey="gainers" title="Market Biggest Gainers" className="mb-5 text-center">
-              <BiggestGainers />
+              <BiggestGainers apiKeys={props.apiKeys} />
             </Tab>
             <Tab eventKey="losser" title="Market Biggest Losers" className="mb-5 text-center">
-              <BiggestLosers />
+              <BiggestLosers apiKeys={props.apiKeys} />
             </Tab>
           </Tabs>
         </Col>

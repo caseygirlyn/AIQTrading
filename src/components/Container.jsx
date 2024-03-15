@@ -14,7 +14,7 @@ import BiggestLosers from "./BiggestLosers";
 
 const Container = (props) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
-  const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
+  const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,7 +28,7 @@ const Container = (props) => {
   // Function to get initial mode from localStorage if available
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
-    return savedMode || true; // If no saved mode, default to light mode
+    return savedMode || false; // If no saved mode, default to light mode
   }
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
@@ -69,10 +69,10 @@ const Container = (props) => {
             defaultActiveKey="gainers"
           >
             <Tab eventKey="gainers" title="Market Biggest Gainers" className="mb-5 text-center">
-              <BiggestGainers />
+              <BiggestGainers apiKeys={props.apiKeys} />
             </Tab>
             <Tab eventKey="losser" title="Market Biggest Losers" className="mb-5 text-center">
-              <BiggestLosers />
+              <BiggestLosers apiKeys={props.apiKeys} />
             </Tab>
           </Tabs>
         </Col>

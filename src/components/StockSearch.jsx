@@ -57,12 +57,10 @@ const StockSearch = (props) => {
         const yesterdayFormatted = formatDate(yesterday);
 
         const baseUrl = "https://financialmodelingprep.com/api/v3/";
-        const APIKEY = "apikey=MEMq3hGb4CgnNvgWqBSZkhHpSank9EtR";
 
         try {
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
             const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
-            //console.log(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // test .env
             //const response = await fetch(`/AAPL.json`); // DEV
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
@@ -78,8 +76,8 @@ const StockSearch = (props) => {
 
         try {
             // https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey={APIKEY}
-            //const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
-            const responsePC = await fetch(`/AAPL-PC.json`); // DEV
+            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
+            //const responsePC = await fetch(`/AAPL-PC.json`); // DEV
             if (!responsePC.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -93,8 +91,8 @@ const StockSearch = (props) => {
             // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            //let endPoint = `${baseUrl}historical-chart/15min/${query}?from=${yesterdayFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
-            let endPoint = `/AAPL-5min.json`; // DEV
+            let endPoint = `${baseUrl}historical-chart/5min/${query}?from=${yesterdayFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
+            //let endPoint = `/AAPL-5min.json`; // DEV
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {

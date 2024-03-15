@@ -22,7 +22,8 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
+# API security
+.secrets
 
 # Tests
 coverage

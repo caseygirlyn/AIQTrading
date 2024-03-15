@@ -34,9 +34,11 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    "^.+\\.[t|j]sx?$": "babel-jest",
+    "^.+\\.[t|j]sx?$": "babel-jest"
   },
 
   // Indicates whether each individual test should be reported during the run
   verbose: true
 };
+
+console.log('Jest config file executed');

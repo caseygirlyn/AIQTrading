@@ -3,8 +3,7 @@ import emailjs from '@emailjs/browser';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 
-
-export default function Contact() {
+function Contact() {
     const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
     function getInitialMode() {
         const savedMode = JSON.parse(localStorage.getItem('darkMode'));
@@ -156,3 +155,5 @@ export default function Contact() {
         <Footer />
     </div>
 }
+
+export default Contact

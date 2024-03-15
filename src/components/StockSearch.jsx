@@ -61,7 +61,7 @@ const StockSearch = (props) => {
 
         try {
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
-            // const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
+            //const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
             console.log(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // test .env
             const response = await fetch(`/AAPL.json`); // DEV
             if (!response.ok) {
@@ -69,6 +69,26 @@ const StockSearch = (props) => {
             }
             const data = await response.json();
             setSearchResults(data);
+            /*
+            Search History by George
+
+            console.log(data);
+            console.log(response);
+            const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
+            const stockInfo = {
+                symbol: query,
+                name: data[0].companyName,
+            };
+            const existingIndex = searchedStocks.findIndex(stock => stock.symbol === query);
+            if (existingIndex !== -1) {
+                // If the symbol exists, remove it from its current position
+                searchedStocks.splice(existingIndex, 1);
+            }
+
+            searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
+            searchedStocks.splice(10); // Keep only the last 10 searches
+            localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
+            */
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {

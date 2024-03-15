@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import getEnvVariables from '../../utils/environment.js';
 
 const AlpacaOrder = ({ symbol }) => {
     const [response, setResponse] = useState('');
@@ -7,8 +8,7 @@ const AlpacaOrder = ({ symbol }) => {
   
     const placeOrder = async () => {
     const url = 'https://paper-api.alpaca.markets/v2/orders';
-    const apiKey = process.env.ALPACA_API_KEY;
-    const secretKey = process.env.ALPACA_SECRET_KEY;
+    const { apiKey, secretKey } = getEnvVariables();
 
     const orderData = {
       symbol: symbol,

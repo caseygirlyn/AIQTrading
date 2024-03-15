@@ -7,8 +7,8 @@ const AlpacaOrder = ({ symbol }) => {
   
     const placeOrder = async () => {
     const url = 'https://paper-api.alpaca.markets/v2/orders';
-    const apiKey = 'PKF2D2KOB6TRAS6INF2Q'; // Should be secrets
-    const secretKey = 'a4sHQuafyF51XK8ctBezo7bW4KYO98gugWgkE0F2';
+    const apiKey = process.env.ALPACA_API_KEY;
+    const secretKey = process.env.ALPACA_SECRET_KEY;
 
     const orderData = {
       symbol: symbol,

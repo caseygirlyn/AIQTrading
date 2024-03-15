@@ -9,6 +9,7 @@ const renderWithRouter = (ui, { route = '/' } = {}) => {
   window.history.pushState({}, 'Test page', route);
   return render(ui, { wrapper: Router });
 };
+
 describe('App Component', () => {
   test('renders the Container component on the root route', () => {
     renderWithRouter(<App />);

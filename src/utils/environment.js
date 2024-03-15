@@ -12,8 +12,8 @@ const getEnvVariables = () => {
     
     // For production use import.meta.env from Vite
     return {
-      apiKey: import.meta.env.ALPACA_API_KEY,
-      secretKey: import.meta.env.ALPACA_SECRET_KEY
+      apiKey: import.meta.env.VITE_ALPACA_API_KEY,
+      secretKey: import.meta.env.VITE_ALPACA_SECRET_KEY
     };
   }
 };

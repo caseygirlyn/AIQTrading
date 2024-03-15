@@ -4,6 +4,7 @@ import News from "./News";
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import MostlyOwnedStocksTable from "./common/Tables/MostlyOwnedStocksTable";
+import SearchedStocksTable from './common/Tables/SearchedStocksTable';
 import StockSearch from "./StockSearch";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -59,7 +60,7 @@ const Container = (props) => {
     <div className="container mb-5 mt-5 pt-5">
       <Row>
         <Col size="md-12">
-          <StockSearch isDarkMode={isDarkMode} apiKeys={props.apiKeys}/>
+          <StockSearch isDarkMode={isDarkMode} apiKeys={props.apiKeys} />
         </Col>
       </Row>
       <Row>
@@ -77,7 +78,7 @@ const Container = (props) => {
         </Col>
         <Col size="md-4">
           <MostlyOwnedStocksTable />
-          {/* <SearchedStocksTable /> */}
+          <SearchedStocksTable />
         </Col>
         <Col size="md-8">
           <News />

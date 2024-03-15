@@ -20,8 +20,6 @@ ChartJS.register(
     Filler
 );
 
-const apiKey3 = getStockSearchVariable();
-
 const StockSearch = (props) => {
     const [query, setQuery] = useState('');
     const [parseQuery, setParseQuery] = useState('');
@@ -58,7 +56,8 @@ const StockSearch = (props) => {
         const baseUrl = "https://financialmodelingprep.com/api/v3/";
 
         try {
-            console.log("Key:" + apikey3);
+            console.log("In handleSubmit");
+            const apiKey3 = getStockSearchVariable();
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
             const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
             //const response = await fetch(`/AAPL.json`); // DEV

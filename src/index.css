@@ -334,6 +334,14 @@ i.bi.bi-list {
 
 footer{
   box-shadow: 0 8px 32px 0 rgb(31 88 135 / 10%);
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #f2f2f2;
+}
+
+.darkMode footer{
+  background-color: var(--primary-color);
 }
 
 .darkMode .text-muted{

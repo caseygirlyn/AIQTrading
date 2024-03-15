@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getAlpacaVariables } from '../../utils/environment.js';
+import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 
 const AlpacaOrder = ({ symbol }) => {
     const [response, setResponse] = useState('');
@@ -43,12 +44,29 @@ const AlpacaOrder = ({ symbol }) => {
 
   return (
     <div>
-      <h3>Trading {symbol}</h3>
-      Quantity: <input type="number" value={qty} onChange={e => setQty(e.target.value)} />
-      <button onClick={() => setSide('buy')}>Buy</button>
-      <button onClick={() => setSide('sell')}>Sell</button>
-      <button onClick={placeOrder}>Place Order</button>
-      {response && <pre>{response}</pre>}
+      <Paper elevation={3} style={{ padding: '20px', margin:'auto', borderRadius: '8px', maxWidth: '400px' , color: '#fff', backgroundColor: '#3D4354E3'}}>
+        <Typography variant="h5" gutterBottom>Trading {symbol}</Typography>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={4}>
+            <Typography variant="body1">Quantity:</Typography>
+          </Grid>
+          <Grid item xs={12} sm={4} sx={{ paddingBottom: '10px'}}>
+            <TextField type="number" value={qty} onChange={e => setQty(e.target.value)} fullWidth style={{backgroundColor:'white'}}/>
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} justifyContent="flex-start">
+          <Grid item>
+            <Button variant="contained" onClick={() => setSide('buy')} style={{ backgroundColor: '#0EE682', color: '#fff' }}>Buy</Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" onClick={() => setSide('sell')} style={{ backgroundColor: '#FF5262', color: '#fff' }}>Sell</Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" onClick={placeOrder} style={{ backgroundColor: '#3D4354', color: '#fff' }}>Place Order</Button>
+          </Grid>
+        </Grid>
+        {response && <pre style={{ overflowX: 'auto' }}>{response}</pre>}
+      </Paper>
     </div>
   );
 };

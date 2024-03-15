@@ -30,6 +30,10 @@ const StockSearch = (props) => {
     const [stockData, setStockData] = useState([]);
     let endPoint = '';
 
+    const apiKey1 = props.apiKeys.apiKey1;
+    const apiKey2 = props.apiKeys.apiKey2;
+    const apiKey3 = props.apiKeys.apiKey3;
+
     let color = (props.isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
     let labelColor = (props.isDarkMode) ? 'rgb(255, 255, 255)' : 'rgb(58, 64, 80)';
     let bgcolor = (props.isDarkMode) ? 'rgb(67 202 240 / 10%)' : 'rgb(0 0 0 / 10%)';
@@ -52,28 +56,39 @@ const StockSearch = (props) => {
         const todayFormatted = formatDate(today);
         const yesterdayFormatted = formatDate(yesterday);
 
-        const APIKEY = "apikey=ebca039e1959992360fd8a8aacbb273f";
+        const baseUrl = "https://financialmodelingprep.com/api/v3/";
 
         try {
-            const BASEURL = "https://financialmodelingprep.com/api/v3/search?";
-
-            const response = await fetch(BASEURL + query + "?" + APIKEY);
-            //const response = await fetch(`/AAPL.json`);
+            // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
+            const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
+            //const response = await fetch(`/AAPL.json`); // DEV
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
-            else if (response.ok) {
-                const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
-                const stockInfo = {
-                    symbol: query,
-                    name: data.name,
-                };
-                searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
-                searchedStocks.splice(10); // Keep only the last 10 searches
-                localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
-            }
             const data = await response.json();
             setSearchResults(data);
+
+            /* Comment code below if you are using dummy data and not the API response */
+
+            console.log(data);
+            console.log(response);
+            const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
+            const stockInfo = {
+                symbol: query,
+                name: data[0].companyName,
+            };
+            const existingIndex = searchedStocks.findIndex(stock => stock.symbol === query);
+            if (existingIndex !== -1) {
+                // If the symbol exists, remove it from its current position
+                searchedStocks.splice(existingIndex, 1);
+            }
+
+            searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
+            searchedStocks.splice(10); // Keep only the last 10 searches
+            localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
+
+            /* Comment code out to here */
+
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
@@ -82,12 +97,9 @@ const StockSearch = (props) => {
         }
 
         try {
-            //https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey=MEMq3hGb4CgnNvgWqBSZkhHpSank9EtR
-
-            const BASEURLPC = "https://financialmodelingprep.com/api/v3/stock-price-change/";
-            const responsePC = await fetch(BASEURLPC + query + "?" + APIKEY);
-
-            //const responsePC = await fetch(`/AAPL-PC.json`);
+            // https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey={APIKEY}
+            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
+            //const responsePC = await fetch(`/AAPL-PC.json`); // DEV
             if (!responsePC.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -98,11 +110,11 @@ const StockSearch = (props) => {
         }
 
         try {
-            const BASEURLCHART = "https://financialmodelingprep.com/api/v3/historical-chart/5min/";
-            const DATERANGE = `?from=${yesterdayFormatted}&to=${todayFormatted}&`
+            // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
+            // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            //let endPoint = BASEURLCHART + query + DATERANGE + APIKEY;
-            let endPoint = `/AAPL-5min.json`;
+            let endPoint = `${baseUrl}historical-chart/5min/${query}?from=${yesterdayFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
+            //let endPoint = `/AAPL-5min.json`; // DEV
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {

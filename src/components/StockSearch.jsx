@@ -6,7 +6,6 @@ import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
 import MostlyOwnedStocksTable from './common/Tables/MostlyOwnedStocksTable';
 import CompanyNews from './CompanyNews';
-import axios from 'axios';
 
 ChartJS.register(
     CategoryScale,
@@ -32,7 +31,6 @@ const StockSearch = (props) => {
     const [chartLoading, setChartLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState([]);
-    const [news, setNews] = useState([]);
     let endPoint = '';
 
     let color = (props.isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
@@ -82,6 +80,7 @@ const StockSearch = (props) => {
         try {
             // https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey={APIKEY}
             const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
+            
             //const responsePC = await fetch(`/AAPL-PC.json`); // DEV
             if (!responsePC.ok) {
                 throw new Error('Failed to fetch data');
@@ -95,10 +94,13 @@ const StockSearch = (props) => {
 
         // Start Fetch Dynamic Stock News Data
         try {
-            const response = await axios.get(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKeyNews}`);
+            const responseNews = await fetch(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKeyNews}`);
             //const response = await axios.get('/AAPL-news.json');
-            console.log(response.data.articles)
-            setNews(response.data.articles);
+            if (!responseNews.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const dataNews= await responseNews.json();
+            setNews(dataNews.data.articles);
         } catch (error) {
             setError('Error fetching news. Please try again later.');
         }
@@ -241,9 +243,7 @@ const StockSearch = (props) => {
                 <div className='col-lg-8'>
                     {
                         !chartLoading && searchResults.length > 0 && (
-                            <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
-                                <CompanyNews news={news} parseQuery={parseQuery} />
-                            </div>
+                            <CompanyNews parseQuery={parseQuery} />
                         )
                     }
                 </div>

@@ -13,7 +13,6 @@ function BiggestLosers() {
     useEffect(() => {
         const fetchMarketLosers = async () => {
             try {
-                const apiKey2 = getBiggestLoseGainVariable();
                 // https://financialmodelingprep.com/api/v3/stock_market/losers?apikey={APIKEY}
                 const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=${apiKey1}`); // PROD
 

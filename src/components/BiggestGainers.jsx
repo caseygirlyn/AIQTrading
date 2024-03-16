@@ -8,13 +8,15 @@ function BiggestGainers() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const apiKey1 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
+
     useEffect(() => {
         const fetchMarketGainers = async () => {
             try {
                 const apiKey2 = getBiggestLoseGainVariable();
                 // https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey={APIKEY}
-                const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${apiKey2}`); // PROD
-                
+                const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${apiKey1}`); // PROD
+
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }
@@ -57,12 +59,12 @@ function BiggestGainers() {
             ) : (
                 <div className='row'>
                     {marketGainers.slice(0, 12).map(stock => (
-                        <div key={stock.symbol} className='my-2 px-0 text-center col-lg-1 col-md-2 col-4'>
+                        <div key={stock.symbol} className='my-2 px-0 text-center col-lg-1 col-md-2 col-4 inv'>
                             <div>
                                 <OverlayTrigger
-                                    placement='right'
+                                    placement='top'
                                     overlay={
-                                        <Tooltip id='right'>
+                                        <Tooltip id={stock.symbol}>
                                             {stock.name}
                                         </Tooltip>
                                     }

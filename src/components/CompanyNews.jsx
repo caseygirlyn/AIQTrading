@@ -7,7 +7,7 @@ const CompanyNews = (props) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const apiKeyNews = import.meta.env.VITE_API_KEY_NEWS; // Netlify ENV variable
+    const apiKeyNews = import.meta.env.VITE_API_KEY_NEWS_2; // Netlify ENV variable
 
     useEffect(() => {
         const fetchNews = async () => {

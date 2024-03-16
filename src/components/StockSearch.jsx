@@ -6,6 +6,7 @@ import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
 import MostlyOwnedStocksTable from './common/Tables/MostlyOwnedStocksTable';
 import CompanyNews from './CompanyNews';
+import axios from 'axios';
 
 ChartJS.register(
     CategoryScale,
@@ -20,6 +21,7 @@ ChartJS.register(
 );
 
 const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
+const apiKeyNews = import.meta.env.VITE_API_KEY_NEWS; // Netlify ENV variable
 
 const StockSearch = (props) => {
     const [query, setQuery] = useState('');
@@ -30,6 +32,7 @@ const StockSearch = (props) => {
     const [chartLoading, setChartLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState([]);
+    const [news, setNews] = useState([]);
     let endPoint = '';
 
     let color = (props.isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
@@ -56,6 +59,7 @@ const StockSearch = (props) => {
 
         const baseUrl = "https://financialmodelingprep.com/api/v3/";
 
+        // Start Fetch Company Profile Data
         try {
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
             const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
@@ -72,7 +76,9 @@ const StockSearch = (props) => {
             setLoading(false);
             setParseQuery(query);
         }
+        // End Fetch Company Profile Data
 
+        // Start Fetch Stock Price Change Data
         try {
             // https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey={APIKEY}
             const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
@@ -85,13 +91,26 @@ const StockSearch = (props) => {
         } catch (error) {
             setError('An error occurred while fetching data');
         }
+        // End Fetch Stock Price Change Data
 
+        // Start Fetch Dynamic Stock News Data
+        try {
+            const response = await axios.get(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKeyNews}`);
+            //const response = await axios.get('/AAPL-news.json');
+            console.log(response.data.articles)
+            setNews(response.data.articles);
+        } catch (error) {
+            setError('Error fetching news. Please try again later.');
+        }
+        // End Fetch Dynamic Stock News Data
+
+        // Start Fetch Stock Historical Chart Data
         try {
             // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            let endPoint = `${baseUrl}historical-chart/5min/${query}?from=${yesterdayFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
-            //let endPoint = `/AAPL-5min.json`; // DEV
+            endPoint = `${baseUrl}historical-chart/5min/${query}?from=${yesterdayFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
+            //endPoint = `/AAPL-5min.json`; // DEV
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {
@@ -109,6 +128,7 @@ const StockSearch = (props) => {
             setChartLoading(false);
             setQuery('');
         }
+        // End Fetch Stock Historical Chart Data
     };
 
     const handleKeyDown = event => {
@@ -180,7 +200,7 @@ const StockSearch = (props) => {
                         type="text"
                         className="form-control rounded-0 shadow-none"
                         placeholder="AAPL"
-                        id="search"
+                        id="search" required
                     />
                     <button className="btn btn-outline-secondary rounded-0" type="submit" id="searchBtn"><i className="bi bi-search"></i></button>
                 </div>
@@ -193,14 +213,14 @@ const StockSearch = (props) => {
             {error && <p>{error}</p>}
 
             <div className='row reverse-col-mobile'>
-                <div className='col-md-4'>
+                <div className='col-lg-4'>
                     {!loading && searchResults.length > 0 && (
                         <div className='mb-4'>
                             <CompanyProfile searchResults={searchResults} />
                         </div>
                     )}
                 </div>
-                <div className='col-md-8'>
+                <div className='col-lg-8'>
                     {
                         !chartLoading && searchResults.length > 0 && (
                             <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
@@ -211,18 +231,18 @@ const StockSearch = (props) => {
                 </div>
             </div>
             <div className='row'>
-                <div className='col-md-4'>
+                <div className='col-lg-4'>
                     {!loading && priceChange.length > 0 && (
                         <div className='mb-4'>
                             <PriceChange priceChange={priceChange} />
                         </div>
                     )}
                 </div>
-                <div className='col-md-8'>
+                <div className='col-lg-8'>
                     {
                         !chartLoading && searchResults.length > 0 && (
                             <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
-                                <CompanyNews />
+                                <CompanyNews news={news} parseQuery={parseQuery} />
                             </div>
                         )
                     }

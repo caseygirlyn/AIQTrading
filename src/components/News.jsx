@@ -6,15 +6,21 @@ const News = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const apiKeyNews = import.meta.env.VITE_API_KEY_NEWS; // Netlify ENV variable
+
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                //const response = await axios.get('https://newsapi.org/v2/everything?q=stocks&apiKey=602085a63c3a4b98b4e7c82ba09ce268');
-                const response = await axios.get('/newsApi.json');
+                const response = await axios.get(`https://newsapi.org/v2/everything?q=stocks&apiKey=${apiKeyNews}`);
                 setNews(response.data.articles);
-                setLoading(false);
             } catch (error) {
-                setError('Error fetching news. Please try again later.');
+                try {
+                    const fallbackResponse = await axios.get('/newsApi.json'); 
+                    setNews(fallbackResponse.data.articles);
+                }catch (error) {
+                    setError('An error occurred while fetching data');
+                }
+            }finally {
                 setLoading(false);
             }
         };

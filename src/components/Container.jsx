@@ -77,7 +77,6 @@ const Container = () => {
           </Tabs>
         </Col>
         <Col size="md-4">
-          <SearchedStocksTable />
           <MostlyOwnedStocksTable />
         </Col>
         <Col size="md-8">

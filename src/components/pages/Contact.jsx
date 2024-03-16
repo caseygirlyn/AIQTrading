@@ -109,17 +109,20 @@ function Contact() {
             </label>
         </div>
         <Header />
-        <div className="container content my-3 py-5" style={{ height:"100%"}}>
-            <section className="row my-5">
-                <h2 className="w-auto d-flex align-items-center">Contact Us</h2>
-                <h3 className='fs-6 mb-4'>Want to get in touch? Our experienced customer service team would love to hear from you.</h3>
+        <div className="container content px-4">
+            <section className="row pt-5 mt-5">
+                <div className='banner mt-3 mb-5 p-md-5 p-3 d-grid shadow'>
+                    <h2 className="w-auto d-flex align-items-center">Contact Us</h2>
+                    <h3 className='fs-6 mb-4'>Want to get in touch? Our experienced customer service team would love to hear from you.</h3>
+                </div>
+
                 {submitted ? (
                     <div className='px-2'><div className="alert alert-success" role="alert">
                         Thank you for your message! Our team will get back to you shortly.
                     </div></div>
                 ) : ''}
 
-                <form ref={form} className="needs-validation p-0 p-md-2" noValidate onSubmit={handleSubmit}>
+                <form ref={form} className="needs-validation p-2 p-md-2" noValidate onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="col-md-6 col-sm-12">
                             <div className="form-floating mb-3">

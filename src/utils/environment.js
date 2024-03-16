@@ -23,14 +23,14 @@ const getAlpacaVariables = () => {
 };
 
 const getStockSearchVariable = () => {
-  console.log("Environment: " + import.meta.env.MODE);
+  //console.log("Environment: " + import.meta.env.MODE);
 
   // For dev & Github test
   if (import.meta.env.MODE !== 'production') {
-    console.log("Vite Key 3 Test: " + import.meta.env.VITE_API_KEY_3);
+    //console.log("Vite Key 3 Test: " + import.meta.env.VITE_API_KEY_3);
     return import.meta.env.VITE_API_KEY_3;
   } else { // For development & production
-    console.log("Vite Key 3: " + import.meta.env.VITE_API_KEY_3);
+    //console.log("Vite Key 3: " + import.meta.env.VITE_API_KEY_3);
     return import.meta.env.VITE_API_KEY_3;
   }
 };
@@ -40,10 +40,10 @@ const getBiggestLoseGainVariable = () => {
 
   // For dev & Github test
   if (import.meta.env.MODE !== 'production') {
-    console.log("Vite Key 2 Test: " + import.meta.env.VITE_API_KEY_2);
+    //console.log("Vite Key 2 Test: " + import.meta.env.VITE_API_KEY_2);
     return import.meta.env.VITE_API_KEY_2
   } else { // For development & production
-    console.log("Vite Key 2: " + import.meta.env.VITE_API_KEY_2);
+    //console.log("Vite Key 2: " + import.meta.env.VITE_API_KEY_2);
     return import.meta.env.VITE_API_KEY_2
   }
 };

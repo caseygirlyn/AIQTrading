@@ -19,8 +19,6 @@ ChartJS.register(
     Filler
 );
 
-const apiKey1 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
-const apiKey2 = import.meta.env.VITE_API_KEY_FMP_2; // Netlify ENV variable
 const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
 
 const StockSearch = (props) => {
@@ -67,27 +65,6 @@ const StockSearch = (props) => {
             }
             const data = await response.json();
             setSearchResults(data);
-
-            /* Comment code below if you are using dummy data and not the API response */
-
-            console.log(data);
-            console.log(response);
-            const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
-            const stockInfo = {
-                symbol: query,
-                name: data[0].companyName,
-            };
-            const existingIndex = searchedStocks.findIndex(stock => stock.symbol === query);
-            if (existingIndex !== -1) {
-                // If the symbol exists, remove it from its current position
-                searchedStocks.splice(existingIndex, 1);
-            }
-
-            searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
-            searchedStocks.splice(10); // Keep only the last 10 searches
-            localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
-
-            /* Comment code out to here */
 
         } catch (error) {
             setError('An error occurred while fetching data');

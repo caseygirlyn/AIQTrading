@@ -22,11 +22,11 @@ body,
 }
 
 .bg-primary-color {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
 }
 
 .bg-secondary-color {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color) !important;
 }
 
 .caption {
@@ -67,6 +67,8 @@ a.nav-link:hover {
 
 .darkMode {
   background: #282d3a;
+  color: #fff;
+  min-height: 100%;
 }
 
 input#darkModeSwitch {
@@ -83,11 +85,6 @@ input#darkModeSwitch {
   background-color: #2f3442;
 }
 
-.darkMode {
-  color: #fff;
-  min-height: 100%;
-}
-
 .lightMode input#search::placeholder {
   color: #ccc;
 }
@@ -100,7 +97,7 @@ input#darkModeSwitch {
   max-width: 700px;
 }
 
-.searchForm h2{
+.searchForm h2 {
   line-height: 30px;
 }
 
@@ -190,6 +187,10 @@ canvas {
   border-bottom: 1px solid #eee;
 }
 
+.navbar {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
 .darkMode .navbar {
   background-color: #2f3443 !important;
   opacity: 1;
@@ -275,7 +276,7 @@ i.bi.bi-list {
 }
 
 .lightMode .table-striped {
-  border: 1px solid #ccc;
+  border: 1px solid #eee;
 }
 
 .darkMode .table > :not(caption) > * > * {
@@ -313,7 +314,21 @@ i.bi.bi-list {
 
 .tab-content > .active {
   box-shadow: 0 8px 32px 0 rgb(31 88 135 / 10%);
-  border: 1px solid #404554;
+  border: 1px solid #e4e4e4;
+  background-color: #f2f2f2;
+}
+
+.tab-content .inv:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.darkMode .tab-content .inv:not(:last-child) {
+  border-right: 1px solid var(--secondary-color);
+}
+
+.darkMode .tab-content > .active {
+  background-color: var(--primary-color);
+  border-color: var(--secondary-color);
 }
 
 .darkMode .nav-link,
@@ -327,29 +342,26 @@ i.bi.bi-list {
   border-color: #0475a8 !important;
 }
 
-.tab-content > .active {
-  box-shadow: 0 8px 32px 0 rgb(31 88 135 / 10%);
-  border: 1px solid #404554;
-}
-
-footer{
-  box-shadow: 0 8px 32px 0 rgb(31 88 135 / 10%);
-  position: fixed;
-  bottom: 0;
-  z-index: 1000;
+footer {
   background-color: #f2f2f2;
 }
 
-.darkMode footer{
+.darkMode footer {
   background-color: var(--primary-color);
 }
 
-.darkMode .text-muted{
+.darkMode .text-muted {
   color: #fff !important;
 }
 
-.darkMode .border-top{
-  border-color: var(--secondary-color) !important
+.darkMode .border-top {
+  border-color: var(--secondary-color) !important;
+}
+
+.banner {
+  min-height: 250px;
+  background: url(/assets/images/stock1.PNG);
+  background-position: bottom;
 }
 
 @media (max-width: 576px) {
@@ -360,7 +372,13 @@ footer{
     line-height: inherit;
     width: 100%;
   }
-  .nav-tabs .nav-link, .tab-content{
+  .nav-tabs .nav-link,
+  .tab-content {
     font-size: smaller;
   }
+
+  .tab-content .inv{
+    border-width: 0 !important;
+  }
+
 }

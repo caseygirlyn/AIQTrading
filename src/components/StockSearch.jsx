@@ -6,7 +6,6 @@ import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
 import MostlyOwnedStocksTable from './common/Tables/MostlyOwnedStocksTable';
 import CompanyNews from './CompanyNews';
-import { getStockSearchVariable } from '../utils/environment.js';
 
 ChartJS.register(
     CategoryScale,
@@ -19,6 +18,10 @@ ChartJS.register(
     Legend,
     Filler
 );
+
+const apiKey1 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
+const apiKey2 = import.meta.env.VITE_API_KEY_FMP_2; // Netlify ENV variable
+const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
 
 const StockSearch = (props) => {
     const [query, setQuery] = useState('');
@@ -56,8 +59,6 @@ const StockSearch = (props) => {
         const baseUrl = "https://financialmodelingprep.com/api/v3/";
 
         try {
-            console.log("In handleSubmit");
-            const apiKey3 = getStockSearchVariable();
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
             const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
             //const response = await fetch(`/AAPL.json`); // DEV

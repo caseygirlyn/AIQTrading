@@ -16,12 +16,12 @@ const CompanyNews = (props) => {
                 setNews(response.data.articles);
             } catch (error) {
                 try {
-                    const fallbackResponse = await axios.get('/newsApi.json'); 
+                    const fallbackResponse = await axios.get('/newsApi.json');
                     setNews(fallbackResponse.data.articles);
-                }catch (error) {
+                } catch (error) {
                     setError('An error occurred while fetching data');
                 }
-            }finally {
+            } finally {
                 setLoading(false);
             }
         };
@@ -33,7 +33,9 @@ const CompanyNews = (props) => {
         <div className='container news p-2'>
             <h2 className="fs-4 mb-0">{query} News</h2>
             {loading ? (
-                <p>Loading...</p>
+                <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
             ) : error ? (
                 <p>{error}</p>
             ) : (

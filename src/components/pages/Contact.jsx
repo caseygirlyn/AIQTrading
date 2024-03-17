@@ -112,8 +112,8 @@ function Contact() {
         <div className="container content px-4">
             <section className="row pt-5 mt-5">
                 <div className='banner mt-3 mb-5 p-md-5 p-3 d-grid shadow'>
-                    <h2 className="w-auto d-flex align-items-center">Contact Us</h2>
-                    <h3 className='fs-6 mb-4'>Want to get in touch? Our experienced customer service team would love to hear from you.</h3>
+                    <h2 className="w-auto d-flex align-items-center text-white">Contact Us</h2>
+                    <h3 className='fs-6 mb-4 text-white'>Want to get in touch? Our experienced customer service team would love to hear from you.</h3>
                 </div>
 
                 {submitted ? (

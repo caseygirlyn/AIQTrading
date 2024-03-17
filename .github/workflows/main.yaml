@@ -27,8 +27,12 @@ jobs:
     - name: Build React App
       run: npm run build
       env: 
-        ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-        ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        VITE_API_KEY_1: ${{ secrets.VITE_API_KEY_1 }}
+        VITE_API_KEY_2: ${{ secrets.VITE_API_KEY_2 }}
+        VITE_API_KEY_3: ${{ secrets.VITE_API_KEY_3 }}
+        VITE_ALPACA_API_KEY: ${{ secrets.VITE_ALPACA_API_KEY }}
+        VITE_ALPACA_SECRET_KEY: ${{ secrets.VITE_ALPACA_SECRET_KEY }}
+
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v2

@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { getBiggestLoseGainVariable } from '../utils/environment.js';
 
 function BiggestLosers() {
     const [marketLosers, setMarketLosers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiKey2 = import.meta.env.VITE_API_KEY_2;
+
+    const apiKey1 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
 
     useEffect(() => {
         const fetchMarketLosers = async () => {
             try {
                 // https://financialmodelingprep.com/api/v3/stock_market/losers?apikey={APIKEY}
-                const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=${apiKey2}`); // PROD
+                const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=${apiKey1}`); // PROD
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
@@ -55,12 +57,12 @@ function BiggestLosers() {
             ) : (
                 <div className='row'>
                     {marketLosers.slice(0, 12).map(stock => (
-                        <div key={stock.symbol} className='my-2 px-0 text-center col-lg-1 col-md-2 col-4'>
+                        <div key={stock.symbol} className='my-2 px-0 text-center col-lg-1 col-md-2 col-4 inv'>
                             <div>
                                 <OverlayTrigger
-                                    placement='right'
+                                    placement='top'
                                     overlay={
-                                        <Tooltip id='right'>
+                                        <Tooltip id={stock.symbol}>
                                             {stock.name}
                                         </Tooltip>
                                     }

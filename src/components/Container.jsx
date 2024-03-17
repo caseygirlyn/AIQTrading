@@ -4,7 +4,6 @@ import News from "./News";
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import MostlyOwnedStocksTable from "./common/Tables/MostlyOwnedStocksTable";
-import SearchedStocksTable from './common/Tables/SearchedStocksTable';
 import StockSearch from "./StockSearch";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -13,17 +12,7 @@ import BiggestGainers from "./BiggestGainers";
 import BiggestLosers from "./BiggestLosers";
 
 const Container = () => {
-  const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentDateTime(new Date());
-    }, 1000); // Update every second
-
-    // Clean up the interval
-    return () => clearInterval(intervalId);
-  }, []);
 
   // Function to get initial mode from localStorage if available
   function getInitialMode() {
@@ -76,11 +65,10 @@ const Container = () => {
             </Tab>
           </Tabs>
         </Col>
-        <Col size="md-4">
-          <SearchedStocksTable />
+        <Col size="lg-4">
           <MostlyOwnedStocksTable />
         </Col>
-        <Col size="md-8">
+        <Col size="lg-8">
           <News />
         </Col>
       </Row>

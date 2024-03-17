@@ -89,7 +89,6 @@ const StockSearch = (props) => {
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
             const endPoint = `${baseUrl}historical-chart/5min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // [PROD] Start Fetch Stock Historical Chart Data
-            //const endPoint = `/AAPL-5min.json`; // DEV
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {

@@ -49,19 +49,20 @@ const StockSearch = (props) => {
         setLoading(true);
 
         const today = new Date();
-        const yesterday = new Date(today);
-        yesterday.setDate(today.getDate() - 1);
+        const startDate = new Date(today);
+
+        (today.getDay() === 0) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)        
 
         const todayFormatted = formatDate(today);
-        const yesterdayFormatted = formatDate(yesterday);
+        const startDateFormatted = formatDate(startDate);
 
         const baseUrl = "https://financialmodelingprep.com/api/v3/";
 
         // Start Fetch Company Profile Data
         try {
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
-            const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
-            //const response = await fetch(`/AAPL.json`); // DEV
+            //const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
+            const response = await fetch(`/AAPL.json`); // DEV
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -79,9 +80,9 @@ const StockSearch = (props) => {
         // Start Fetch Stock Price Change Data
         try {
             // https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey={APIKEY}
-            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
-            
-            //const responsePC = await fetch(`/AAPL-PC.json`); // DEV
+
+            //const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
+            const responsePC = await fetch(`/AAPL-PC.json`); // DEV
             if (!responsePC.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -94,8 +95,8 @@ const StockSearch = (props) => {
 
         // Start Fetch Dynamic Stock News Data
         try {
-            const responseNews = await fetch(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKeyNews}`);
-            //const response = await axios.get('/AAPL-news.json');
+            //const responseNews = await fetch(`https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKeyNews}`);
+            const response = await axios.get('/AAPL-news.json');
             if (!responseNews.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -111,7 +112,7 @@ const StockSearch = (props) => {
             // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            endPoint = `${baseUrl}historical-chart/5min/${query}?from=${yesterdayFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
+            endPoint = `${baseUrl}historical-chart/5min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
             //endPoint = `/AAPL-5min.json`; // DEV
             const responseCHART = await fetch(endPoint);
 

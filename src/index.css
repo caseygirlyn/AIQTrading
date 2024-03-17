@@ -17,6 +17,10 @@ body,
   height: 100%;
 }
 
+#root {
+  overflow-y: scroll;
+}
+
 .primary-color {
   color: var(--primary-color);
 }
@@ -303,7 +307,6 @@ i.bi.bi-list {
   color: #fff;
   background-color: #2f3442;
   border-width: 0;
-  cursor: pointer;
 }
 
 .darkMode .table-striped > tbody > tr:nth-of-type(odd) > * {

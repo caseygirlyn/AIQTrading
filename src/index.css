@@ -34,6 +34,26 @@ body,
   transition: 1s;
 }
 
+.newsTitle{
+  color: var(--primary-color);
+}
+
+.newsthumb {
+  height: 65px;
+  background-repeat: no-repeat;
+  background-size: 200%;
+  background-position: center;
+  border: 1px solid var(--secondary-color);
+}
+
+.card-body img{
+  border: 1px solid var(--secondary-color);
+}
+
+.darkMode .newsTitle{
+  color: #fff;
+}
+
 .border-1 {
   border: 2px solid var(--primary-color);
 }
@@ -272,7 +292,7 @@ i.bi.bi-list {
 }
 
 .table > :not(caption) > * > * {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .lightMode .table-striped {

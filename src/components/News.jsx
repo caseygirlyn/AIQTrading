@@ -49,9 +49,10 @@ const News = () => {
                             <a href={newsData.article_url} className="text-decoration-none" target="_blank" rel="noopener noreferrer">
                                 <div className="card-body caption py-1 px-md-2 px-0 d-flex align-items-start">
                                     <div className='newsthumb w-25 me-3 shadow' style={{ backgroundImage: `url(${newsData.image_url})` }}></div>
-                                    <span className='newsTitle w-75'>
+                                    <div className='newsTitle w-75'>
                                         {newsData.title}
-                                    </span>
+                                        <div className='mt-1 text-secondary'><i className="bi bi-calendar3 me-2"></i>{newsData.published_utc.slice(0, 10)}</div>
+                                    </div>
                                 </div>
                             </a>
                         </div>

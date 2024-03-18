@@ -19,20 +19,17 @@ ChartJS.register(
     Filler
 );
 
+const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
+const apiKeyNews = import.meta.env.VITE_API_KEY_POLYGON_2; // Netlify ENV variable
+
 const StockSearch = (props) => {
     const [query, setQuery] = useState('');
     const [parseQuery, setParseQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [priceChange, setPriceChange] = useState([]);
     const [error, setError] = useState(null);
-    const [chartLoading, setChartLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState([]);
-    let endPoint = '';
-
-    const apiKey1 = props.apiKeys.apiKey1;
-    const apiKey2 = props.apiKeys.apiKey2;
-    const apiKey3 = props.apiKeys.apiKey3;
 
     let color = (props.isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
     let labelColor = (props.isDarkMode) ? 'rgb(255, 255, 255)' : 'rgb(58, 64, 80)';
@@ -46,92 +43,71 @@ const StockSearch = (props) => {
         event.preventDefault();
         setParseQuery('');
         setError(null);
-        setChartLoading(true);
         setLoading(true);
 
         const today = new Date();
-        const yesterday = new Date(today);
-        yesterday.setDate(today.getDate() - 1);
+        const startDate = new Date(today);
+
+        (today.getDay() === 0) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
 
         const todayFormatted = formatDate(today);
-        const yesterdayFormatted = formatDate(yesterday);
+        const startDateFormatted = formatDate(startDate);
 
         const baseUrl = "https://financialmodelingprep.com/api/v3/";
 
         try {
+            // Define multiple fetch requests
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
-            const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
-            //const response = await fetch(`/AAPL.json`); // DEV
-            if (!response.ok) {
+
+            const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // [PROD] Start Fetch Company Profile Data
+            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // [PROD] Start Fetch Stock Price Change Data 
+
+            // Make both requests concurrently using Promise.all()
+            const [dataResponse, dataResponsePC] = await Promise.all([response, responsePC]);
+
+            // Parse the response data
+            const data = await dataResponse.json();
+            const dataPC = await dataResponsePC.json();
+
+            if (data.length === 0) {
                 throw new Error('Failed to fetch data');
             }
-            const data = await response.json();
+
+            // Set the response data to the state
             setSearchResults(data);
-
-            /* Comment code below if you are using dummy data and not the API response */
-
-            console.log(data);
-            console.log(response);
-            const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
-            const stockInfo = {
-                symbol: query,
-                name: data[0].companyName,
-            };
-            const existingIndex = searchedStocks.findIndex(stock => stock.symbol === query);
-            if (existingIndex !== -1) {
-                // If the symbol exists, remove it from its current position
-                searchedStocks.splice(existingIndex, 1);
-            }
-
-            searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
-            searchedStocks.splice(10); // Keep only the last 10 searches
-            localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
-
-            /* Comment code out to here */
+            setPriceChange(dataPC);
 
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
-            setLoading(false);
             setParseQuery(query);
         }
 
-        try {
-            // https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey={APIKEY}
-            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
-            //const responsePC = await fetch(`/AAPL-PC.json`); // DEV
-            if (!responsePC.ok) {
-                throw new Error('Failed to fetch data');
-            }
-            const dataPC = await responsePC.json();
-            setPriceChange(dataPC);
-        } catch (error) {
-            setError('An error occurred while fetching data');
-        }
-
+        // Start Fetch Stock Historical Chart Data
         try {
             // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            let endPoint = `${baseUrl}historical-chart/5min/${query}?from=${yesterdayFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
-            //let endPoint = `/AAPL-5min.json`; // DEV
+            const endPoint = `${baseUrl}historical-chart/5min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // [PROD] Start Fetch Stock Historical Chart Data
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {
                 throw new Error('Failed to fetch data');
             }
-            const dataChart = await responseCHART.json();
 
+            const dataChart = await responseCHART.json();
             const timestamps = dataChart.map(timestamp => timestamp.date);
             const closingPrices = dataChart.map(timestamp => timestamp.close);
+
             setStockData({ timestamps, closingPrices });
 
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
-            setChartLoading(false);
+            setLoading(false);
             setQuery('');
         }
+        // End Fetch Stock Historical Chart Data
     };
 
     const handleKeyDown = event => {
@@ -203,29 +179,29 @@ const StockSearch = (props) => {
                         type="text"
                         className="form-control rounded-0 shadow-none"
                         placeholder="AAPL"
-                        id="search"
+                        id="search" required
                     />
                     <button className="btn btn-outline-secondary rounded-0" type="submit" id="searchBtn"><i className="bi bi-search"></i></button>
                 </div>
             </form>
             {
-                (loading || chartLoading) && <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
+                (loading) && <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
             }
-            {error && <p>{error}</p>}
+            {error && <p className='text-center'>{error}</p>}
 
             <div className='row reverse-col-mobile'>
-                <div className='col-md-4'>
+                <div className='col-lg-4'>
                     {!loading && searchResults.length > 0 && (
                         <div className='mb-4'>
                             <CompanyProfile searchResults={searchResults} />
                         </div>
                     )}
                 </div>
-                <div className='col-md-8'>
+                <div className='col-lg-8'>
                     {
-                        !chartLoading && searchResults.length > 0 && (
+                        !loading && searchResults.length > 0 && (
                             <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
                                 <Line data={chartData} options={options} />
                             </div>
@@ -234,19 +210,17 @@ const StockSearch = (props) => {
                 </div>
             </div>
             <div className='row'>
-                <div className='col-md-4'>
+                <div className='col-lg-4'>
                     {!loading && priceChange.length > 0 && (
                         <div className='mb-4'>
                             <PriceChange priceChange={priceChange} />
                         </div>
                     )}
                 </div>
-                <div className='col-md-8'>
+                <div className='col-lg-8'>
                     {
-                        !chartLoading && searchResults.length > 0 && (
-                            <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
-                                <CompanyNews />
-                            </div>
+                        !loading && searchResults.length > 0 && (
+                            <CompanyNews parseQuery={parseQuery} />
                         )
                     }
                 </div>

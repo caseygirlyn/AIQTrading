@@ -15,6 +15,54 @@ const Portfolio = () => {
       setIsDarkMode(prevMode => !prevMode);
   };
 
+  const getTickerStyle = (index) => ({
+    backgroundColor: isDarkMode 
+      ? (index % 2 === 0 ? ' #3B404E' : '#303441') 
+      : (index % 2 === 0 ? '#f0f0f0' : '#fff'),
+    color: isDarkMode ? 'white' : '#3d4354',
+    padding: '8px',
+    borderRadius: '4px',
+    marginBottom: '10px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  });
+
+  const getTickerContainerStyle = () => ({
+    flex: '1',
+    marginRight: '20px',
+    maxWidth: '50%'
+  });
+  
+  const getMainDivStyle = () => ({
+    display: 'flex',
+    backgroundColor: isDarkMode ? '#292D3A' : '#fff',
+    padding: '20px',
+    borderRadius: '8px'
+  });
+
+  const getBuyButtonStyle = (index) => ({
+    fontSize: '12px',
+    padding: '6px 20px',
+    color: '#56B678',
+    backgroundColor: isDarkMode ? (index % 2 === 0 ? ' #3B404E' : '#303441') : '#fff',
+    border: 'solid 1px #56B678',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    marginRight: '5px'
+  });
+
+  const getSellButtonStyle = (index) => ({
+    fontSize: '12px',
+    padding: '6px 20px',
+    backgroundColor: isDarkMode ? (index % 2 === 0 ? ' #3B404E' : '#303441') : '#fff',
+    color: 'red',
+    border: 'solid 1px red',
+    borderRadius: '4px',
+    cursor: 'pointer'
+  });
+  
+
   const [selectedTicker, setSelectedTicker] = useState(null);
 
   const tickers = [
@@ -31,68 +79,43 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className={isDarkMode ? 'darkMode' : 'lightMode'} >
+    <><div className={isDarkMode ? 'darkMode' : 'lightMode'}>
+      <div className="form-check form-switch">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          id="darkModeSwitch"
+          checked={isDarkMode}
+          onChange={toggleDarkMode} />
+        <label className="form-check-label" htmlFor="darkModeSwitch">
+          {isDarkMode ? <i className="bi bi-brightness-high"></i> : <i className="bi bi-moon-stars-fill"></i>}
+        </label>
+      </div>
       <Header />
-      <div style={{ display: 'flex', backgroundColor: '#292D3A', padding: '20px', borderRadius: '8px' }}>
-        <div style={{ flex: '1', marginRight: '20px' }}>
-          <h3 style={{ color: 'white' }}>Available stocks</h3>
+      <div style={getMainDivStyle()}>
+        <div style={getTickerContainerStyle()}>
+          <h3 style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Available stocks</h3> {/* Adjust color for light mode */}
           {tickers.map((ticker, index) => (
-            <div key={ticker.symbol} style={{ 
-              backgroundColor: index % 2 === 0 ? ' #3B404E' : '#303441',
-              color: 'white',
-              padding: '8px',
-              borderRadius: '4px',
-              marginBottom: '10px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
+            <div key={ticker.symbol} style={getTickerStyle(index)}>
               <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>
               <div>
-                <button 
-                  style={{ 
-                    fontSize: '12px', 
-                    padding: '6px 20px', 
-                    color: '#56B678',
-                    backgroundColor: index % 2 === 0 ? ' #3B404E' : '#303441', 
-                    border: 'solid 1px #56B678',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    marginRight: '5px'
-                  }}
-                  onClick={() => setSelectedTicker(ticker)}
-                >
-                  Buy
-                </button>
-                <button 
-                  style={{ 
-                    fontSize: '12px', 
-                    padding: '6px 20px', 
-                    backgroundColor: index % 2 === 0 ? ' #3B404E' : '#303441', 
-                    color: 'red', 
-                    border: 'solid 1px red',
-                    borderRadius: '4px',
-                    cursor: 'pointer'
-                  }}
-                  onClick={() => setSelectedTicker(ticker)}
-                >
-                  Sell
-                </button>
+                <button style={getBuyButtonStyle(index)} onClick={() => setSelectedTicker(ticker)}>Buy</button>
+                <button style={getSellButtonStyle(index)} onClick={() => setSelectedTicker(ticker)}>Sell</button>
               </div>
             </div>
           ))}
         </div>
-
-        <div style={{ flex: '1' }}>
-          {selectedTicker && (
-            <div style={{ padding: '20px', marginTop: '100px', borderRadius: '8px' }}>
-              <AlpacaOrder symbol={selectedTicker.symbol} />
-            </div>
-          )}
-        </div>
       </div>
-      <Footer />
-    </div>
+
+      <div style={{ flex: '1' }}>
+        {selectedTicker && (
+          <div style={{ padding: '20px', marginTop: '100px', borderRadius: '8px' }}>
+            <AlpacaOrder symbol={selectedTicker.symbol} />
+          </div>
+        )}
+      </div>
+    </div><Footer />
+    </>
   );
 };
 export default Portfolio;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import { getBiggestLoseGainVariable } from '../utils/environment.js';
 
 function BiggestLosers() {
     const [marketLosers, setMarketLosers] = useState([]);

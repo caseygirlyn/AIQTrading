@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { getAlpacaVariables } from '../../utils/environment.js';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 
 const AlpacaOrder = ({ symbol }) => {
@@ -9,7 +8,8 @@ const AlpacaOrder = ({ symbol }) => {
   
     const placeOrder = async () => {
         const url = 'https://paper-api.alpaca.markets/v2/orders';
-        const { apiKey, secretKey } = getAlpacaVariables();
+        const apiKey = import.meta.env.VITE_ALPACA_API_KEY;
+        const secretKey = import.meta.env.VITE_ALPACA_SECRET_KEY;
     
         const orderData = {
             symbol: symbol,
@@ -22,8 +22,6 @@ const AlpacaOrder = ({ symbol }) => {
         try {
             // Debug
             console.log(JSON.stringify(orderData));
-            console.log(apiKey);
-            console.log(secretKey);
 
             const response = await fetch(url, {
                 method: 'POST',

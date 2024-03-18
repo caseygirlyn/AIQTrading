@@ -6,8 +6,6 @@ import Header from './common/Header';
 import Footer from './common/Footer';
 import SearchedStocksTable from './common/Tables/SearchedStocksTable'
 import StockSearch from "./StockSearch";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));

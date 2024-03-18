@@ -1,10 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 
-const AlpacaOrder = ({ symbol }) => {
+const AlpacaOrder = ({ symbol, isDarkMode }) => {
     const [response, setResponse] = useState('');
     const [qty, setQty] = useState(1);
     const [side, setSide] = useState('buy'); // default to 'buy'
+
+    useEffect(() => {
+        // Reset the order state when the symbol changes
+        setResponse('');
+        setQty(1);
+        setSide('buy');
+      }, [symbol]);
+
+    // Style functions
+    const getPaperStyle = () => ({
+        padding: '20px', 
+        margin: 'auto', 
+        borderRadius: '8px', 
+        maxWidth: '400px',
+        color: isDarkMode ? '#fff' : '#3d4354', 
+        backgroundColor: isDarkMode ? '#303441' : '#fff'
+    });
+
+    const getButtonStyle = (variant) => ({
+        minWidth: '30px', 
+        width: '30px', 
+        backgroundColor: isDarkMode ? '#303441' : variant === 'increment' ? '#0EE682' : '#FF5262',
+        border: 'solid 1px white'
+    });
+
+    const getTextFieldStyle = () => ({
+        backgroundColor: isDarkMode ? '#3B404E' : 'white',
+        width: '150px'
+    });
+
+    const getPlaceOrderButtonStyle = () => ({
+        backgroundColor: isDarkMode ? '#303441' : '#56B678', 
+        color: isDarkMode ? '#56B678' : '#fff',
+        border: 'solid 1px #56B678', 
+        paddingLeft: '50px', 
+        paddingRight: '50px'
+    });
+
+    const handleQuantityChange = (event) => {
+        const value = String(event.target.value);
+        setQty(value);
+    };    
   
     const placeOrder = async () => {
         const url = 'https://paper-api.alpaca.markets/v2/orders';
@@ -55,21 +97,22 @@ const AlpacaOrder = ({ symbol }) => {
 
     return (
         <div>
-            <Paper elevation={3} style={{ padding: '20px', margin:'auto', borderRadius: '8px', maxWidth: '400px' , color: '#fff', backgroundColor: '#303441'}}>
+            <Paper elevation={3} style={getPaperStyle()}>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
                 <Typography variant="h5" gutterBottom >Trading {symbol}</Typography>
               </div>
                 <Grid container spacing={2} alignItems="center" justifyContent='center'>
                     <Grid item xs={12} sm={6} sx={{ paddingBottom: '10px'}}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent:'center' }}>
-                            <Button variant="contained" onClick={handleIncrement} style={{ minWidth: '30px', width: '30px', backgroundColor:' #303441',border:'solid 1px white' }}>+</Button>
+                            <Button variant="contained" onClick={handleIncrement} style={getButtonStyle('increment')}>+</Button>
                             <TextField
                                 value={qty}
-                                style={{ backgroundColor: 'white', width: '150px'}} 
-                                InputProps={{ style: { width: '100%' } }} // input field takes the full width of the TextField
+                                onChange={handleQuantityChange}
+                                style={getTextFieldStyle()} 
+                                InputProps={{ style: { width: '100%' } }} 
                                 inputProps={{ style: { textAlign: 'center', paddingTop:'5px', paddingBottom:'5px'} }}
                             />
-                            <Button variant="contained" onClick={handleDecrement} style={{ minWidth: '30px', width: '30px', backgroundColor:' #303441',border:'solid 1px white' }}>-</Button>
+                            <Button variant="contained" onClick={handleDecrement} style={getButtonStyle('decrement')}>-</Button>
                         </div>
                     </Grid>
                 </Grid>
@@ -81,7 +124,7 @@ const AlpacaOrder = ({ symbol }) => {
                         <Button variant="contained" onClick={() => setSide('sell')} style={{ backgroundColor: '#FF5262', color: '#fff' }}>Sell</Button>
                     </Grid> */}
                     <Grid item>
-                        <Button variant="contained" onClick={placeOrder} style={{ backgroundColor: '#303441', color: '#56B678', border:'solid 1px #56B678', paddingLeft:'50px', paddingRight:'50px' }}>Place Order</Button>
+                        <Button variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</Button>
                     </Grid>
                 </Grid>
                 {response && <pre style={{ overflowX: 'auto' }}>{response}</pre>}

@@ -6,7 +6,6 @@ import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
 import MostlyOwnedStocksTable from './common/Tables/MostlyOwnedStocksTable';
 import CompanyNews from './CompanyNews';
-import 'chartjs-plugin-zoom';
 
 ChartJS.register(
     CategoryScale,

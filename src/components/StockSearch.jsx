@@ -6,6 +6,7 @@ import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
 import MostlyOwnedStocksTable from './common/Tables/MostlyOwnedStocksTable';
 import CompanyNews from './CompanyNews';
+import 'chartjs-plugin-zoom';
 
 ChartJS.register(
     CategoryScale,
@@ -48,7 +49,7 @@ const StockSearch = (props) => {
         const today = new Date();
         const startDate = new Date(today);
 
-        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 3) : startDate.setDate(today.getDate() - 1)
+        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
 
         const todayFormatted = formatDate(today);
         const startDateFormatted = formatDate(startDate);
@@ -142,6 +143,21 @@ const StockSearch = (props) => {
 
     const options = {
         plugins: {
+            zoom: {
+                zoom: {
+                    wheel: {
+                        enabled: true,
+                    },
+                    pinch: {
+                        enabled: true,
+                    },
+                    mode: 'x',
+                },
+                pan: {
+                    enabled: true,
+                    mode: 'x',
+                },
+            },
             legend: {
                 labels: {
                     color: labelColor

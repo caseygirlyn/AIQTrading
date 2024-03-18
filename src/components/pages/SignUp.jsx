@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Container, Grid } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -32,14 +33,16 @@ const SignUp = () => {
       backgroundImage: 'url(assets/images/stock1.PNG)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
-      minHeight: '100vh', 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center' 
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '1rem'
     }}>
-      <Container maxWidth="sm" style={{ backgroundColor: '#ffffffb5', color: '#fff', borderStyle:"solid", borderWidth: "2px", borderColor:"#282D3A" , paddingBottom:"30px"}}>
+      <Container maxWidth="sm" style={{ backgroundColor: '#ffffffb5', color: '#fff', borderStyle: "solid", borderWidth: "2px", borderColor: "#282D3A", paddingBottom: "30px" }}>
+      <NavLink to="/" className="text-decoration-none" role="button"><img src="/assets/images/AIQ-dark.svg" className="dark-logo my-4 mx-auto d-block" width={180}/></NavLink>
         <form onSubmit={handleSubmit}>
-          <Typography variant="h4" gutterBottom sx={{ marginTop: "50px", color:"#282D3A" }}>Sign Up</Typography>
+          <Typography variant="h5" gutterBottom sx={{ color: "#282D3A", fontFamily: 'inherit' }}>Sign Up</Typography>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -89,7 +92,7 @@ const SignUp = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" style={{ backgroundColor: '#282D3A', color: '#fff' }}>Sign Up</Button>
+              <Button type="submit" className="w-100 py-3" variant="contained" style={{ fontFamily: "inherit", backgroundColor: '#282D3A', color: '#fff', textTransform: 'capitalize', fontSize: '18px' }}>Sign Up</Button>
             </Grid>
           </Grid>
         </form>

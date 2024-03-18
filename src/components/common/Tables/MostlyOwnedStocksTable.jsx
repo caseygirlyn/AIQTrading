@@ -16,13 +16,13 @@ const MostlyOwnedStocksTable = () => {
     ];
 
     return (
-        <div className='mb-4'>
+        <div className='mb-4 px-2'>
             <h2 className='fs-4'>Most Owned Stocks</h2>
-            <table className='table table-striped table-hover mb-0 rounded-1'>
+            <table className='table table-striped mb-0'>
                 <thead>
                     <tr>
-                        <th>SYMBOL</th>
-                        <th>NAME</th>
+                        <th className='bg-primary-color text-white fs-6'>SYMBOL</th>
+                        <th className='bg-primary-color text-white fs-6'>NAME</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -48,7 +48,7 @@ const StockSearch = (props) => {
         const today = new Date();
         const startDate = new Date(today);
 
-        (today.getDay() === 0) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
+        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 3) : startDate.setDate(today.getDate() - 1)
 
         const todayFormatted = formatDate(today);
         const startDateFormatted = formatDate(startDate);

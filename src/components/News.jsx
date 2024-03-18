@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const News = () => {
     const [news, setNews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const apiKeyNews = import.meta.env.VITE_API_KEY_POLYGON; // Netlify ENV variable
+
+    // https://api.polygon.io/v2/reference/news?apiKey=v${apiKeyNews} "5 API Calls / Minute"
+
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                //const response = await axios.get('https://newsapi.org/v2/everything?q=stocks&apiKey=602085a63c3a4b98b4e7c82ba09ce268');
-                const response = await axios.get('/newsApi.json');
-                setNews(response.data.articles);
-                setLoading(false);
+                const response = await fetch(`https://api.polygon.io/v2/reference/news?apiKey=${apiKeyNews}`); // PROD
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setNews(data.results);
             } catch (error) {
-                setError('Error fetching news. Please try again later.');
+                try {
+                    const fallbackResponse = await fetch(`/marketWatch.json`); // Fallback data in case maximum request has been reached :)
+                    const fallbackData = await fallbackResponse.json();
+                    setNews(fallbackData.results);
+                } catch (error) {
+                    setError('An error occurred while fetching data');
+                }
+            } finally {
                 setLoading(false);
             }
         };
-
         fetchNews();
     }, []);
 
@@ -26,20 +37,24 @@ const News = () => {
         <div className='container news'>
             <h2 className="fs-4 mb-0">Global Financial News</h2>
             {loading ? (
-                <p>Loading...</p>
+                <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
             ) : error ? (
                 <p>{error}</p>
             ) : (
                 <div className='wrapper card-group pb-3'>
-                    {news.slice(0, 12).map((article, index) => (
-                        <div className="cardContainer col-md-4 col-sm-12 w-lg-auto py-3" key={index}>
-                            <div className="card border-2 rounded-0 w-auto border-0">
-                                <div className="card-body caption py-1 px-md-2 px-0">
-                                    <p className="card-title mb-0">
-                                        <a href={article.url} className="text-decoration-none" target="_blank" rel="noopener noreferrer">{article.title}</a>
-                                    </p>
+                    {news.slice(0, 8).map(newsData => (
+                        <div className="cardContainer col-md-6 col-sm-12 w-lg-auto py-3" key={newsData.id}>
+                            <a href={newsData.article_url} className="text-decoration-none" target="_blank" rel="noopener noreferrer">
+                                <div className="card-body caption py-1 px-md-2 px-0 d-flex align-items-start">
+                                    <div className='newsthumb w-25 me-3 shadow' style={{ backgroundImage: `url(${newsData.image_url})` }}></div>
+                                    <div className='newsTitle w-75'>
+                                        {newsData.title}
+                                        <div className='mt-1 text-secondary'><i className="bi bi-calendar3 me-2"></i>{newsData.published_utc.slice(0, 10)}</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     ))}
                 </div>
@@ -48,4 +63,4 @@ const News = () => {
     );
 };
 
-export default News;
+export default News

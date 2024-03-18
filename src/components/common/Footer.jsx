@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
     return (
-        <footer className="d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top">
+        <footer className="border-top py-3 w-100 mt-5 text-center">
             <span className="text-muted">© 2024 AIQTrading</span>
         </footer>
     )

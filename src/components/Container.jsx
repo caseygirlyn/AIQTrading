@@ -4,7 +4,6 @@ import News from "./News";
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import MostlyOwnedStocksTable from "./common/Tables/MostlyOwnedStocksTable";
-import SearchedStocksTable from './common/Tables/SearchedStocksTable';
 import StockSearch from "./StockSearch";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -12,23 +11,13 @@ import Footer from "./common/Footer";
 import BiggestGainers from "./BiggestGainers";
 import BiggestLosers from "./BiggestLosers";
 
-const Container = (props) => {
-  const [currentDateTime, setCurrentDateTime] = useState(new Date());
-  const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentDateTime(new Date());
-    }, 1000); // Update every second
-
-    // Clean up the interval
-    return () => clearInterval(intervalId);
-  }, []);
+const Container = () => {
+  const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
 
   // Function to get initial mode from localStorage if available
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
-    return savedMode || true; // If no saved mode, default to light mode
+    return savedMode || false; // If no saved mode, default to light mode
   }
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
@@ -60,7 +49,7 @@ const Container = (props) => {
     <div className="container mb-5 mt-5 pt-5">
       <Row>
         <Col size="md-12">
-          <StockSearch isDarkMode={isDarkMode} apiKeys={props.apiKeys} />
+          <StockSearch isDarkMode={isDarkMode} />
         </Col>
       </Row>
       <Row>
@@ -76,11 +65,10 @@ const Container = (props) => {
             </Tab>
           </Tabs>
         </Col>
-        <Col size="md-4">
+        <Col size="lg-4">
           <MostlyOwnedStocksTable />
-          <SearchedStocksTable />
         </Col>
-        <Col size="md-8">
+        <Col size="lg-8">
           <News />
         </Col>
       </Row>

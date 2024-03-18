@@ -65,6 +65,14 @@ const Portfolio = () => {
 
   const [selectedTicker, setSelectedTicker] = useState(null);
 
+  const handleTickerSelection = (ticker) => {
+    if (selectedTicker && ticker.symbol === selectedTicker.symbol) {
+      // If the same ticker is selected again, do nothing
+      return;
+    }
+    setSelectedTicker(ticker);
+  };
+  
   const tickers = [
     { symbol: 'NVDA', name: 'NVIDIA Corporation' },
     { symbol: 'META', name: 'Meta Platforms, Inc.' },
@@ -99,8 +107,8 @@ const Portfolio = () => {
             <div key={ticker.symbol} style={getTickerStyle(index)}>
               <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>
               <div>
-                <button style={getBuyButtonStyle(index)} onClick={() => setSelectedTicker(ticker)}>Buy</button>
-                <button style={getSellButtonStyle(index)} onClick={() => setSelectedTicker(ticker)}>Sell</button>
+                <button style={getBuyButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Buy</button>
+                <button style={getSellButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Sell</button>
               </div>
             </div>
           ))}
@@ -110,7 +118,7 @@ const Portfolio = () => {
       <div style={{ flex: '1' }}>
         {selectedTicker && (
           <div style={{ padding: '20px', marginTop: '100px', borderRadius: '8px' }}>
-            <AlpacaOrder symbol={selectedTicker.symbol} />
+            <AlpacaOrder symbol={selectedTicker.symbol} isDarkMode={isDarkMode} />
           </div>
         )}
       </div>

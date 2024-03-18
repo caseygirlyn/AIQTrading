@@ -88,7 +88,7 @@ function Contact() {
             // Reset submission status after 5 seconds
             setTimeout(() => {
                 setSubmitted(false);
-            }, 3000);
+            }, 5000);
 
         } else {
             setErrors(validationErrors);

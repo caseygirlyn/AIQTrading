@@ -7,13 +7,13 @@ function BiggestGainers() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const apiKey1 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
+    const apiKey = import.meta.env.VITE_API_KEY_FMP_2; // Netlify ENV variable
 
     useEffect(() => {
         const fetchMarketGainers = async () => {
             try {
                 // https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey={APIKEY}
-                const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${apiKey1}`); // PROD
+                const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${apiKey}`); // PROD
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');

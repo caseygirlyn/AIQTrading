@@ -142,21 +142,6 @@ const StockSearch = (props) => {
 
     const options = {
         plugins: {
-            zoom: {
-                zoom: {
-                    wheel: {
-                        enabled: true,
-                    },
-                    pinch: {
-                        enabled: true,
-                    },
-                    mode: 'x',
-                },
-                pan: {
-                    enabled: true,
-                    mode: 'x',
-                },
-            },
             legend: {
                 labels: {
                     color: labelColor

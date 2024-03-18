@@ -28,10 +28,10 @@ function About() {
                 </label>
             </div>
             <Header />
-            <div className="container content px-4">
-                <section className="row pt-5 mt-5">
-                    <div className='banner mt-3 mb-5 p-md-5 p-3 d-grid shadow'>
-                        <h2 className="w-auto d-flex align-items-center text-white">About Us</h2>
+            <div className="container content px-4 pt-3">
+                <section className="row pt-5">
+                    <div className='banner mt-5 mb-5 p-md-5 p-3 d-grid shadow align-items-center justify-items-center'>
+                        <h2 className="w-100 text-white text-center">About Us</h2>
                     </div>
                 </section>
                 <h3>

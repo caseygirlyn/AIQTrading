@@ -127,12 +127,6 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
                     </Grid>
                 </Grid>
                 <Grid container spacing={1} justifyContent="center">
-                    {/* <Grid item>
-                        <Button variant="contained" onClick={() => setSide('buy')} style={{ backgroundColor: '#0EE682', color: '#fff' }}>Buy</Button>
-                    </Grid>
-                    <Grid item>
-                        <Button variant="contained" onClick={() => setSide('sell')} style={{ backgroundColor: '#FF5262', color: '#fff' }}>Sell</Button>
-                    </Grid> */}
                     <Grid item>
                         <Button variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</Button>
                     </Grid>

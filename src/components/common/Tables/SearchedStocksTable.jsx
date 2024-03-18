@@ -1,6 +1,7 @@
 import React from 'react';
 
 const SearchedStocksTable = () => {
+
     const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
 
     return (
@@ -20,7 +21,7 @@ const SearchedStocksTable = () => {
                             <td>{stock.name}</td>
                         </tr>
                     ))}
-                    { searchedStocks.length === 0 && (
+                    {searchedStocks.length === 0 && (
                         <tr><td colSpan={2}>No Records Found</td></tr>
                     )
                     }

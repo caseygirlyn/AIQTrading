@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AlpacaOrder from './alpaca/Order'
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import Header from './common/Header';
 import Footer from './common/Footer';
+import SearchedStocksTable from './common/Tables/SearchedStocksTable'
+import StockSearch from "./StockSearch";
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
@@ -11,6 +13,11 @@ const Portfolio = () => {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
     return savedMode || false; // If no saved mode, default to light mode
   }
+
+  // Update localStorage when mode changes
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
+  }, [isDarkMode]);
 
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
@@ -99,10 +106,13 @@ const Portfolio = () => {
         </label>
       </div>
       <Header />
-
+      <div className="container mb-5 mt-5 pt-5">
+      <StockSearch isDarkMode={isDarkMode}/>
+      </div>
+      
       <div className="container m-auto d-md-flex">
         <Col size="md-6">
-          <div style={getMainDivStyle()} className='container mt-5 py-5'>
+          <div style={getMainDivStyle()} className='container'>
             <div style={getTickerContainerStyle()} className='col-md-2'>
               <h3 style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Available stocks</h3> {/* Adjust color for light mode */}
               {tickers.map((ticker, index) => (
@@ -118,15 +128,15 @@ const Portfolio = () => {
           </div>
         </Col>
         <Col size="md-6">
-          <div style={{ flex: '1' }} className='container mt-md-5 py-md-5'>
+          <div style={{ flex: '1' }} className='container'>
             {selectedTicker && (
-              <div style={{ padding: '20px', marginTop: '50px', borderRadius: '8px' }}>
+              <div style={{ padding: '20px', marginTop: '30px', borderRadius: '8px' }}>
                 <AlpacaOrder symbol={selectedTicker.symbol} isDarkMode={isDarkMode} />
               </div>
             )}
           </div>
+          <SearchedStocksTable />
         </Col>
-
       </div>
 
 

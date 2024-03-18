@@ -109,7 +109,7 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
         <div>
             <Paper elevation={3} style={getPaperStyle()}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
-                    <Typography variant="h5" gutterBottom style={{fontFamily: 'inherit'}}>Trading {symbol}</Typography>
+                    <Typography variant="h5" gutterBottom style={{fontFamily: 'inherit'}}>Trade {symbol}</Typography>
                 </div>
                 <Grid container spacing={2} alignItems="center" justifyContent='center'>
                     <Grid item xs={12} sm={6} sx={{ paddingBottom: '10px' }}>

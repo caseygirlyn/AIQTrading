@@ -22,12 +22,8 @@ describe('AlpacaOrder Component', () => {
     expect(screen.getByText(/Trading AAPL/)).toBeInTheDocument();
 
     // Simulate user changing quantity
-    const quantityInput = screen.getByRole('spinbutton');
-    fireEvent.change(quantityInput, { target: { value: 2 } });
-
-    // Simulate user clicking 'Buy' button
-    const buyButton = screen.getByText('Buy');
-    fireEvent.click(buyButton);
+    const incrementButton = screen.getAllByText('+')[0];
+    fireEvent.click(incrementButton);
 
     // Simulate user clicking 'Place Order' button
     const placeOrderButton = screen.getByText('Place Order');
@@ -45,8 +41,8 @@ describe('AlpacaOrder Component', () => {
         headers: expect.anything(),
         body: JSON.stringify({
           symbol: 'AAPL',
-          qty: '2',
-          side: 'buy',
+          qty: 2, // Updated qty after increment button click
+          side: 'buy', // The default side in Order.jsx is 'buy'
           type: 'market',
           time_in_force: 'day',
         }),

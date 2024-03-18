@@ -69,7 +69,6 @@ const Portfolio = () => {
     cursor: 'pointer'
   });
 
-
   const [selectedTicker, setSelectedTicker] = useState(null);
 
   const handleTickerSelection = (ticker) => {
@@ -108,9 +107,30 @@ const Portfolio = () => {
       </div>
       <Header />
       <div className="container mb-5 mt-5 pt-5">
-      <StockSearch isDarkMode={isDarkMode}/>
+        <StockSearch isDarkMode={isDarkMode} />
       </div>
-      
+
+      <div className="container mx-auto d-flex mb-5">
+        <div className='col-md-6 d-flex'>
+          <div className="pe-3 border-right" style={{ borderRight: '1px solid #3b404e' }}>
+            <span className="p-1 d-block fs-6">PORTFOLIO</span>
+            <span className="p-1 text-success fs-2">$100,000</span>
+          </div>
+          <div className="px-3 border-right" style={{ borderRight: '1px solid #3b404e' }}>
+            <span className="p-1 d-block fs-6">INVESTED</span>
+            <span className="p-1 text-success fs-2">$50,000</span>
+          </div>
+          <div className="px-3">
+            <span className="p-1 d-block fs-6">RETURN</span>
+            <span className="p-1 text-success fs-2">50%<i className="bi bi-arrow-up-short"></i></span>
+          </div>
+        </div>
+        <div className='col-md-6 px-lg-5'>
+          <button type="button" className="btn btn-outline-success btn-lg mx-2 py-3" style={{width:'45%'}}>Deposit</button>
+          <button type="button" className="btn btn-outline-success btn-lg mx-2 py-3" style={{width:'45%'}}>Withdraw</button>
+        </div>
+      </div>
+
       <div className="container m-auto d-md-flex">
         <Col size="md-6">
           <div style={getMainDivStyle()}>
@@ -119,7 +139,7 @@ const Portfolio = () => {
               {tickers.map((ticker, index) => (
                 <div key={ticker.symbol} style={getTickerStyle(index)}>
                   <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>
-                  <div style={{ minWidth: '135px'}}>
+                  <div style={{ minWidth: '135px' }}>
                     <button style={getBuyButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Buy</button>
                     <button style={getSellButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Sell</button>
                   </div>

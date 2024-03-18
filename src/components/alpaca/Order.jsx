@@ -22,8 +22,6 @@ const AlpacaOrder = ({ symbol }) => {
         try {
             // Debug
             console.log(JSON.stringify(orderData));
-            console.log(apiKey);
-            console.log(secretKey);
 
             const response = await fetch(url, {
                 method: 'POST',

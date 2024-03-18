@@ -4,13 +4,13 @@ const SearchedStocksTable = () => {
     const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
 
     return (
-        <div className='mb-4 mx-lg-5 mx-md-4 p-3'>
+        <div className='mb-4 mx-lg-5 mx-md-4 px-3'>
             <h2 className='fs-4'>Recently Searched Stocks</h2>
             <table className='table table-striped table-hover mb-0 rounded-1'>
                 <thead>
                     <tr>
-                        <th>SYMBOL</th>
-                        <th>NAME</th>
+                        <th className='bg-primary-color text-white fs-6'>SYMBOL</th>
+                        <th className='bg-primary-color text-white fs-6'>NAME</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -16,4 +16,28 @@ const App = () => {
   </>
 }
 
+function DepositButton() {
+  const [depositAmount, setDepositAmount] = useState(0);
+  const handleDeposit = () => {
+    
+    console.log("Deposit amount:", depositAmount);
+    // You can perform deposit-related actions here, like sending the amount to an API or updating state.
+  }
+
+  return (
+    <div>
+      <input
+        type="number"
+        value={depositAmount}
+        onChange={(e) => setDepositAmount(parseFloat(e.target.value))}
+      />
+      <button onClick={handleDeposit}>Deposit</button>
+    </div>
+  );
+}
+
+
+
+
+
 export default App;

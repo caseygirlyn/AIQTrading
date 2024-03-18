@@ -77,6 +77,21 @@ const StockSearch = (props) => {
             setSearchResults(data);
             setPriceChange(dataPC);
 
+            const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
+            const stockInfo = {
+                symbol: query,
+                name: data[0].companyName,
+            };
+            const existingIndex = searchedStocks.findIndex(stock => stock.symbol === query);
+            if (existingIndex !== -1) {
+                // If the symbol exists, remove it from its current position
+                searchedStocks.splice(existingIndex, 1);
+            }
+
+            searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
+            searchedStocks.splice(10); // Keep only the last 10 searches
+            localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
+
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {

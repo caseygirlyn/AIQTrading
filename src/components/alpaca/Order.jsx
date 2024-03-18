@@ -21,19 +21,19 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
         borderRadius: '8px',
         maxWidth: '300px',
         color: isDarkMode ? '#fff' : '#3d4354',
-        backgroundColor: isDarkMode ? '#303441' : '#fff'
+        backgroundColor: isDarkMode ? '#2f3443' : '#fff'
     });
 
     const getButtonStyle = (variant) => ({
         minWidth: '30px',
-        width: '30px',
-        backgroundColor: isDarkMode ? '#303441' : variant === 'increment' ? '#0EE682' : '#FF5262',
-        border: 'solid 1px white'
+        width: '50px',
+        fontSize: '20px',
+        backgroundColor: isDarkMode ? '#3a4050' : variant === 'increment' ? '#56B678' : '#56B678',
     });
 
     const getTextFieldStyle = () => ({
         backgroundColor: isDarkMode ? '#3B404E' : 'white',
-        width: '150px'
+        borderRadius: '0'
     });
 
     const getPlaceOrderButtonStyle = () => ({
@@ -43,7 +43,8 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
         paddingLeft: '50px',
         paddingRight: '50px',
         fontFamily: 'inherit',
-        marginTop: '1rem'
+        marginTop: '1rem',
+        fontSize: '20px'
     });
 
     const handleQuantityChange = (event) => {
@@ -120,7 +121,7 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
                                 onChange={handleQuantityChange}
                                 style={getTextFieldStyle()}
                                 InputProps={{ style: { width: '100%' } }}
-                                inputProps={{ style: { textAlign: 'center', paddingTop: '5px', paddingBottom: '5px' } }}
+                                inputProps={{ style: { textAlign: 'center', paddingTop: '12px', paddingBottom: '12px' } }}
                             />
                             <Button variant="contained" onClick={handleIncrement} style={getButtonStyle('increment')}>+</Button>
                         </div>

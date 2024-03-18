@@ -24,6 +24,9 @@ const Container = () => {
     setIsDarkMode(prevMode => !prevMode);
   };
 
+  const inputRef = useRef(null); 
+  const [depositAmount, setDepositAmount] = useState('');
+
   // Update localStorage when mode changes
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
@@ -105,7 +108,7 @@ const Container = () => {
 
     <div className="container mb-5 mt-5 pt-5">
       {/* Include DepositButton component */}
-      <DepositButton />
+      <DepositButton depositAmount={depositAmount} setDepositAmount={setDepositAmount} />
       <Row>
         <Col size="md-12">
           <StockSearch isDarkMode={isDarkMode} />

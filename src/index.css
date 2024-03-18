@@ -44,6 +44,7 @@ body,
 
 .newsthumb {
   height: 65px;
+  background-color: #fff;
   background-repeat: no-repeat;
   background-size: 200%;
   background-position: center;

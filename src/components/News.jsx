@@ -7,7 +7,7 @@ const News = () => {
 
     const apiKeyNews = import.meta.env.VITE_API_KEY_POLYGON; // Netlify ENV variable
 
-    // https://api.polygon.io/v2/reference/news?apiKey=v${apiKeyNews} "5 API Calls / Minute"
+    // https://api.polygon.io/v2/reference/news?apiKey=${apiKeyNews} "5 API Calls / Minute"
 
     useEffect(() => {
         const fetchNews = async () => {

@@ -44,7 +44,8 @@ const Portfolio = () => {
   const getMainDivStyle = () => ({
     display: 'flex',
     backgroundColor: isDarkMode ? '#292D3A' : '#fff',
-    borderRadius: '8px'
+    borderRadius: '8px',
+    marginBottom: '2rem'
   });
 
   const getBuyButtonStyle = (index) => ({
@@ -112,7 +113,7 @@ const Portfolio = () => {
       
       <div className="container m-auto d-md-flex">
         <Col size="md-6">
-          <div style={getMainDivStyle()} className='container mb-4'>
+          <div style={getMainDivStyle()}>
             <div style={getTickerContainerStyle()} className='col-md-2'>
               <h3 style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Available stocks</h3> {/* Adjust color for light mode */}
               {tickers.map((ticker, index) => (

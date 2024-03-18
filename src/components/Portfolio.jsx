@@ -48,7 +48,7 @@ const Portfolio = () => {
   });
 
   const getBuyButtonStyle = (index) => ({
-    fontSize: '12px',
+    fontSize: '14px',
     padding: '6px 20px',
     color: '#56B678',
     backgroundColor: isDarkMode ? (index % 2 === 0 ? ' #3B404E' : '#303441') : '#fff',
@@ -59,7 +59,7 @@ const Portfolio = () => {
   });
 
   const getSellButtonStyle = (index) => ({
-    fontSize: '12px',
+    fontSize: '14px',
     padding: '6px 20px',
     backgroundColor: isDarkMode ? (index % 2 === 0 ? ' #3B404E' : '#303441') : '#fff',
     color: 'red',
@@ -112,13 +112,13 @@ const Portfolio = () => {
       
       <div className="container m-auto d-md-flex">
         <Col size="md-6">
-          <div style={getMainDivStyle()} className='container'>
+          <div style={getMainDivStyle()} className='container mb-4'>
             <div style={getTickerContainerStyle()} className='col-md-2'>
               <h3 style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Available stocks</h3> {/* Adjust color for light mode */}
               {tickers.map((ticker, index) => (
                 <div key={ticker.symbol} style={getTickerStyle(index)}>
                   <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>
-                  <div style={{ minWidth: '135px' }}>
+                  <div style={{ minWidth: '135px'}}>
                     <button style={getBuyButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Buy</button>
                     <button style={getSellButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Sell</button>
                   </div>

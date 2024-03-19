@@ -7,6 +7,7 @@ import Footer from './common/Footer';
 import SearchedStocksTable from './common/Tables/SearchedStocksTable'
 import StockSearch from "./StockSearch";
 import { NavLink } from 'react-router-dom';
+import TradingPosition from './TradingPosition';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
@@ -113,23 +114,23 @@ const Portfolio = () => {
       <div className="container mx-auto mb-5 row">
         <Col size="lg-6">
           <div className='d-flex'>
-          <div className="pe-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
-            <span className="p-1 d-block fs-6">PORTFOLIO</span>
-            <span className="p-1 text-success fs-2">$100,000</span>
-          </div>
-          <div className="px-3 border-right  mb-3" style={{ borderRight: '1px solid #3b404e' }}>
-            <span className="p-1 d-block fs-6">INVESTED</span>
-            <span className="p-1 text-success fs-2">$50,000</span>
-          </div>
-          <div className="px-3 mb-3">
-            <span className="p-1 d-block fs-6">RETURN</span>
-            <span className="p-1 text-success fs-2">50%<i className="bi bi-arrow-up-short"></i></span>
-          </div>
+            <div className="pe-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
+              <span className="p-1 d-block fs-6">PORTFOLIO</span>
+              <span className="p-1 text-success fs-2">$100,000</span>
+            </div>
+            <div className="px-3 border-right  mb-3" style={{ borderRight: '1px solid #3b404e' }}>
+              <span className="p-1 d-block fs-6">INVESTED</span>
+              <span className="p-1 text-success fs-2">$50,000</span>
+            </div>
+            <div className="px-3 mb-3">
+              <span className="p-1 d-block fs-6">RETURN</span>
+              <span className="p-1 text-success fs-2">50%<i className="bi bi-arrow-up-short"></i></span>
+            </div>
           </div>
         </Col>
         <Col size="lg-6">
-          <button type="button" className="btn btn-outline-success btn-lg mx-2 py-3" style={{ width: '46%' }}>Deposit</button>
-          <button type="button" className="btn btn-outline-success btn-lg mx-2 py-3" style={{ width: '46%' }}>Withdraw</button>
+          <button type="button" className="btn btn-outline-success btn-md mx-2 py-3" style={{ width: '45%' }}>Deposit</button>
+          <button type="button" className="btn btn-outline-success btn-md mx-2 py-3" style={{ width: '45%' }}>Withdraw</button>
         </Col>
       </div>
       <div className="container m-auto d-md-flex">
@@ -158,6 +159,7 @@ const Portfolio = () => {
               </div>
             )}
           </div>
+          <TradingPosition />
           <SearchedStocksTable />
         </Col>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, fireEvent, within, waitFor } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Portfolio from '../src/components/Portfolio';
 
 // Mock AlpacaOrder to avoid real network requests or complex interactions
@@ -12,12 +13,18 @@ jest.mock('../src/components/alpaca/Order', () => {
 });
 
 describe('Portfolio Component', () => {
-  test('renders tickers and interacts with AlpacaOrder component', () => {
-    render(<Portfolio />);
+  test('renders tickers and interacts with AlpacaOrder component', async () => {
+    render(
+      <Router>
+        <Portfolio />
+      </Router>
+    );
 
     // Check that some tickers are rendered
-    expect(screen.getByText('NVDA - NVIDIA Corporation')).toBeInTheDocument();
-    expect(screen.getByText('META - Meta Platforms, Inc.')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('NVDA - NVIDIA Corporation')).toBeInTheDocument();
+      expect(screen.getByText('META - Meta Platforms, Inc.')).toBeInTheDocument();
+    });
 
     // Interact with the 'Buy' button for a specific ticker (e.g., NVDA)
     const nvdaContainer = screen.getByText('NVDA - NVIDIA Corporation').closest('div');
@@ -36,3 +43,4 @@ describe('Portfolio Component', () => {
     expect(screen.getByTestId('mock-alpaca-order')).toHaveTextContent('AlpacaOrder component with symbol: META');
   });
 });
+

@@ -110,8 +110,8 @@ const Portfolio = () => {
       <div className="container mb-5 mt-5 pt-5">
         <StockSearch isDarkMode={isDarkMode} />
       </div>
-      <div className="container mx-auto mb-5">
-        <Col size="md-6">
+      <div className="container mx-auto mb-5 row">
+        <Col size="lg-6">
           <div className='d-flex'>
           <div className="pe-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
             <span className="p-1 d-block fs-6">PORTFOLIO</span>
@@ -127,9 +127,9 @@ const Portfolio = () => {
           </div>
           </div>
         </Col>
-        <Col size="md-6">
-          <button type="button" className="btn btn-outline-success btn-lg mx-2 py-3" style={{ width: '45%' }}>Deposit</button>
-          <button type="button" className="btn btn-outline-success btn-lg mx-2 py-3" style={{ width: '45%' }}>Withdraw</button>
+        <Col size="lg-6">
+          <button type="button" className="btn btn-outline-success btn-lg mx-2 py-3" style={{ width: '46%' }}>Deposit</button>
+          <button type="button" className="btn btn-outline-success btn-lg mx-2 py-3" style={{ width: '46%' }}>Withdraw</button>
         </Col>
       </div>
       <div className="container m-auto d-md-flex">

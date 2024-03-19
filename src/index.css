@@ -405,6 +405,11 @@ footer {
   width: 120px;
 }
 
+.darkMode .btn-outline-success{
+  color: #0ee682 !important;
+  border-color: #0ee682 !important;
+}
+
 @keyframes marquee {
   0% {
     transform: translate3d(0, 0, 0);

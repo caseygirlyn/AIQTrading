@@ -19,7 +19,7 @@ ChartJS.register(
     Filler
 );
 
-const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
+const apiKey3 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
 const apiKeyNews = import.meta.env.VITE_API_KEY_POLYGON_2; // Netlify ENV variable
 
 const StockSearch = (props) => {

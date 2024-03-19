@@ -88,7 +88,7 @@ function Contact() {
             // Reset submission status after 5 seconds
             setTimeout(() => {
                 setSubmitted(false);
-            }, 3000);
+            }, 5000);
 
         } else {
             setErrors(validationErrors);
@@ -109,11 +109,11 @@ function Contact() {
             </label>
         </div>
         <Header />
-        <div className="container content px-4">
-            <section className="row pt-5 mt-5">
-                <div className='banner mt-3 mb-5 p-md-5 p-3 d-grid shadow'>
-                    <h2 className="w-auto d-flex align-items-center text-white">Contact Us</h2>
-                    <h3 className='fs-6 mb-4 text-white'>Want to get in touch? Our experienced customer service team would love to hear from you.</h3>
+        <div className="container content px-4 pt-3">
+            <section className="row pt-5">
+                <div className='banner mt-5 mb-5 p-md-5 p-3 d-grid shadow align-items-center justify-items-center'>
+                    <h2 className="w-100 align-items-center text-white text-center">Contact Us</h2>
+                    <h3 className='fs-6 mb-4 text-white text-center'>Want to get in touch? Our experienced customer service team would love to hear from you.</h3>
                 </div>
 
                 {submitted ? (

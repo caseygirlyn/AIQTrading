@@ -19,8 +19,8 @@ ChartJS.register(
     Filler
 );
 
-const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
-const apiKeyNews = import.meta.env.VITE_API_KEY_NEWS; // Netlify ENV variable
+const apiKey3 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
+const apiKeyNews = import.meta.env.VITE_API_KEY_POLYGON_2; // Netlify ENV variable
 
 const StockSearch = (props) => {
     const [query, setQuery] = useState('');
@@ -28,10 +28,8 @@ const StockSearch = (props) => {
     const [searchResults, setSearchResults] = useState([]);
     const [priceChange, setPriceChange] = useState([]);
     const [error, setError] = useState(null);
-    const [chartLoading, setChartLoading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState([]);
-    let endPoint = '';
 
     let color = (props.isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
     let labelColor = (props.isDarkMode) ? 'rgb(255, 255, 255)' : 'rgb(58, 64, 80)';
@@ -45,74 +43,90 @@ const StockSearch = (props) => {
         event.preventDefault();
         setParseQuery('');
         setError(null);
-        setChartLoading(true);
         setLoading(true);
 
         const today = new Date();
         const startDate = new Date(today);
 
-        (today.getDay() === 0) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
+        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
 
         const todayFormatted = formatDate(today);
         const startDateFormatted = formatDate(startDate);
 
         const baseUrl = "https://financialmodelingprep.com/api/v3/";
 
-        // Start Fetch Company Profile Data
         try {
+            // Define multiple fetch requests
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
-            const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // PROD
-            if (!response.ok) {
+
+            const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // [PROD] Start Fetch Company Profile Data
+            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // [PROD] Start Fetch Stock Price Change Data 
+
+            // Make both requests concurrently using Promise.all()
+            const [dataResponse, dataResponsePC] = await Promise.all([response, responsePC]);
+
+            // Parse the response data
+            const data = await dataResponse.json();
+            const dataPC = await dataResponsePC.json();
+
+            if (data.length === 0) {
                 throw new Error('Failed to fetch data');
             }
-            const data = await response.json();
+
+            // Set the response data to the state
             setSearchResults(data);
+            setPriceChange(dataPC);
+
+            const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
+            const stockInfo = {
+                symbol: query,
+                name: data[0].companyName,
+            };
+            const existingIndex = searchedStocks.findIndex(stock => stock.symbol === query);
+            if (existingIndex !== -1) {
+                // If the symbol exists, remove it from its current position
+                searchedStocks.splice(existingIndex, 1);
+            }
+
+            searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
+            searchedStocks.splice(10); // Keep only the last 10 searches
+            localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
+
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
-            setLoading(false);
             setParseQuery(query);
         }
-        // End Fetch Company Profile Data
-
-        // Start Fetch Stock Price Change Data
-        try {
-            // https://financialmodelingprep.com/api/v3/stock-price-change/AAPL?apikey={APIKEY}
-            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // PROD 
-            if (!responsePC.ok) {
-                throw new Error('Failed to fetch data');
-            }
-            const dataPC = await responsePC.json();
-            setPriceChange(dataPC);
-        } catch (error) {
-            setError('An error occurred while fetching data');
-        }
-        // End Fetch Stock Price Change Data
 
         // Start Fetch Stock Historical Chart Data
         try {
             // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            endPoint = `${baseUrl}historical-chart/5min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // PROD
+            const endPoint = `${baseUrl}historical-chart/5min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // [PROD] Start Fetch Stock Historical Chart Data
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {
                 throw new Error('Failed to fetch data');
             }
-            const dataChart = await responseCHART.json();
 
+            const dataChart = await responseCHART.json();
             const timestamps = dataChart.map(timestamp => timestamp.date);
             const closingPrices = dataChart.map(timestamp => timestamp.close);
+
             setStockData({ timestamps, closingPrices });
 
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
-            setChartLoading(false);
+            setLoading(false);
             setQuery('');
         }
         // End Fetch Stock Historical Chart Data
+    };
+
+    const handleReload = () => {
+        window.location.reload();  // Reload the current route
     };
 
     const handleKeyDown = event => {
@@ -175,7 +189,7 @@ const StockSearch = (props) => {
     return (
         <div className='mb-4'>
             <form onSubmit={handleSubmit} className='searchForm mb-4 m-auto'>
-                <div className="input-group mb-2"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
+                <div className="input-group mb-0"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
                     <input
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}
@@ -190,13 +204,15 @@ const StockSearch = (props) => {
                 </div>
             </form>
             {
-                (loading || chartLoading) && <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
+                (loading) && <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
             }
-            {error && <p>{error}</p>}
-
-            <div className='row reverse-col-mobile'>
+            {error && <p className='text-center'>{error}</p>}
+            {
+                !loading && searchResults.length > 0 && <div><small className="btn-link text-secondary" role='button' onClick={handleReload}>Clear Search Result</small></div>
+            }
+            <div className='row'>
                 <div className='col-lg-4'>
                     {!loading && searchResults.length > 0 && (
                         <div className='mb-4'>
@@ -206,7 +222,7 @@ const StockSearch = (props) => {
                 </div>
                 <div className='col-lg-8'>
                     {
-                        !chartLoading && searchResults.length > 0 && (
+                        !loading && searchResults.length > 0 && (
                             <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
                                 <Line data={chartData} options={options} />
                             </div>
@@ -224,7 +240,7 @@ const StockSearch = (props) => {
                 </div>
                 <div className='col-lg-8'>
                     {
-                        !chartLoading && searchResults.length > 0 && (
+                        !loading && searchResults.length > 0 && (
                             <CompanyNews parseQuery={parseQuery} />
                         )
                     }

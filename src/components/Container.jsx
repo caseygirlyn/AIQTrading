@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "./common/Header";
 import News from "./News";
 import Col from "./common/Theme/Col";
@@ -23,6 +23,9 @@ const Container = () => {
   const toggleDarkMode = () => {
     setIsDarkMode(prevMode => !prevMode);
   };
+
+  const inputRef = useRef(null); 
+  const [depositAmount, setDepositAmount] = useState('');
 
   // Update localStorage when mode changes
   useEffect(() => {
@@ -77,6 +80,7 @@ const Container = () => {
     <Footer />
 
   </div>
+  
 }
 
 export default Container;

@@ -125,6 +125,10 @@ const StockSearch = (props) => {
         // End Fetch Stock Historical Chart Data
     };
 
+    const handleReload = () => {
+        window.location.reload();  // Reload the current route
+    };
+
     const handleKeyDown = event => {
         if (event.key === 'Enter') {
             handleSubmit(event);
@@ -185,7 +189,7 @@ const StockSearch = (props) => {
     return (
         <div className='mb-4'>
             <form onSubmit={handleSubmit} className='searchForm mb-4 m-auto'>
-                <div className="input-group mb-2"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
+                <div className="input-group mb-0"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
                     <input
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}
@@ -205,8 +209,10 @@ const StockSearch = (props) => {
                 </div>
             }
             {error && <p className='text-center'>{error}</p>}
-
-            <div className='row reverse-col-mobile'>
+            {
+                !loading && searchResults.length > 0 && <div><small className="btn-link text-secondary" role='button' onClick={handleReload}>Clear Search Result</small></div>
+            }
+            <div className='row'>
                 <div className='col-lg-4'>
                     {!loading && searchResults.length > 0 && (
                         <div className='mb-4'>

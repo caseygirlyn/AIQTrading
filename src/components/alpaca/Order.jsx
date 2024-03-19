@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 const AlpacaOrder = ({ symbol, isDarkMode }) => {
     const [response, setResponse] = useState('');
@@ -135,8 +136,9 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
                 {response && submitted ? (
                     <div className="px-2 mt-3"><div className="alert alert-success text-center py-2" role="alert">Order Filled<span className='d-none'>{response}</span></div></div>
                 ) : ''}
-
+                
             </Paper>
+            <div className='my-3 text-center'>Powered by <NavLink to="https://alpaca.markets/" target="_blank" className='text-info' rel="noopener noreferrer">Alpaca</NavLink> our executing broker.</div>
         </div>
     );
 };

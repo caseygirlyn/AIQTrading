@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, fireEvent, within, waitFor } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Portfolio from '../src/components/Portfolio';
-import AlpacaOrder from '../src/components/alpaca/Order';
 
 // Mock AlpacaOrder to avoid real network requests or complex interactions
 jest.mock('../src/components/alpaca/Order', () => {
@@ -13,19 +13,34 @@ jest.mock('../src/components/alpaca/Order', () => {
 });
 
 describe('Portfolio Component', () => {
-    test('renders tickers and interacts with AlpacaOrder component', () => {
-        render(<Portfolio />);
+  test('renders tickers and interacts with AlpacaOrder component', async () => {
+    render(
+      <Router>
+        <Portfolio />
+      </Router>
+    );
 
-        // Check render some tickers
-        expect(screen.getByText('NVDA - NVIDIA Corporation')).toBeInTheDocument();
-        expect(screen.getByText('META - Meta Platforms, Inc.')).toBeInTheDocument();
-
-        // Check ticker container
-        const nvdaContainer = screen.getByText('NVDA - NVIDIA Corporation').closest('div');
-        const tradeButton = within(nvdaContainer).getByText('Trade');
-        fireEvent.click(tradeButton);
-
-        // Check AlpacaOrder rendered with correct symbol
-        expect(screen.getByTestId('mock-alpaca-order')).toHaveTextContent('AlpacaOrder component with symbol: NVDA');
+    // Check that some tickers are rendered
+    await waitFor(() => {
+      expect(screen.getByText('NVDA - NVIDIA Corporation')).toBeInTheDocument();
+      expect(screen.getByText('META - Meta Platforms, Inc.')).toBeInTheDocument();
     });
+
+    // Interact with the 'Buy' button for a specific ticker (e.g., NVDA)
+    const nvdaContainer = screen.getByText('NVDA - NVIDIA Corporation').closest('div');
+    const buyButton = within(nvdaContainer).getByText('Buy');
+    fireEvent.click(buyButton);
+
+    // Check if AlpacaOrder is rendered with the correct symbol after clicking 'Buy'
+    expect(screen.getByTestId('mock-alpaca-order')).toHaveTextContent('AlpacaOrder component with symbol: NVDA');
+
+    // Interact with the 'Sell' button for a different ticker (e.g., META)
+    const metaContainer = screen.getByText('META - Meta Platforms, Inc.').closest('div');
+    const sellButton = within(metaContainer).getByText('Sell');
+    fireEvent.click(sellButton);
+
+    // Check if AlpacaOrder is rendered with the correct symbol after clicking 'Sell'
+    expect(screen.getByTestId('mock-alpaca-order')).toHaveTextContent('AlpacaOrder component with symbol: META');
+  });
 });
+

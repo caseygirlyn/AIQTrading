@@ -6,7 +6,7 @@ import Login from './components/pages/Login';
 import About from './components/pages/About';
 import Portfolio from './components/Portfolio';
 import Contact from './components/pages/Contact';
-import Login from './components/pages/Login';
+
 
 
 const App = () => {

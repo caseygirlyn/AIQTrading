@@ -149,6 +149,17 @@ function handlePasswordReset() {
               </button>
             </div>
             <form className="add-form login">
+
+                  <div className="form-control">
+                      <label>First Name *</label>
+                      <input onChange={(e)=>{handleCredentials(e)}} type="text" name="firstname" placeholder="Enter your name" />
+                  </div>
+                  <div className="form-control">
+                      <label>Last Name *</label>
+                      <input onChange={(e)=>{handleCredentials(e)}} type="text" name="lastname" placeholder="Enter your surname" />
+                  </div>
+
+              
                   <div className="form-control">
                       <label>Email *</label>
                       <input onChange={(e)=>{handleCredentials(e)}} type="text" name="email" placeholder="Enter your email" />

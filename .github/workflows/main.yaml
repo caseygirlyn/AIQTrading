@@ -35,6 +35,7 @@ jobs:
         VITE_API_KEY_NEWS: ${{ secrets.VITE_API_KEY_NEWS }}
         VITE_API_KEY_NEWS_2: ${{ secrets.VITE_API_KEY_NEWS_2 }}
         VITE_API_KEY_POLYGON: ${{ secrets.VITE_API_KEY_POLYGON }}
+        VITE_API_KEY_POLYGON_2: ${{ secrets.VITE_API_KEY_POLYGON_2 }}
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v2

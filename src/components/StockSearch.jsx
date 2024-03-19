@@ -48,7 +48,7 @@ const StockSearch = (props) => {
         const today = new Date();
         const startDate = new Date(today);
 
-        (today.getDay() === 0) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
+        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
 
         const todayFormatted = formatDate(today);
         const startDateFormatted = formatDate(startDate);
@@ -76,6 +76,21 @@ const StockSearch = (props) => {
             // Set the response data to the state
             setSearchResults(data);
             setPriceChange(dataPC);
+
+            const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
+            const stockInfo = {
+                symbol: query,
+                name: data[0].companyName,
+            };
+            const existingIndex = searchedStocks.findIndex(stock => stock.symbol === query);
+            if (existingIndex !== -1) {
+                // If the symbol exists, remove it from its current position
+                searchedStocks.splice(existingIndex, 1);
+            }
+
+            searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
+            searchedStocks.splice(10); // Keep only the last 10 searches
+            localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
 
         } catch (error) {
             setError('An error occurred while fetching data');
@@ -108,6 +123,10 @@ const StockSearch = (props) => {
             setQuery('');
         }
         // End Fetch Stock Historical Chart Data
+    };
+
+    const handleReload = () => {
+        window.location.reload();  // Reload the current route
     };
 
     const handleKeyDown = event => {
@@ -170,7 +189,7 @@ const StockSearch = (props) => {
     return (
         <div className='mb-4'>
             <form onSubmit={handleSubmit} className='searchForm mb-4 m-auto'>
-                <div className="input-group mb-2"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
+                <div className="input-group mb-0"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
                     <input
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}
@@ -190,8 +209,10 @@ const StockSearch = (props) => {
                 </div>
             }
             {error && <p className='text-center'>{error}</p>}
-
-            <div className='row reverse-col-mobile'>
+            {
+                !loading && searchResults.length > 0 && <div><small className="btn-link text-secondary" role='button' onClick={handleReload}>Clear Search Result</small></div>
+            }
+            <div className='row'>
                 <div className='col-lg-4'>
                     {!loading && searchResults.length > 0 && (
                         <div className='mb-4'>

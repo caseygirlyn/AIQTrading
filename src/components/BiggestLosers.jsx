@@ -7,13 +7,13 @@ function BiggestLosers() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const apiKey1 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
+    const apiKey = import.meta.env.VITE_API_KEY_FMP_2; // Netlify ENV variable
 
     useEffect(() => {
         const fetchMarketLosers = async () => {
             try {
                 // https://financialmodelingprep.com/api/v3/stock_market/losers?apikey={APIKEY}
-                const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=${apiKey1}`); // PROD
+                const response = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=${apiKey}`); // PROD
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
@@ -46,7 +46,7 @@ function BiggestLosers() {
     }
 
     return (
-        <div className='container py-2'>
+        <div className='pt-2 wrapper'>
             {loading ? (
                 <div className="spinner-border text-info mx-auto my-3 d-block" role="status">
                     <span className="visually-hidden">Loading...</span>
@@ -54,29 +54,27 @@ function BiggestLosers() {
             ) : error ? (
                 <p>{error}</p>
             ) : (
-                <div className='row'>
-                    {marketLosers.slice(0, 12).map(stock => (
-                        <div key={stock.symbol} className='my-2 px-0 text-center col-lg-1 col-md-2 col-4 inv'>
-                            <div>
-                                <OverlayTrigger
-                                    placement='top'
-                                    overlay={
-                                        <Tooltip id={stock.symbol}>
-                                            {stock.name}
-                                        </Tooltip>
-                                    }
-                                >
-                                    <label variant="secondary" role="button">
-                                        <span className='p-1 d-block'>{stock.symbol}</span>
-                                        <span className="p-1 text-danger">
-                                            {stock.changesPercentage.toFixed(2)}%
-                                        </span>
-                                    </label>
-                                </OverlayTrigger>
-                            </div>
-                        </div>
+                <ul className='marquee mb-0'>
+                    {marketLosers.map(stock => (
+                        <li key={stock.symbol} className='my-2 px-0 text-center col-lg-1 inv d-inline-block'>
+                            <OverlayTrigger
+                                placement='top'
+                                overlay={
+                                    <Tooltip id={stock.symbol}>
+                                        {stock.name}
+                                    </Tooltip>
+                                }
+                            >
+                                <label variant="secondary" role="button">
+                                    <span className='p-1 d-block'>{stock.symbol}</span>
+                                    <span className="p-1 text-danger">
+                                        {stock.changesPercentage.toFixed(2)}%<i className="bi bi-arrow-down-short"></i>
+                                    </span>
+                                </label>
+                            </OverlayTrigger>
+                        </li>
                     ))}
-                </div>
+                </ul>
             )}
         </div>
     );

@@ -6,6 +6,7 @@ import Header from './common/Header';
 import Footer from './common/Footer';
 import SearchedStocksTable from './common/Tables/SearchedStocksTable'
 import StockSearch from "./StockSearch";
+import { NavLink } from 'react-router-dom';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
@@ -136,6 +137,7 @@ const Portfolio = () => {
           <div style={getMainDivStyle()}>
             <div style={getTickerContainerStyle()} className='col-md-2'>
               <h3 style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Available stocks</h3> {/* Adjust color for light mode */}
+              <small className='text-muted mb-2 d-block'>Trade with <NavLink to="https://alpaca.markets/" target="_blank" className='text-info' rel="noopener noreferrer">Alpaca</NavLink> our executing broker.</small>
               {tickers.map((ticker, index) => (
                 <div key={ticker.symbol} style={getTickerStyle(index)}>
                   <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>

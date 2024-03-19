@@ -3,16 +3,16 @@ import React from 'react';
 const MostlyOwnedStocksTable = () => {
     // Sample data of mostly owned stocks
     const mostlyOwnedStocks = [
-        { id: 1, name: 'NVIDIA Corporation', symbol: 'NVDA' },
-        { id: 2, name: 'Meta Platforms, Inc.', symbol: 'META' },
-        { id: 3, name: 'Netflix, Inc.', symbol: 'NFLX' },
-        { id: 4, name: 'Broadcom Inc.', symbol: 'AVGO' },
-        { id: 5, name: 'QUALCOMM Incorporated', symbol: 'QCOM' },
-        { id: 6, name: 'Apple Inc.', symbol: 'AAPL' },
-        { id: 7, name: 'Microsoft Corporation', symbol: 'MSFT' },
-        { id: 8, name: 'Amazon.com Inc.', symbol: 'AMZN' },
-        { id: 9, name: 'Alphabet Inc. (Google)', symbol: 'GOOGL' },
-        { id: 10, name: 'Facebook, Inc.', symbol: 'META' },
+        { id: 1, name: 'Microsoft Corporation', symbol: 'MSFT' },
+        { id: 2, name: 'Apple Inc.', symbol: 'AAPL' },
+        { id: 3, name: 'NVIDIA Corporation', symbol: 'NVDA' },
+        { id: 4, name: 'Alphabet Inc. (Google)', symbol: 'GOOGL' },
+        { id: 5, name: 'Amazon.com Inc.', symbol: 'AMZN' },
+        { id: 6, name: 'Meta Platforms, Inc.', symbol: 'META' },
+        { id: 7, name: 'Tesla, Inc.', symbol: 'TSLA' },
+        { id: 8, name: 'Netflix, Inc.', symbol: 'NFLX' },
+        { id: 9, name: 'Broadcom Inc.', symbol: 'AVGO' },
+        { id: 10, name: 'QUALCOMM Incorporated', symbol: 'QCOM' },
     ];
 
     return (

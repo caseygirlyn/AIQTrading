@@ -28,8 +28,8 @@ const TradingPosition = () => {
         fetchPositions(); // Initial fetch
 
         const interval = setInterval(() => {
-            fetchPositions(); // Fetch positions every 3 seconds
-        }, 3000);
+            fetchPositions(); // Fetch positions every 2 seconds
+        }, 2000);
 
         return () => clearInterval(interval); // Cleanup on unmount
 
@@ -56,8 +56,8 @@ const TradingPosition = () => {
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>AVG. ENTRY PRICE</th>
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>CURRENT PRICE</th>
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>MARKET VALUE</th>
-                            <th className='bg-primary-color text-white fs-6 text-end'>P/L($)</th>
-                            <th className='bg-primary-color text-white fs-6 text-end'>P/L(%)</th>
+                            <th className='bg-primary-color text-white fs-6 text-end'>P/L ($)</th>
+                            <th className='bg-primary-color text-white fs-6 text-end'>P/L (%)</th>
                         </tr>
                     </thead>
                     <tbody>

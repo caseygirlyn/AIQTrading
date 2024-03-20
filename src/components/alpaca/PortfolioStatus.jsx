@@ -28,7 +28,7 @@ const PortfolioStatus = () => {
 
         const interval = setInterval(() => {
             fetchPortfolio(); // Fetch portfolio every 2 seconds
-        }, 20000);
+        }, 2000);
 
         return () => clearInterval(interval); // Cleanup on unmount
 

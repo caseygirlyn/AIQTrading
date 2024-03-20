@@ -29,6 +29,10 @@ body,
   background-color: var(--primary-color) !important;
 }
 
+.btn.bg-secondary-color:hover{
+  opacity: 0.8;
+}
+
 .bg-secondary-color {
   background-color: var(--secondary-color) !important;
 }
@@ -183,6 +187,15 @@ canvas {
   width: 100% !important;
   height: auto !important;
 }
+
+.pie canvas{
+  max-height: 400px;
+}
+
+.lightMode .pie canvas {
+  background-color: #f2f2f2;
+}
+
 
 /* News */
 
@@ -425,5 +438,8 @@ footer {
   .nav-tabs .nav-link,
   .tab-content {
     font-size: smaller;
+  }
+  .portfolio-stat .fs-3{
+    font-size: 1rem !important;
   }
 }

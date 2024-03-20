@@ -28,12 +28,12 @@ function About() {
                 </label>
             </div>
             <Header />
-            <div className="container content px-4 pt-3">
-                <section className="row pt-5">
-                    <div className='banner mt-5 mb-5 p-md-5 p-3 d-grid shadow align-items-center justify-items-center'>
-                        <h2 className="w-100 text-white text-center">About Us</h2>
-                    </div>
-                </section>
+            <section className="pt-5">
+                <div className='banner mt-2 mb-5 p-md-5 p-3 d-grid shadow align-items-center justify-items-center'>
+                    <h2 className="w-100 text-white text-center">About Us</h2>
+                </div>
+            </section>
+            <div className="container content row px-4 pt-3 m-auto">
                 <h3>
                     Introducing AIQ Trading
                 </h3>
@@ -43,6 +43,7 @@ function About() {
                 <p className='pt-5'>
                     AIQ Trading was born from our passion for democratizing access to financial markets. We understand the complexities and barriers that often deter individuals from entering the world of trading. Our motivation stems from the desire to empower everyone, regardless of their background or expertise, to confidently navigate the markets and achieve their financial aspirations.
                 </p>
+
             </div>
 
             <Footer />

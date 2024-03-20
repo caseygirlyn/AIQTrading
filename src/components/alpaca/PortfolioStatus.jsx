@@ -54,24 +54,24 @@ const PortfolioStatus = () => {
     };
 
     return (
-        <div className='d-inline-flex'>
+        <div className='d-inline-flex portfolio-stat'>
             {loading ? (
                 <div className="spinner-border text-info mx-auto my-3 d-block" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
             ) : (
                 <>
-                    <div className="pe-2 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
+                    <div className="pe-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
                         <span className="p-1 d-block fs-6">PORTFOLIO</span>
-                        <span className="p-1 fs-5">{formatCurrency('USD', portfolio.equity)}</span>
+                        <span className="p-1 fs-3">{formatCurrency('USD', portfolio.equity)}</span>
                     </div>
-                    <div className="px-2 border-right  mb-3" style={{ borderRight: '1px solid #3b404e' }}>
+                    <div className="px-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
                         <span className="p-1 d-block fs-6">FREE FUNDS</span>
-                        <span className="p-1 fs-5">{formatCurrency('USD', portfolio.buying_power)}</span>
+                        <span className="p-1 fs-3">{formatCurrency('USD', portfolio.buying_power)}</span>
                     </div>
-                    <div className="px-2 mb-3">
+                    <div className="px-3 mb-3">
                         <span className="p-1 d-block fs-6">RETURN</span>
-                        <span className="p-1 text-success fs-5">{calculatePercentageChange(portfolio.last_equity, portfolio.equity)}%<i className="bi bi-arrow-up-short"></i></span>
+                        <span className="p-1 text-success fs-3">{calculatePercentageChange(portfolio.last_equity, portfolio.equity)}%<i className="bi bi-arrow-up-short"></i></span>
                     </div>
                 </>
             )}

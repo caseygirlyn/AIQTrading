@@ -9,6 +9,7 @@ import StockSearchPortfolio from "./StockSearchPortfolio";
 import { NavLink } from 'react-router-dom';
 import TradingPosition from './alpaca/TradingPosition';
 import PortfolioStatus from './alpaca/PortfolioStatus';
+import TradingPositionsPieChart from './alpaca/TradingPositionPieChart';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
@@ -113,15 +114,15 @@ const Portfolio = () => {
         <StockSearchPortfolio isDarkMode={isDarkMode} />
       </div>
       <div className="container m-auto mb-3 row px-0">
-        <Col size="lg-6">
+        <Col size="lg-12">
           <PortfolioStatus />
         </Col>
-        <Col size="lg-6">
+        {/* <Col size="lg-6">
           <div className='px-lg-5 my-3'>
           <button type="button" className="btn btn-outline-success btn-md mx-2 py-3" style={{ width: '45%' }}>Deposit</button>
           <button type="button" className="btn btn-outline-success btn-md mx-2 py-3" style={{ width: '45%' }}>Withdraw</button>
           </div>
-        </Col>
+        </Col> */}
       </div>
       <div className="container m-auto d-md-flex">
         <Col size="md-6">
@@ -142,19 +143,22 @@ const Portfolio = () => {
           </div>
         </Col>
         <Col size="md-6">
-          <div style={{ flex: '1' }} className='container'>
+          <div style={{ flex: '1' }} className='container pt-3'>
             {selectedTicker && (
               <div style={{ padding: '20px', marginTop: '30px', borderRadius: '8px' }}>
                 <AlpacaOrder symbol={selectedTicker.symbol} isDarkMode={isDarkMode} />
               </div>
             )}
           </div>
-          <TradingPosition />
+          <div className='ps-md-5'>
+          <TradingPositionsPieChart />
+          </div>
           <SearchedStocksTable />
         </Col>
       </div>
-
-
+      <div className="container m-auto">
+        <TradingPosition />
+      </div>
       <Footer />
     </div>
     </>

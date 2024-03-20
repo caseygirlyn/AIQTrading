@@ -74,13 +74,12 @@ const Portfolio = () => {
   });
 
   const [selectedTicker, setSelectedTicker] = useState(null);
+  const [orderType, setOrderType] = useState('buy');
+  const [quantity, setQuantity] = useState(1);
 
-  const handleTickerSelection = (ticker) => {
-    if (selectedTicker && ticker.symbol === selectedTicker.symbol) {
-      // If the same ticker is selected again, do nothing
-      return;
-    }
+  const handleTickerSelection = (ticker, type) => {
     setSelectedTicker(ticker);
+    setOrderType(type);
   };
 
   const tickers = [
@@ -134,8 +133,8 @@ const Portfolio = () => {
                 <div key={ticker.symbol} style={getTickerStyle(index)}>
                   <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>
                   <div style={{ minWidth: '135px' }}>
-                    <button style={getBuyButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Buy</button>
-                    <button style={getSellButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Sell</button>
+                    <button style={getBuyButtonStyle(index)} onClick={() => handleTickerSelection(ticker, 'buy')}>Buy</button>
+                    <button style={getSellButtonStyle(index)} onClick={() => handleTickerSelection(ticker, 'sell')}>Sell</button>
                   </div>
                 </div>
               ))}
@@ -146,7 +145,12 @@ const Portfolio = () => {
           <div style={{ flex: '1' }} className='container pt-3'>
             {selectedTicker && (
               <div style={{ padding: '20px', marginTop: '30px', borderRadius: '8px' }}>
-                <AlpacaOrder symbol={selectedTicker.symbol} isDarkMode={isDarkMode} />
+                <AlpacaOrder 
+                  symbol={selectedTicker.symbol} 
+                  isDarkMode={isDarkMode} 
+                  orderType={orderType} 
+                  quantity={quantity}
+                />
               </div>
             )}
           </div>

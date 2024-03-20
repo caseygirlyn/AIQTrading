@@ -28,16 +28,16 @@ const TradingPositionsPieChart = () => {
                 const labels = positions.map(position => position.symbol);
                 const data = positions.map(position => position.qty);
                 const bgColor = [
-                    "#007fff",
-                    "#007aee",
-                    "#0075db",
-                    "#006fc9",
-                    "#0069b6",
-                    "#0062a4",
-                    "#005b91",
-                    "#00547f",
-                    "#c1e7ff",
-                    "#c4e1f3"
+                    '#f66384',
+                    '#39a2eb',
+                    '#9966ff',
+                    '#facd56',
+                    '#4bc0c0',
+                    '#ff9f40',
+                    '#6399f6',
+                    '#81d584',
+                    '#80c2d1',
+                    '#ffc2d1',
                 ];
                 const backgroundColors = positions.map((_, index) => bgColor[index]);
 

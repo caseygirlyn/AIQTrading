@@ -1,4 +1,4 @@
-# AIQTraing
+# AIQTrading
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 ## Description
@@ -18,7 +18,7 @@ This is a full-stack trading app built with React for the frontend, Node.js for 
 ## Features
 
 - **Trading Dashboard**: Users can view their portfolio, current positions, order history, and buying power.
-- **Real-time Data**: The app integrates with external APIs to fetch real-time market data for stocks, cryptocurrencies, or other financial instruments.
+- **Real-time Data**: The app integrates with external APIs to fetch real-time market data for stocks.
 - **Trading Functionality**: Users can execute buy and sell orders for different financial instruments.
 - **API Integration**: The backend communicates with external trading APIs to execute orders and fetch market data.
 - **Responsive Design**: The app is designed to be responsive and accessible across different devices and screen sizes.

@@ -48,7 +48,7 @@ const StockSearch = (props) => {
         const today = new Date();
         const startDate = new Date(today);
 
-        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate())
+        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
 
         let todayFormatted = formatDate(today);
         let startDateFormatted = formatDate(startDate);
@@ -103,7 +103,7 @@ const StockSearch = (props) => {
             // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            const endPoint = `${baseUrl}historical-chart/5min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // [PROD] Start Fetch Stock Historical Chart Data
+            const endPoint = `${baseUrl}historical-chart/15min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // [PROD] Start Fetch Stock Historical Chart Data
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {

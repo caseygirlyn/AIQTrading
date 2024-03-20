@@ -159,14 +159,11 @@ function Login() {
           </label>
         </div>
         <Header />
-
-
         <section className="row pt-5">
-          <div className='banner mt-5 mb-5 p-md-5 p-3 d-grid shadow align-items-center justify-items-center'>
+          <div className='banner mt-2 mb-5 p-md-5 p-3 d-grid shadow align-items-center justify-items-center'>
             <h2 className="w-100 text-white text-center">Login or create an account to continue</h2>
           </div>
         </section>
-
         <div className="container login-page">
           <section className="m-auto" style={{ maxWidth: '500px' }}>
             <div className="login-type d-flex justify-space-evenly">
@@ -184,31 +181,29 @@ function Login() {
 
             <form className="add-form login p-4 shadow" style={{ border: '1px solid #3d4354' }}>
               {
-                (loginType !== 'login') ? 
-                    <>
+                (loginType !== 'login') &&
+                  <>
                     <div className="border-0 bg-transparent mb-3 form-floating ">
-                      
-                      <input onChange={(e) => { handleCredentials(e) }} type="text" name="firstname" placeholder="Enter your name" className="form-control bg-white text-dark" id="firstname"/>
+
+                      <input onChange={(e) => { handleCredentials(e) }} type="text" name="firstname" placeholder="Enter your name" className="form-control bg-white text-dark" id="firstname" />
                       <label className="form-label text-secondary" htmlFor="firstname">First Name *</label>
                     </div>
                     <div className="border-0 bg-transparent mb-3 form-floating">
-                      
-                      <input onChange={(e) => { handleCredentials(e) }} type="text" name="lastname" placeholder="Enter your surname" className="form-control bg-white text-dark" id="lastname"/>
+
+                      <input onChange={(e) => { handleCredentials(e) }} type="text" name="lastname" placeholder="Enter your surname" className="form-control bg-white text-dark" id="lastname" />
                       <label className="form-label text-secondary" htmlFor="lastname">Last Name *</label>
                     </div>
-                    </>
-                  : ''
-
+                  </>
               }
 
               <div className="border-0 bg-transparent mb-3 form-floating ">
-                
-                <input onChange={(e) => { handleCredentials(e) }} type="text" name="email" placeholder="Enter your email" className="form-control bg-white text-dark" id="email"/>
+
+                <input onChange={(e) => { handleCredentials(e) }} type="text" name="email" placeholder="Enter your email" className="form-control bg-white text-dark" id="email" />
                 <label className="form-label text-secondary" htmlFor="email">Email *</label>
               </div>
               <div className="border-0 bg-transparent mb-3 form-floating ">
-                
-                <input onChange={(e) => { handleCredentials(e) }} type="password" name="password" placeholder="Enter your password" className="form-control bg-white text-dark" id="password"/>
+
+                <input onChange={(e) => { handleCredentials(e) }} type="password" name="password" placeholder="Enter your password" className="form-control bg-white text-dark" id="password" />
                 <label className="form-label text-secondary" htmlFor="password">Password *</label>
               </div>
               {
@@ -225,11 +220,12 @@ function Login() {
 
               }
 
-              <p onClick={handlePasswordReset} className="forgot-password">Forgot Password?</p>
+              { (loginType === 'login') && <p onClick={handlePasswordReset} className="forgot-password">Forgot Password?</p>}
 
             </form>
           </section>
         </div>
+        <Footer />
       </div>
     </>
   )

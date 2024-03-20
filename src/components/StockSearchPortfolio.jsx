@@ -4,8 +4,6 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import 'chartjs-adapter-date-fns';
 import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
-import MostlyOwnedStocksTable from './common/Tables/MostlyOwnedStocksTable';
-import CompanyNews from './CompanyNews';
 
 ChartJS.register(
     CategoryScale,
@@ -22,7 +20,7 @@ ChartJS.register(
 const apiKey3 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
 const apiKeyNews = import.meta.env.VITE_API_KEY_POLYGON_2; // Netlify ENV variable
 
-const StockSearch = (props) => {
+const StockSearchPortfolio = (props) => {
     const [query, setQuery] = useState('');
     const [parseQuery, setParseQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -143,6 +141,15 @@ const StockSearch = (props) => {
         return `${year}-${month}-${day}`;
     }
 
+    const formatCurrency = (currency, price) => {
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: currency
+        });
+
+        return formatter.format(price);
+    };
+
     const chartData = {
         labels: stockData.timestamps,
         datasets: [
@@ -187,7 +194,7 @@ const StockSearch = (props) => {
     };
 
     return (
-        <div className='mb-4'>
+        <div className='mb-2'>
             <form onSubmit={handleSubmit} className='searchForm mb-4 m-auto'>
                 <div className="input-group mb-0"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
                     <input
@@ -213,10 +220,28 @@ const StockSearch = (props) => {
                 !loading && searchResults.length > 0 && <div><small className="btn-link text-secondary" role='button' onClick={handleReload}>Clear Search Result</small></div>
             }
             <div className='row'>
-                <div className='col-lg-4'>
-                    {!loading && searchResults.length > 0 && (
+                <div className='col-lg-4 my-2'>
+                    {searchResults.map(stock => (
+                        <div key={stock.symbol}>
+                            <div className='common-bg-primary-color float-start p-2 me-3 rounded-2'>
+                                <img src={stock.image} height={50} /></div>
+                            <div>
+                                <span className='fs-5'>
+                                    {stock.companyName} ({stock.symbol})
+                                </span>
+                            </div>
+                            <div>
+                                <span className='fs-5'>{formatCurrency(stock.currency, stock.price)}</span> <span className={stock.changes > 0 ? 'text-success' : 'text-danger'}>({((stock.changes / stock.price) * 100).toFixed(2)}%) {stock.changes}
+                                    {stock.changes > 0 ? <i className="bi bi-arrow-up-short"></i> : <i className="bi bi-arrow-down-short"></i>}
+                                </span>
+                            </div>
+
+                        </div>
+                    ))}
+
+                    {!loading && priceChange.length > 0 && (
                         <div className='mb-4'>
-                            <CompanyProfile searchResults={searchResults} />
+                            <PriceChange priceChange={priceChange} />
                         </div>
                     )}
                 </div>
@@ -230,24 +255,8 @@ const StockSearch = (props) => {
                     }
                 </div>
             </div>
-            <div className='row'>
-                <div className='col-lg-4'>
-                    {!loading && priceChange.length > 0 && (
-                        <div className='mb-4'>
-                            <PriceChange priceChange={priceChange} />
-                        </div>
-                    )}
-                </div>
-                <div className='col-lg-8'>
-                    {
-                        !loading && searchResults.length > 0 && (
-                            <CompanyNews parseQuery={parseQuery} />
-                        )
-                    }
-                </div>
-            </div>
-        </div >
+        </div>
     );
 };
 
-export default StockSearch;
+export default StockSearchPortfolio

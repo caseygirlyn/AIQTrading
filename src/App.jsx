@@ -8,6 +8,7 @@ import Portfolio from './components/Portfolio';
 import Contact from './components/pages/Contact';
 
 
+
 const App = () => {
   return <>
     <Routes>
@@ -17,6 +18,8 @@ const App = () => {
       <Route path="portfolio" element={<Portfolio />} />
       <Route path="about" element={<About />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="login" element={<Login />} />
+
     </Routes>
   </>
 }

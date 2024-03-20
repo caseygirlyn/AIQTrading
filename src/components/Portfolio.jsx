@@ -113,7 +113,7 @@ const Portfolio = () => {
       <div className="container mt-5 pt-5">
         <StockSearchPortfolio isDarkMode={isDarkMode} />
       </div>
-      <div className="container m-auto mb-3 row px-0">
+      <div className="container m-auto mb-3 row px-0 text-center">
         <Col size="lg-12">
           <PortfolioStatus />
         </Col>

@@ -29,6 +29,10 @@ body,
   background-color: var(--primary-color) !important;
 }
 
+.btn.bg-secondary-color:hover{
+  opacity: 0.8;
+}
+
 .bg-secondary-color {
   background-color: var(--secondary-color) !important;
 }

@@ -44,6 +44,14 @@ const PriceChange = (props) => {
                             </td>
                         </tr>
                         <tr>
+                            <td>6 MTD</td>
+                            <td>
+                                <span className={stock["6M"] > 0 ? 'text-success' : 'text-danger'}>
+                                    {stock["6M"].toFixed(2)}%{stock["6M"] > 0 ? <i className="bi bi-arrow-up-short"></i> : <i className="bi bi-arrow-down-short"></i>}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>YTD</td>
                             <td>
                                 <span className={stock.ytd > 0 ? 'text-success' : 'text-danger'}>

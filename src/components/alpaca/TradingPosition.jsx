@@ -28,8 +28,8 @@ const TradingPosition = () => {
         fetchPositions(); // Initial fetch
 
         const interval = setInterval(() => {
-            fetchPositions(); // Fetch positions every 2 seconds
-        }, 5000);
+            fetchPositions(); // Fetch positions every 3 seconds
+        }, 3000);
 
         return () => clearInterval(interval); // Cleanup on unmount
 

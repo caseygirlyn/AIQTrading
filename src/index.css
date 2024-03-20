@@ -233,7 +233,7 @@ canvas {
   position: fixed;
   right: 0;
   width: 65px;
-  top: 10px;
+  top: 15px;
   z-index: 10000;
 }
 
@@ -244,11 +244,6 @@ i.bi.bi-list {
 
 .lightMode .bi.bi-list {
   color: var(--primary-color);
-}
-
-.navbar-brand img {
-  margin-bottom: -30px;
-  margin-top: -30px;
 }
 
 .lightMode .navbar {

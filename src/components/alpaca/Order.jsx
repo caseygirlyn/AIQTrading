@@ -133,7 +133,7 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
                     </Grid>
                 </Grid>
                 {response && submitted ? (
-                    <div className="px-2 mt-3"><div className="alert alert-success text-center py-2" role="alert">Order Filled<span className='d-none'>{response}</span></div></div>
+                    <div className="px-2 mt-3"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
                 ) : ''}
                 
             </Paper>

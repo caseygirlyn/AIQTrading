@@ -98,6 +98,7 @@ function Login() {
 
         console.log("value of user");
         console.log(userCredential.user);
+        window.location.href = '/portfolio';
 
       })
       .catch((error) => {

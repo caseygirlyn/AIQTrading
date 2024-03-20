@@ -46,16 +46,18 @@ const TradingPosition = () => {
 
     return (
         <>
-            <div className='mb-4 mx-lg-5 mx-md-4 px-lg-3'>
-                <h2 className='fs-4'>Your Trading Allocations</h2>
-                <table className='table table-striped mb-0'>
+            <div className="table-responsive">
+                <h2 className='fs-4'>Trading Positions</h2>
+                <table className='table table-striped mb-0 w-100'>
                     <thead>
                         <tr>
                             <th className='bg-primary-color text-white fs-6'>ASSET</th>
                             <th className='bg-primary-color text-white fs-6'>QTY</th>
-                            <th className='bg-primary-color text-white fs-6'>PRICE</th>
-                            <th className='bg-primary-color text-white fs-6 text-end'>P/L ($)</th>
-                            <th className='bg-primary-color text-white fs-6 text-end'>P/L (%)</th>
+                            <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>AVG. ENTRY PRICE</th>
+                            <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>CURRENT PRICE</th>
+                            <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>MARKET VALUE</th>
+                            <th className='bg-primary-color text-white fs-6 text-end'>P/L($)</th>
+                            <th className='bg-primary-color text-white fs-6 text-end'>P/L(%)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,10 +65,10 @@ const TradingPosition = () => {
                             <tr key={index}>
                                 <td>{position.symbol}</td>
                                 <td>{position.qty}</td>
-                                <td>{formatCurrency('USD', position.avg_entry_price)}</td>
-                                <td className={position.unrealized_pl > 0 ? 'text-success text-end' : 'text-danger text-end'}>{formatCurrency('USD', position.unrealized_pl)}
-                                    
-                                </td>
+                                <td className='text-end'>{formatCurrency('USD', position.avg_entry_price)}</td>
+                                <td className='text-end'>{formatCurrency('USD', position.current_price)}</td>
+                                <td className='text-end'>{formatCurrency('USD', position.market_value)}</td>
+                                <td className={position.unrealized_pl > 0 ? 'text-success text-end' : 'text-danger text-end'}>{formatCurrency('USD', position.unrealized_pl)}</td>
                                 <td className={position.unrealized_pl > 0 ? 'text-success text-end' : 'text-danger text-end'}>
                                     {(position.unrealized_plpc * 100).toFixed(2)}%
                                     {position.unrealized_pl > 0 ? <i className="bi bi-arrow-up-short text-success"></i> : <i className="bi bi-arrow-down-short text-danger"></i>}

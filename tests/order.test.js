@@ -16,7 +16,7 @@ beforeEach(() => {
 
 describe('AlpacaOrder Component', () => {
   test('renders and handles order placement', async () => {
-    render(<AlpacaOrder symbol="AAPL" />);
+    render(<AlpacaOrder symbol="AAPL" orderType="buy" quantity={1} />);
 
     // Check if the component is rendered with the correct symbol
     expect(screen.getByText(/Trade AAPL/)).toBeInTheDocument();

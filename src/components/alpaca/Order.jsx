@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 
-const AlpacaOrder = ({ symbol, isDarkMode }) => {
+const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
     const [response, setResponse] = useState('');
-    const [qty, setQty] = useState(1);
-    const [side, setSide] = useState('buy'); // default to 'buy'
+    const [qty, setQty] = useState(quantity);
+    const [side, setSide] = useState(orderType); 
     const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
         // Reset the order state when the symbol changes
         setResponse('');
-        setQty(1);
-        setSide('buy');
-    }, [symbol]);
+        setQty(quantity); 
+        setSide(orderType);
+    }, [symbol, quantity, orderType]);
 
     // Style functions
     const getPaperStyle = () => ({

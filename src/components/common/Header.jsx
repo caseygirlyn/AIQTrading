@@ -14,7 +14,7 @@ const Header = () => {
                     <ul className="p-0 list-inline">
                         <li><NavLink to="/" className="text-decoration-none" role="button"><i className="bi bi-house-door d-block"></i>Home</NavLink></li>
                         <li><NavLink to="/login" className="text-decoration-none" role="button"><i className="bi bi-person-square d-block"></i>Login</NavLink></li>
-                        <li><NavLink to="/portfolio" className="text-decoration-none" role="button"><i className="bi bi-graph-up d-block"></i>Paper Trading</NavLink></li>
+                        <li><NavLink to="/portfolio" className="text-decoration-none" role="button"><i className="bi bi-graph-up d-block"></i>Portfolio</NavLink></li>
                         <li><NavLink to="/about" className="text-decoration-none" role="button"><i className="bi bi-info-square d-block"></i>About AIQ</NavLink></li>
                         <li><NavLink to="/contact" className="text-decoration-none" role="button"><i className="bi bi-envelope d-block"></i>Get in Touch</NavLink></li>
                     </ul>

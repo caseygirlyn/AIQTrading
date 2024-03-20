@@ -56,8 +56,8 @@ const TradingPosition = () => {
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>AVG. ENTRY PRICE</th>
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>CURRENT PRICE</th>
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>MARKET VALUE</th>
-                            <th className='bg-primary-color text-white fs-6 text-end'>P/L ($)</th>
-                            <th className='bg-primary-color text-white fs-6 text-end'>P/L (%)</th>
+                            <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>P/L ($)</th>
+                            <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>P/L (%)</th>
                         </tr>
                     </thead>
                     <tbody>

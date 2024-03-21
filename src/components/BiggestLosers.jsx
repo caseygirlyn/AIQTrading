@@ -7,7 +7,7 @@ function BiggestLosers() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const apiKey = import.meta.env.VITE_API_KEY_FMP_4; // Netlify ENV variable
+    const apiKey = import.meta.env.VITE_API_KEY_FMP_2; // Netlify ENV variable
 
     useEffect(() => {
         const fetchMarketLosers = async () => {

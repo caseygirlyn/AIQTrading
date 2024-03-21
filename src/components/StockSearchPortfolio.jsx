@@ -17,7 +17,7 @@ ChartJS.register(
     Filler
 );
 
-const apiKey3 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
+const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
 const apiKeyNews = import.meta.env.VITE_API_KEY_POLYGON_2; // Netlify ENV variable
 
 const StockSearchPortfolio = (props) => {
@@ -110,9 +110,12 @@ const StockSearchPortfolio = (props) => {
 
             const dataChart = await responseCHART.json();
             const timestamps = dataChart.map(timestamp => timestamp.date);
+            const openingPrices = dataChart.map(timestamp => timestamp.open);
             const closingPrices = dataChart.map(timestamp => timestamp.close);
+            const highPrices = dataChart.map(timestamp => timestamp.high);
+            const lowPrices = dataChart.map(timestamp => timestamp.low);
 
-            setStockData({ timestamps, closingPrices });
+            setStockData({ timestamps, openingPrices, closingPrices, highPrices, lowPrices });
 
         } catch (error) {
             setError('An error occurred while fetching data');
@@ -154,15 +157,29 @@ const StockSearchPortfolio = (props) => {
         labels: stockData.timestamps,
         datasets: [
             {
-                label: parseQuery,
-                data: stockData.closingPrices,
-                fill: {
-                    target: 'origin',
-                    above: bgcolor
-                },
-                borderColor: color,
+                label: 'Opening Price',
+                data: stockData.openingPrices,
+                borderColor: '#43caf0',
                 pointBorderWidth: 1,
             },
+            {
+                label: 'Closing Price',
+                data: stockData.closingPrices,
+                borderColor: '#80c2d1',
+                pointBorderWidth: 1,
+            },
+            {
+                label: 'High',
+                data: stockData.highPrices,
+                borderColor: '#81d584',
+                pointBorderWidth: 1,
+            },
+            {
+                label: 'Low',
+                data: stockData.lowPrices,
+                borderColor: '#f66384',
+                pointBorderWidth: 1,
+            }
         ],
     };
 

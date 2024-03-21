@@ -35,13 +35,16 @@ function About() {
             </section>
             <div className="container content row px-4 pt-3 m-auto">
                 <h3>
-                    Introducing AIQ Trading
+                    Introducing AIQTrading
                 </h3>
-                <p className='pt-5'>
-                    The trading app that revolutionizes the way you invest. With AIQ Trading, you have instant access to real-time market data, analysis tools, and seamless trading capabilities, all in the palm of your hand. Whether you're a seasoned investor or just starting out, AIQ Trading simplifies trading with intuitive features and personalized insights tailored to your financial goals. Take control of your investments, seize opportunities, and stay ahead of the curve with AIQ Trading - your trusted partner in the world of trading.
+                <p className='pt-3'>
+                    The trading app that revolutionizes the way you invest. With AIQTrading, you have instant access to real-time market data, analysis tools, and seamless trading capabilities, all in the palm of your hand. Whether you're a seasoned investor or just starting out, AIQTrading simplifies trading with intuitive features and personalized insights tailored to your financial goals. Take control of your investments, seize opportunities, and stay ahead of the curve with AIQTrading - your trusted partner in the world of trading.
                 </p>
-                <p className='pt-5'>
-                    AIQ Trading was born from our passion for democratizing access to financial markets. We understand the complexities and barriers that often deter individuals from entering the world of trading. Our motivation stems from the desire to empower everyone, regardless of their background or expertise, to confidently navigate the markets and achieve their financial aspirations.
+                <p className='pt-3'>
+                    AIQTrading was born from our passion for democratizing access to financial markets. We understand the complexities and barriers that often deter individuals from entering the world of trading. Our motivation stems from the desire to empower everyone, regardless of their background or expertise, to confidently navigate the markets and achieve their financial aspirations.
+                </p>
+                <p className='pt-3'>
+                    By prioritizing innovation and user feedback, AIQTrading is committed to remaining at the forefront of the trading landscape, empowering users with the tools and resources they need to thrive in the ever-changing financial markets."
                 </p>
 
             </div>

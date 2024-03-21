@@ -159,7 +159,7 @@ function Login() {
           </label>
         </div>
         <Header />
-        <section className="row pt-5">
+        <section className="pt-5">
           <div className='banner mt-2 mb-5 p-md-5 p-3 d-grid shadow align-items-center justify-items-center'>
             <h2 className="w-100 text-white text-center">Login or create an account to continue</h2>
           </div>
@@ -182,18 +182,18 @@ function Login() {
             <form className="add-form login p-4 shadow" style={{ border: '1px solid #3d4354' }}>
               {
                 (loginType !== 'login') &&
-                  <>
-                    <div className="border-0 bg-transparent mb-3 form-floating ">
+                <>
+                  <div className="border-0 bg-transparent mb-3 form-floating ">
 
-                      <input onChange={(e) => { handleCredentials(e) }} type="text" name="firstname" placeholder="Enter your name" className="form-control bg-white text-dark" id="firstname" />
-                      <label className="form-label text-secondary" htmlFor="firstname">First Name *</label>
-                    </div>
-                    <div className="border-0 bg-transparent mb-3 form-floating">
+                    <input onChange={(e) => { handleCredentials(e) }} type="text" name="firstname" placeholder="Enter your name" className="form-control bg-white text-dark" id="firstname" />
+                    <label className="form-label text-secondary" htmlFor="firstname">First Name *</label>
+                  </div>
+                  <div className="border-0 bg-transparent mb-3 form-floating">
 
-                      <input onChange={(e) => { handleCredentials(e) }} type="text" name="lastname" placeholder="Enter your surname" className="form-control bg-white text-dark" id="lastname" />
-                      <label className="form-label text-secondary" htmlFor="lastname">Last Name *</label>
-                    </div>
-                  </>
+                    <input onChange={(e) => { handleCredentials(e) }} type="text" name="lastname" placeholder="Enter your surname" className="form-control bg-white text-dark" id="lastname" />
+                    <label className="form-label text-secondary" htmlFor="lastname">Last Name *</label>
+                  </div>
+                </>
               }
 
               <div className="border-0 bg-transparent mb-3 form-floating ">
@@ -220,7 +220,7 @@ function Login() {
 
               }
 
-              { (loginType === 'login') && <p onClick={handlePasswordReset} className="forgot-password">Forgot Password?</p>}
+              {(loginType === 'login') && <p onClick={handlePasswordReset} className="forgot-password">Forgot Password?</p>}
 
             </form>
           </section>

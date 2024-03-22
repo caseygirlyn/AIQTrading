@@ -119,7 +119,7 @@ input#darkModeSwitch {
 }
 
 .darkMode input#search::placeholder,
-.search::placeholder {
+.darkMode .search::placeholder {
   color: #ffffff38;
 }
 
@@ -133,7 +133,8 @@ input#darkModeSwitch {
 
 #search,
 #searchBtn,
-.search {
+.search,
+.searchBtn {
   background: transparent;
   border-width: 0 0 1px;
   border-color: #404554;

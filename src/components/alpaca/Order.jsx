@@ -14,16 +14,6 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
         setSide(orderType);
     }, [symbol, quantity, orderType]);
 
-    // Style functions
-    const getPaperStyle = () => ({
-        padding: '20px',
-        margin: '30px auto',
-        borderRadius: '8px',
-        maxWidth: '300px',
-        color: isDarkMode ? '#fff' : '#3d4354',
-        backgroundColor: isDarkMode ? '#2f3443' : '#fff'
-    });
-
     const getButtonStyle = (variant) => ({
         minWidth: '30px',
         width: '50px',
@@ -33,17 +23,18 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
 
     const getTextFieldStyle = () => ({
         backgroundColor: isDarkMode ? '#3B404E' : 'white',
-        borderRadius: '0'
+        borderRadius: '0',
+        width: '100px'
     });
 
     const getPlaceOrderButtonStyle = () => ({
         backgroundColor: isDarkMode ? '#303441' : '#56B678',
-        color: isDarkMode ? '#56B678' : '#fff',
-        border: 'solid 1px #56B678',
+        color: '#fff',
+        // border: 'solid 1px #56B678',
         paddingLeft: '50px',
         paddingRight: '50px',
         fontFamily: 'inherit',
-        marginTop: '1rem',
+        margin: '1rem auto',
         fontSize: '20px'
     });
 
@@ -107,13 +98,13 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
     };
 
     return (
-        <div>
-            <Paper elevation={3} style={getPaperStyle()}>
+        <>
+            <Paper elevation={0}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
                     <Typography variant="h5" gutterBottom style={{fontFamily: 'inherit'}}>Trade {symbol}</Typography>
                 </div>
                 <Grid container spacing={2} alignItems="center" justifyContent='center'>
-                    <Grid item xs={12} sm={6} sx={{ paddingBottom: '10px' }}>
+                    <Grid item xs={12} sx={{ paddingBottom: '10px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <Button variant="contained" onClick={handleDecrement} style={getButtonStyle('decrement')}>-</Button>
                             <TextField className='bg-white'
@@ -137,7 +128,7 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
                 ) : ''}
                 
             </Paper>
-        </div>
+        </>
     );
 };
 

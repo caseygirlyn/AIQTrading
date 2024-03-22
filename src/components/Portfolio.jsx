@@ -4,7 +4,6 @@ import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import Header from './common/Header';
 import Footer from './common/Footer';
-import SearchedStocksTable from './common/Tables/SearchedStocksTable'
 import StockSearchPortfolio from "./StockSearchPortfolio";
 import { NavLink } from 'react-router-dom';
 import TradingPosition from './alpaca/TradingPosition';
@@ -13,9 +12,15 @@ import TradingPositionsPieChart from './alpaca/TradingPositionPieChart';
 import OrderStatus from './alpaca/OrderStatus';
 import AlpacaStocks from './alpaca/AlpacaStocks';
 import PortfolioGraph from './alpaca/PortfolioGraph';
+import { Modal } from 'react-bootstrap';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
     return savedMode || false; // If no saved mode, default to light mode
@@ -71,7 +76,7 @@ const Portfolio = () => {
   const [quantity, setQuantity] = useState(1);
 
   const handleTickerSelection = (ticker, type) => {
-    console.log(ticker);
+    handleShow();
     setSelectedTicker(ticker);
     setOrderType(type);
   };
@@ -174,12 +179,12 @@ const Portfolio = () => {
                 <h3 className="fs-4">Available Stocks to Trade</h3>
                 {error && <p>Error: {error}</p>}
                 <div className="input-group">
-                <input className='form-control rounded-0 shadow-none search bg-transparent text-uppercase'
-                  type="text"
-                  placeholder="Search by Symbol or Name"
-                  value={searchTerm}
-                  onChange={handleSearch}
-                /><i className="bi bi-search position-absolute searchBtn" style={{right: '5px', top: '5px', color: '#6c757d'}}></i>
+                  <input className='form-control rounded-0 shadow-none search bg-transparent text-uppercase'
+                    type="text"
+                    placeholder="Search by Symbol or Name"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                  /><i className="bi bi-search position-absolute searchBtn" style={{ right: '5px', top: '5px', color: '#6c757d' }}></i>
                 </div>
                 {searchTerm.length > 2 && filteredStocks.length > 0 && (
                   <div style={{ maxHeight: '210px', overflowY: 'scroll' }}>
@@ -228,24 +233,23 @@ const Portfolio = () => {
           </div>
         </Col>
         <Col size="md-6">
-          <div className='container ps-md-5'>
-            {selectedTicker && (
-              <div>
+          <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body>
+              {selectedTicker && (
                 <AlpacaOrder
                   symbol={selectedTicker}
                   isDarkMode={isDarkMode}
                   orderType={orderType}
                   quantity={quantity}
                 />
-              </div>
-            )}
-          </div>
-
+              )}
+            </Modal.Body>
+          </Modal>
           <div className='ps-md-5'>
             <PortfolioGraph isDarkMode={isDarkMode} />
             <TradingPositionsPieChart />
           </div>
-          {/* <SearchedStocksTable /> */}
         </Col>
       </div>
       <div className="container m-auto">

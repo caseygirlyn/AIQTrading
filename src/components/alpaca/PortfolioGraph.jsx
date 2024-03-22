@@ -73,7 +73,7 @@ const PortfolioGraph = (props) => {
                     above: bgcolor
                 },
                 borderColor: color,
-                pointBorderWidth: 1,
+                pointBorderWidth: 0,
             },
         ],
     };

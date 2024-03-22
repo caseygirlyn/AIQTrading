@@ -173,12 +173,14 @@ const Portfolio = () => {
               <div className='mb-4'>
                 <h3 className="fs-4">Available Stocks to Trade</h3>
                 {error && <p>Error: {error}</p>}
+                <div className="input-group">
                 <input className='form-control rounded-0 shadow-none search bg-transparent text-uppercase'
                   type="text"
                   placeholder="Search by Symbol or Name"
                   value={searchTerm}
                   onChange={handleSearch}
-                />
+                /><i className="bi bi-search position-absolute searchBtn" style={{right: '5px', top: '5px', color: '#6c757d'}}></i>
+                </div>
                 {searchTerm.length > 2 && filteredStocks.length > 0 && (
                   <div style={{ maxHeight: '210px', overflowY: 'scroll' }}>
                     <table className='table table-striped mb-0 w-100 mb-4'>

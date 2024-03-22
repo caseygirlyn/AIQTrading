@@ -82,7 +82,7 @@ const PortfolioStatus = () => {
 
             </div>
             <div className='my-2'>
-                <small className="alert alert-info m-auto w-fit-content py-1" role="alert"><i className="bi bi-info-circle me-2"></i>You are on Paper Trading, no real money is being used.</small>
+                <small className="text-secondary" role="alert"><i className="bi bi-info-circle me-2"></i>You are on Paper Trading, no real money is being used.</small>
             </div>
         </>
     );

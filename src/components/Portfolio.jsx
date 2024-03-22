@@ -55,22 +55,12 @@ const Portfolio = () => {
   const getBuyButtonStyle = (index) => ({
     fontSize: '14px',
     padding: '6px 20px',
-    color: '#56B678',
-    backgroundColor: isDarkMode ? (index % 2 === 0 ? ' #3B404E' : '#303441') : '#fff',
-    border: 'solid 1px #56B678',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    marginRight: '5px'
+    marginRight: '5px',
   });
 
   const getSellButtonStyle = (index) => ({
     fontSize: '14px',
     padding: '6px 20px',
-    backgroundColor: isDarkMode ? (index % 2 === 0 ? ' #3B404E' : '#303441') : '#fff',
-    color: 'red',
-    border: 'solid 1px red',
-    borderRadius: '4px',
-    cursor: 'pointer'
   });
 
   const [selectedTicker, setSelectedTicker] = useState(null);
@@ -133,8 +123,8 @@ const Portfolio = () => {
                 <div key={ticker.symbol} style={getTickerStyle(index)}>
                   <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>
                   <div style={{ minWidth: '135px' }}>
-                    <button style={getBuyButtonStyle(index)} onClick={() => handleTickerSelection(ticker, 'buy')}>Buy</button>
-                    <button style={getSellButtonStyle(index)} onClick={() => handleTickerSelection(ticker, 'sell')}>Sell</button>
+                    <button className="btn btn-outline-success" style={getBuyButtonStyle(index)} onClick={() => handleTickerSelection(ticker, 'buy')}>Buy</button>
+                    <button className="btn btn-outline-danger" style={getSellButtonStyle(index)} onClick={() => handleTickerSelection(ticker, 'sell')}>Sell</button>
                   </div>
                 </div>
               ))}

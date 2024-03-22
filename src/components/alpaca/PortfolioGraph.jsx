@@ -113,7 +113,7 @@ const PortfolioGraph = (props) => {
 
 
     return (
-        <div className='p-lg-3 mb-4 mb-lg-0'>
+        <div className='px-lg-3 mb-4 mb-lg-0'>
             <h2 className='fs-4'>Portfolio Value Over Time</h2>
             {error && <p>Error: {error}</p>}
             <Line data={chartData} options={options} />

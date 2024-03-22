@@ -17,7 +17,7 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
     // Style functions
     const getPaperStyle = () => ({
         padding: '20px',
-        margin: 'auto',
+        margin: '30px auto',
         borderRadius: '8px',
         maxWidth: '300px',
         color: isDarkMode ? '#fff' : '#3d4354',

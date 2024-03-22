@@ -12,16 +12,34 @@ jest.mock('../src/components/alpaca/Order', () => {
   };
 });
 
-// Mock AlpacaPortfolio
+const mockAccountData = {};
+const mockPositionsData = [];
+
+// Mock AlpacaPortfolio & Account
 jest.mock('axios', () => ({
   get: jest.fn((url) => {
     if (url.includes('https://paper-api.alpaca.markets/v2/positions')) {
       return Promise.resolve({ data: mockPositionsData });
+    } else if (url.includes('https://paper-api.alpaca.markets/v2/account')) {
+      return Promise.resolve({ data: mockAccountData });
     }
     return Promise.reject(new Error(`Unhandled request: ${url}`));
   })
 }));
 
+// Mock ChartJs 
+jest.mock('react-chartjs-2', () => ({
+  Bar: () => <div data-testid="mock-bar-chart"></div>,
+  Line: () => <div data-testid="mock-line-chart"></div>,
+  Doughnut: () => <div data-testid="mock-doughnut-chart"></div>,
+  Pie: () => <div data-testid="mock-pie-chart"></div>,
+}));
+
+// Mock Canvas context
+HTMLCanvasElement.prototype.getContext = () => ({
+  fillRect: () => {},
+  clearRect: () => {},
+});
 
 describe('Portfolio Component', () => {
   test('renders tickers and interacts with AlpacaOrder component', async () => {

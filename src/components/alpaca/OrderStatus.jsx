@@ -57,7 +57,7 @@ const OrderStatus = () => {
             <div className='mb-4'>
                 <h2 className='fs-4'>Order Status</h2>
                 <div className="table-responsive">
-                    <table className='table table-striped mb-0 w-100 accordion'>
+                    <table className='table table-striped mb-0 w-100'>
                         <thead>
                             <tr>
                                 <th className='bg-primary-color text-white fs-6'>Symbol</th>

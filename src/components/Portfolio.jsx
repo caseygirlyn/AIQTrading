@@ -171,7 +171,7 @@ const Portfolio = () => {
             <div style={getTickerContainerStyle()} className='col-md-2'>
 
               <div className='mb-4'>
-                <h2>All Available Stocks</h2>
+                <h3 className="fs-4">Available Stocks to Trade</h3>
                 {error && <p>Error: {error}</p>}
                 <input className='form-control rounded-0 shadow-none search bg-transparent text-uppercase'
                   type="text"
@@ -199,7 +199,7 @@ const Portfolio = () => {
                 )}
               </div>
 
-              <h3 style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3> {/* Adjust color for light mode */}
+              <h3 className="fs-4" style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3> {/* Adjust color for light mode */}
               <table className='table table-striped mb-0 w-100 mb-4'>
                 <thead>
                   <tr>

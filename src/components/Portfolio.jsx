@@ -241,7 +241,8 @@ const Portfolio = () => {
                   symbol={selectedTicker}
                   isDarkMode={isDarkMode}
                   orderType={orderType}
-                  quantity={quantity}
+                  quantity={quantity} 
+                  closeModal={handleClose}
                 />
               )}
             </Modal.Body>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 
-const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
+const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal }) => {
     const [response, setResponse] = useState('');
     const [qty, setQty] = useState(quantity);
     const [side, setSide] = useState(orderType); 
@@ -76,10 +76,11 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
                 throw new Error('Network response was not ok');
             } else {
                 setSubmitted(true);
-                // Reset submission status after 3 seconds
+                // Reset submission status after 1.5 seconds
                 setTimeout(() => {
                     setSubmitted(false);
-                }, 3000);
+                    closeModal();
+                }, 1500);
             }
 
             const data = await response.json();
@@ -124,7 +125,7 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
                     </Grid>
                 </Grid>
                 {response && submitted ? (
-                    <div className="px-2 mt-3"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
+                    <div className="px-2 m-2"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
                 ) : ''}
                 
             </Paper>

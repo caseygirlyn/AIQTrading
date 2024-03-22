@@ -160,25 +160,25 @@ const StockSearchPortfolio = (props) => {
                 label: 'Opening Price',
                 data: stockData.openingPrices,
                 borderColor: '#43caf0',
-                pointBorderWidth: 1,
+                pointBorderWidth: 0,
             },
             {
                 label: 'Closing Price',
                 data: stockData.closingPrices,
                 borderColor: '#80c2d1',
-                pointBorderWidth: 1,
+                pointBorderWidth: 0,
             },
             {
                 label: 'High',
                 data: stockData.highPrices,
                 borderColor: '#81d584',
-                pointBorderWidth: 1,
+                pointBorderWidth: 0,
             },
             {
                 label: 'Low',
                 data: stockData.lowPrices,
                 borderColor: '#f66384',
-                pointBorderWidth: 1,
+                pointBorderWidth: 0,
             }
         ],
     };

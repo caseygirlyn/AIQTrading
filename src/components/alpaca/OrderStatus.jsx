@@ -79,6 +79,8 @@ const OrderStatus = () => {
                                     <td>{order.id}</td>
                                 </tr>
                             ))}
+                            {orders.length === 0 && ( <tr><td colSpan={6} className='text-center'>No pending orders.</td></tr>)
+                            }
                         </tbody>
                     </table>
                 </div>

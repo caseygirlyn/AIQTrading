@@ -226,9 +226,9 @@ const Portfolio = () => {
           </div>
         </Col>
         <Col size="md-6">
-          <div style={{ flex: '1' }} className='container pt-3'>
+          <div className='container pb-3 ps-md-5'>
             {selectedTicker && (
-              <div style={{ padding: '20px', marginTop: '30px', borderRadius: '8px' }}>
+              <div>
                 <AlpacaOrder
                   symbol={selectedTicker}
                   isDarkMode={isDarkMode}

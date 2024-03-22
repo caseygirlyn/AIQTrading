@@ -12,6 +12,35 @@ jest.mock('../src/components/alpaca/Order', () => {
   };
 });
 
+const mockAccountData = {};
+const mockPositionsData = [];
+
+// Mock AlpacaPortfolio & Account
+jest.mock('axios', () => ({
+  get: jest.fn((url) => {
+    if (url.includes('https://paper-api.alpaca.markets/v2/positions')) {
+      return Promise.resolve({ data: mockPositionsData });
+    } else if (url.includes('https://paper-api.alpaca.markets/v2/account')) {
+      return Promise.resolve({ data: mockAccountData });
+    }
+    return Promise.reject(new Error(`Unhandled request: ${url}`));
+  })
+}));
+
+// Mock ChartJs 
+jest.mock('react-chartjs-2', () => ({
+  Bar: () => <div data-testid="mock-bar-chart"></div>,
+  Line: () => <div data-testid="mock-line-chart"></div>,
+  Doughnut: () => <div data-testid="mock-doughnut-chart"></div>,
+  Pie: () => <div data-testid="mock-pie-chart"></div>,
+}));
+
+// Mock Canvas context
+HTMLCanvasElement.prototype.getContext = () => ({
+  fillRect: () => {},
+  clearRect: () => {},
+});
+
 describe('Portfolio Component', () => {
   test('renders tickers and interacts with AlpacaOrder component', async () => {
     render(
@@ -20,27 +49,28 @@ describe('Portfolio Component', () => {
       </Router>
     );
 
-    // Check that some tickers are rendered
     await waitFor(() => {
-      expect(screen.getByText('NVDA - NVIDIA Corporation')).toBeInTheDocument();
-      expect(screen.getByText('META - Meta Platforms, Inc.')).toBeInTheDocument();
+      const nvdaText = screen.getByText('NVDA');
+      expect(nvdaText).toBeInTheDocument();
+      const metaText = screen.getByText('META');
+      expect(metaText).toBeInTheDocument();
+
+      // Interact with the 'Buy' button for NVDA
+      const nvdaRow = nvdaText.closest('tr');
+      const buyButtonNVDA = within(nvdaRow).getByText('Buy');
+      fireEvent.click(buyButtonNVDA);
+      
+      // Check if AlpacaOrder is rendered with NVDA
+      expect(screen.getByTestId('mock-alpaca-order')).toHaveTextContent('AlpacaOrder component with symbol: NVDA');
+
+      // Interact with the 'Sell' button for META
+      const metaRow = metaText.closest('tr');
+      const sellButtonMETA = within(metaRow).getByText('Sell');
+      fireEvent.click(sellButtonMETA);
+
+      // Check if AlpacaOrder is rendered with META
+      expect(screen.getByTestId('mock-alpaca-order')).toHaveTextContent('AlpacaOrder component with symbol: META');
     });
-
-    // Interact with the 'Buy' button for a specific ticker (e.g., NVDA)
-    const nvdaContainer = screen.getByText('NVDA - NVIDIA Corporation').closest('div');
-    const buyButton = within(nvdaContainer).getByText('Buy');
-    fireEvent.click(buyButton);
-
-    // Check if AlpacaOrder is rendered with the correct symbol after clicking 'Buy'
-    expect(screen.getByTestId('mock-alpaca-order')).toHaveTextContent('AlpacaOrder component with symbol: NVDA');
-
-    // Interact with the 'Sell' button for a different ticker (e.g., META)
-    const metaContainer = screen.getByText('META - Meta Platforms, Inc.').closest('div');
-    const sellButton = within(metaContainer).getByText('Sell');
-    fireEvent.click(sellButton);
-
-    // Check if AlpacaOrder is rendered with the correct symbol after clicking 'Sell'
-    expect(screen.getByTestId('mock-alpaca-order')).toHaveTextContent('AlpacaOrder component with symbol: META');
   });
 });
 

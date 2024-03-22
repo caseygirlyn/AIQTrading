@@ -57,7 +57,7 @@ const OrderStatus = () => {
             <div className='mb-4'>
                 <h2 className='fs-4'>Order Status</h2>
                 <div className="table-responsive">
-                    <table className='table table-striped mb-0 w-100'>
+                    <table className='table table-striped mb-0 w-100 accordion'>
                         <thead>
                             <tr>
                                 <th className='bg-primary-color text-white fs-6'>Symbol</th>
@@ -79,6 +79,8 @@ const OrderStatus = () => {
                                     <td>{order.id}</td>
                                 </tr>
                             ))}
+                            {orders.length === 0 && ( <tr><td colSpan={6} className='text-center'>No pending orders.</td></tr>)
+                            }
                         </tbody>
                     </table>
                 </div>

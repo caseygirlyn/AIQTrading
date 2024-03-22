@@ -33,8 +33,8 @@ const OrderStatus = () => {
         fetchOrders(); // Initial fetch
 
         const interval = setInterval(() => {
-            fetchOrders(); // Fetch positions every 2 seconds
-        }, 2000);
+            fetchOrders(); // Fetch positions every 1 minute
+        }, 60000);
 
         return () => clearInterval(interval); // Cleanup on unmount
 

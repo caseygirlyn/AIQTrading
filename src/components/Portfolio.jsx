@@ -10,6 +10,7 @@ import { NavLink } from 'react-router-dom';
 import TradingPosition from './alpaca/TradingPosition';
 import PortfolioStatus from './alpaca/PortfolioStatus';
 import TradingPositionsPieChart from './alpaca/TradingPositionPieChart';
+import OrderStatus from './alpaca/OrderStatus';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
@@ -135,23 +136,25 @@ const Portfolio = () => {
           <div style={{ flex: '1' }} className='container pt-3'>
             {selectedTicker && (
               <div style={{ padding: '20px', marginTop: '30px', borderRadius: '8px' }}>
-                <AlpacaOrder 
-                  symbol={selectedTicker.symbol} 
-                  isDarkMode={isDarkMode} 
-                  orderType={orderType} 
+                <AlpacaOrder
+                  symbol={selectedTicker.symbol}
+                  isDarkMode={isDarkMode}
+                  orderType={orderType}
                   quantity={quantity}
                 />
               </div>
             )}
           </div>
+
           <div className='ps-md-5'>
-          <TradingPositionsPieChart />
+            <TradingPositionsPieChart />
           </div>
           <SearchedStocksTable />
         </Col>
       </div>
       <div className="container m-auto">
         <TradingPosition />
+        <OrderStatus />
       </div>
       <Footer />
     </div>
@@ -159,3 +162,4 @@ const Portfolio = () => {
   );
 };
 export default Portfolio;
+

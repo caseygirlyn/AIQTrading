@@ -37,9 +37,9 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
     });
 
     const getPlaceOrderButtonStyle = () => ({
-        //backgroundColor: isDarkMode ? '#303441' : '#56B678',
-        //color: isDarkMode ? '#56B678' : '#fff',
-        //border: 'solid 1px #56B678',
+        backgroundColor: isDarkMode ? '#303441' : '#56B678',
+        color: isDarkMode ? '#56B678' : '#fff',
+        border: 'solid 1px #56B678',
         paddingLeft: '50px',
         paddingRight: '50px',
         fontFamily: 'inherit',
@@ -129,7 +129,7 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity }) => {
                 </Grid>
                 <Grid container spacing={1} justifyContent="center">
                     <Grid item>
-                        <button className="btn btn-outline-success" variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</button>
+                        <Button className="btn btn-outline-success" variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</Button>
                     </Grid>
                 </Grid>
                 {response && submitted ? (

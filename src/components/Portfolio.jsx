@@ -164,7 +164,7 @@ const Portfolio = () => {
           <PortfolioStatus />
         </Col>
       </div>
-      <div className="container m-auto d-md-flex">
+      <div className="container m-auto d-md-flex mt-4">
         <Col size="md-6">
           {/* <AlpacaStocks /> */}
           <div style={getMainDivStyle()}>
@@ -226,7 +226,7 @@ const Portfolio = () => {
           </div>
         </Col>
         <Col size="md-6">
-          <div className='container pb-3 ps-md-5'>
+          <div className='container ps-md-5'>
             {selectedTicker && (
               <div>
                 <AlpacaOrder

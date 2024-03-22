@@ -12,6 +12,7 @@ import PortfolioStatus from './alpaca/PortfolioStatus';
 import TradingPositionsPieChart from './alpaca/TradingPositionPieChart';
 import OrderStatus from './alpaca/OrderStatus';
 import AlpacaStocks from './alpaca/AlpacaStocks';
+import PortfolioGraph from './alpaca/PortfolioGraph';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
@@ -198,12 +199,7 @@ const Portfolio = () => {
                 )}
               </div>
 
-
-
               <h3 style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3> {/* Adjust color for light mode */}
-              {/* <small className='text-muted mb-2 d-block'>Check portfolio at <NavLink to="https://app.alpaca.markets/paper/dashboard/overview" target="_blank" className='text-info' rel="noopener noreferrer">Alpaca</NavLink> our executing broker.</small> */}
-
-
               <table className='table table-striped mb-0 w-100 mb-4'>
                 <thead>
                   <tr>
@@ -224,6 +220,7 @@ const Portfolio = () => {
                   ))}
                 </tbody>
               </table>
+              <small className='text-muted mb-2 d-block'>Check portfolio at <NavLink to="https://app.alpaca.markets/paper/dashboard/overview" target="_blank" className='text-info' rel="noopener noreferrer">Alpaca</NavLink> our executing broker.</small>
             </div>
           </div>
         </Col>
@@ -242,6 +239,7 @@ const Portfolio = () => {
           </div>
 
           <div className='ps-md-5'>
+            <PortfolioGraph isDarkMode={isDarkMode}/>
             <TradingPositionsPieChart />
           </div>
           {/* <SearchedStocksTable /> */}

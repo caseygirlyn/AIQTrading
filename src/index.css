@@ -424,6 +424,13 @@ footer {
   color: #fff;
 }
 
+.modal .modal-dialog.custom-modal {
+  max-width: 320px !important;
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - var(--bs-modal-margin) * 2);
+}
+
 @keyframes marquee {
   0% {
     transform: translate3d(0, 0, 0);
@@ -447,5 +454,10 @@ footer {
   }
   .portfolio-stat .fs-3 {
     font-size: 1rem !important;
+  }
+  .modal .modal-dialog.custom-modal {
+    max-width: unset !important;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 }

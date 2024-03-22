@@ -187,7 +187,7 @@ const Portfolio = () => {
                           <tr key={index}>
                             <td>{stock.symbol}</td>
                             <td>{stock.name}</td>
-                            <td colSpan={2} className='text-end' style={{minWidth: '152px'}}>
+                            <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}>
                               <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, 'buy')}>Buy</button>
                               <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, 'sell')}>Sell</button>
                             </td>
@@ -208,13 +208,14 @@ const Portfolio = () => {
                   </tr>
                 </thead>
                 <tbody>
-                {tickers.map((ticker, index) => (
+                  {tickers.map((ticker, index) => (
                     <tr key={index}>
                       <td>{ticker.symbol}</td>
                       <td>{ticker.name}</td>
-                      <td colSpan={2} className='text-end' style={{minWidth: '152px'}}>
+                      <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}><div>
                         <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, 'buy')}>Buy</button>
                         <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, 'sell')}>Sell</button>
+                      </div>
                       </td>
                     </tr>
                   ))}
@@ -239,7 +240,7 @@ const Portfolio = () => {
           </div>
 
           <div className='ps-md-5'>
-            <PortfolioGraph isDarkMode={isDarkMode}/>
+            <PortfolioGraph isDarkMode={isDarkMode} />
             <TradingPositionsPieChart />
           </div>
           {/* <SearchedStocksTable /> */}

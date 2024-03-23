@@ -46,8 +46,8 @@ const TradingPosition = () => {
 
     return (
         <>
-            <div className="table-responsive">
-                <h2 className='fs-4'>Trading Positions</h2>
+            <h2 className='fs-4'>Trading Positions</h2>
+            <div className="table-responsive mb-4">
                 <table className='table table-striped mb-0 w-100'>
                     <thead>
                         <tr>
@@ -56,8 +56,8 @@ const TradingPosition = () => {
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>AVG. ENTRY PRICE</th>
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>CURRENT PRICE</th>
                             <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>MARKET VALUE</th>
-                            <th className='bg-primary-color text-white fs-6 text-end'>P/L ($)</th>
-                            <th className='bg-primary-color text-white fs-6 text-end'>P/L (%)</th>
+                            <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>P/L ($)</th>
+                            <th className='bg-primary-color text-white fs-6 text-end' style={{ whiteSpace: 'nowrap' }}>P/L (%)</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -54,31 +54,37 @@ const PortfolioStatus = () => {
     };
 
     return (
-        <div className='d-inline-flex portfolio-stat'>
-            {loading ? (
-                <div className="spinner-border text-info mx-auto my-3 d-block" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            ) : (
-                <>
-                    <div className="pe-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
-                        <span className="p-1 d-block fs-6">PORTFOLIO</span>
-                        <span className="p-1 fs-3">{formatCurrency('USD', portfolio.equity)}</span>
+        <>
+            <div className='d-inline-flex portfolio-stat'>
+                {loading ? (
+                    <div className="spinner-border text-info mx-auto my-3 d-block" role="status">
+                        <span className="visually-hidden">Loading...</span>
                     </div>
-                    <div className="px-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
-                        <span className="p-1 d-block fs-6">FREE FUNDS</span>
-                        <span className="p-1 fs-3">{formatCurrency('USD', portfolio.buying_power)}</span>
-                    </div>
-                    <div className="px-3 mb-3">
-                        <span className="p-1 d-block fs-6">RETURN</span>
-                        <span className={`p-1 fs-3 ${calculatePercentageChange(portfolio.last_equity, portfolio.equity) > 0 ? 'text-success' : 'text-danger'}`}>
-                            {calculatePercentageChange(portfolio.last_equity, portfolio.equity)}%
-                            {calculatePercentageChange(portfolio.last_equity, portfolio.equity) > 0 ? <i className="bi bi-arrow-up-short text-success"></i> : <i className="bi bi-arrow-down-short text-danger"></i>}
-                        </span>
-                    </div>
-                </>
-            )}
-        </div>
+                ) : (
+                    <>
+                        <div className="pe-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
+                            <span className="p-1 d-block fs-6">PORTFOLIO</span>
+                            <span className="p-1 fs-3">{formatCurrency('USD', portfolio.equity)}</span>
+                        </div>
+                        <div className="px-3 border-right mb-3" style={{ borderRight: '1px solid #3b404e' }}>
+                            <span className="p-1 d-block fs-6">FREE FUNDS</span>
+                            <span className="p-1 fs-3">{formatCurrency('USD', portfolio.buying_power)}</span>
+                        </div>
+                        <div className="px-3 mb-3">
+                            <span className="p-1 d-block fs-6">RETURN</span>
+                            <span className={`p-1 fs-3 ${calculatePercentageChange(portfolio.last_equity, portfolio.equity) > 0 ? 'text-success' : 'text-danger'}`}>
+                                {calculatePercentageChange(portfolio.last_equity, portfolio.equity)}%
+                                {calculatePercentageChange(portfolio.last_equity, portfolio.equity) > 0 ? <i className="bi bi-arrow-up-short text-success"></i> : <i className="bi bi-arrow-down-short text-danger"></i>}
+                            </span>
+                        </div>
+                    </>
+                )}
+
+            </div>
+            <div className='my-2'>
+                <small className="text-secondary" role="alert"><i className="bi bi-info-circle me-2"></i>You are on Paper Trading, no real money is being used.</small>
+            </div>
+        </>
     );
 };
 

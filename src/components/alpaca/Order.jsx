@@ -1,28 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 
-const AlpacaOrder = ({ symbol, isDarkMode }) => {
+const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal }) => {
     const [response, setResponse] = useState('');
-    const [qty, setQty] = useState(1);
-    const [side, setSide] = useState('buy'); // default to 'buy'
+    const [qty, setQty] = useState(quantity);
+    const [side, setSide] = useState(orderType); 
     const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
         // Reset the order state when the symbol changes
         setResponse('');
-        setQty(1);
-        setSide('buy');
-    }, [symbol]);
-
-    // Style functions
-    const getPaperStyle = () => ({
-        padding: '20px',
-        margin: 'auto',
-        borderRadius: '8px',
-        maxWidth: '300px',
-        color: isDarkMode ? '#fff' : '#3d4354',
-        backgroundColor: isDarkMode ? '#2f3443' : '#fff'
-    });
+        setQty(quantity); 
+        setSide(orderType);
+    }, [symbol, quantity, orderType]);
 
     const getButtonStyle = (variant) => ({
         minWidth: '30px',
@@ -33,17 +23,18 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
 
     const getTextFieldStyle = () => ({
         backgroundColor: isDarkMode ? '#3B404E' : 'white',
-        borderRadius: '0'
+        borderRadius: '0',
+        width: '100px'
     });
 
     const getPlaceOrderButtonStyle = () => ({
         backgroundColor: isDarkMode ? '#303441' : '#56B678',
-        color: isDarkMode ? '#56B678' : '#fff',
-        border: 'solid 1px #56B678',
+        color: '#fff',
+        // border: 'solid 1px #56B678',
         paddingLeft: '50px',
         paddingRight: '50px',
         fontFamily: 'inherit',
-        marginTop: '1rem',
+        margin: '1rem auto',
         fontSize: '20px'
     });
 
@@ -85,10 +76,11 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
                 throw new Error('Network response was not ok');
             } else {
                 setSubmitted(true);
-                // Reset submission status after 3 seconds
+                // Reset submission status after 1.5 seconds
                 setTimeout(() => {
                     setSubmitted(false);
-                }, 3000);
+                    closeModal();
+                }, 1500);
             }
 
             const data = await response.json();
@@ -107,13 +99,13 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
     };
 
     return (
-        <div>
-            <Paper elevation={3} style={getPaperStyle()}>
+        <>
+            <Paper elevation={0}>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
                     <Typography variant="h5" gutterBottom style={{fontFamily: 'inherit'}}>Trade {symbol}</Typography>
                 </div>
                 <Grid container spacing={2} alignItems="center" justifyContent='center'>
-                    <Grid item xs={12} sm={6} sx={{ paddingBottom: '10px' }}>
+                    <Grid item xs={12} sx={{ paddingBottom: '10px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <Button variant="contained" onClick={handleDecrement} style={getButtonStyle('decrement')}>-</Button>
                             <TextField className='bg-white'
@@ -129,15 +121,15 @@ const AlpacaOrder = ({ symbol, isDarkMode }) => {
                 </Grid>
                 <Grid container spacing={1} justifyContent="center">
                     <Grid item>
-                        <Button variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</Button>
+                        <Button className="btn btn-outline-success" variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</Button>
                     </Grid>
                 </Grid>
                 {response && submitted ? (
-                    <div className="px-2 mt-3"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
+                    <div className="px-2 m-2"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
                 ) : ''}
                 
             </Paper>
-        </div>
+        </>
     );
 };
 

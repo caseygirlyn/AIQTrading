@@ -109,51 +109,52 @@ function Contact() {
             </label>
         </div>
         <Header />
+        <section className="pt-5">
+            <div className='banner mt-2 mb-5 p-md-5 p-3 d-grid shadow justify-items-center align-content-center'>
+                <h2 className="w-100 align-items-center text-white text-center">Contact Us</h2>
+                <h3 className='fs-6 mb-4 text-white text-center'>Want to get in touch? Our experienced customer service team would love to hear from you.</h3>
+            </div>
+        </section>
         <div className="container content px-4 pt-3">
-            <section className="row pt-5">
-                <div className='banner mt-5 mb-5 p-md-5 p-3 d-grid shadow align-items-center justify-items-center'>
-                    <h2 className="w-100 align-items-center text-white text-center">Contact Us</h2>
-                    <h3 className='fs-6 mb-4 text-white text-center'>Want to get in touch? Our experienced customer service team would love to hear from you.</h3>
-                </div>
 
-                {submitted ? (
-                    <div className='px-2'><div className="alert alert-success" role="alert">
-                        Thank you for your message! Our team will get back to you shortly.
-                    </div></div>
-                ) : ''}
+            {submitted ? (
+                <div className='px-2'><div className="alert alert-success" role="alert">
+                    Thank you for your message! Our team will get back to you shortly.
+                </div></div>
+            ) : ''}
 
-                <form ref={form} className="needs-validation p-2 p-md-2" noValidate onSubmit={handleSubmit}>
-                    <div className="row">
-                        <div className="col-md-6 col-sm-12">
-                            <div className="form-floating mb-3">
-                                <input type="text" id="floatingFirstName" placeholder="" name="firstName" required value={formData.firstName} onChange={handleChange} className={`bg-white text-dark form-control ${errors.firstName && 'is-invalid'}`} />
-                                <label htmlFor="floatingFirstName" className="ms-1 px-2 text-dark">First Name</label>
-                                {errors.firstName && <span className="text-danger ps-1">{errors.firstName}</span>}
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input type="text" id="floatingLastName" placeholder="" name="lastName" required value={formData.lastName} onChange={handleChange} className={`bg-white form-control text-dark ${errors.lastName && 'is-invalid'}`} />
-                                <label htmlFor="floatingLastName" className="ms-1 px-2 text-dark">Last Name</label>
-                                {errors.lastName && <span className="text-danger ps-1">{errors.lastName}</span>}
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input type="email" id="floatingEmail" placeholder="name@example.com" name="email" required value={formData.email} onChange={handleChange} className={`bg-white form-control text-dark ${errors.email && 'is-invalid'}`} />
-                                <label htmlFor="floatingEmail" className="ms-1 px-2 text-dark">Email address</label>
-                                {errors.email && <span className="text-danger ps-1">{errors.email}</span>}
-                            </div>
+            <form ref={form} className="needs-validation p-2 p-md-2" noValidate onSubmit={handleSubmit}>
+                <div className="row">
+                    <div className="col-md-6 col-sm-12">
+                        <div className="form-floating mb-3">
+                            <input type="text" id="floatingFirstName" placeholder="" name="firstName" required value={formData.firstName} onChange={handleChange} className={`bg-white text-dark form-control ${errors.firstName && 'is-invalid'}`} />
+                            <label htmlFor="floatingFirstName" className="ms-1 px-2 text-dark">First Name</label>
+                            {errors.firstName && <span className="text-danger ps-1">{errors.firstName}</span>}
                         </div>
-                        <div className="col-md-6 col-sm-12">
-                            <div className="form-floating mb-3">
-                                <textarea placeholder="Message" id="floatingMessage" name="message" value={formData.message} onChange={handleChange} className={`bg-white form-control text-dark text-dark ${errors.message && 'is-invalid'}`}></textarea>
-                                <label htmlFor="floatingMessage" className="ms-1 px-2 text-dark ">Message</label>
-                                {errors.message && <span className="text-danger ps-1">{errors.message}</span>}
-                            </div>
-                            <div className="col-12">
-                                <button className="btn btn-secondary bg-secondary-color w-100 p-3 border-0 mb-2">Submit form</button>
-                            </div>
+                        <div className="form-floating mb-3">
+                            <input type="text" id="floatingLastName" placeholder="" name="lastName" required value={formData.lastName} onChange={handleChange} className={`bg-white form-control text-dark ${errors.lastName && 'is-invalid'}`} />
+                            <label htmlFor="floatingLastName" className="ms-1 px-2 text-dark">Last Name</label>
+                            {errors.lastName && <span className="text-danger ps-1">{errors.lastName}</span>}
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input type="email" id="floatingEmail" placeholder="name@example.com" name="email" required value={formData.email} onChange={handleChange} className={`bg-white form-control text-dark ${errors.email && 'is-invalid'}`} />
+                            <label htmlFor="floatingEmail" className="ms-1 px-2 text-dark">Email address</label>
+                            {errors.email && <span className="text-danger ps-1">{errors.email}</span>}
                         </div>
                     </div>
-                </form>
-            </section>
+                    <div className="col-md-6 col-sm-12">
+                        <div className="form-floating mb-3">
+                            <textarea placeholder="Message" id="floatingMessage" name="message" value={formData.message} onChange={handleChange} className={`bg-white form-control text-dark text-dark ${errors.message && 'is-invalid'}`}></textarea>
+                            <label htmlFor="floatingMessage" className="ms-1 px-2 text-dark ">Message</label>
+                            {errors.message && <span className="text-danger ps-1">{errors.message}</span>}
+                        </div>
+                        <div className="col-12">
+                            <button className="btn btn-secondary bg-secondary-color w-100 p-3 border-0 mb-2">Submit form</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
         </div>
         <Footer />
     </div>

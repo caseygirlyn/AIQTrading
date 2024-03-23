@@ -4,15 +4,23 @@ import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import Header from './common/Header';
 import Footer from './common/Footer';
-import SearchedStocksTable from './common/Tables/SearchedStocksTable'
 import StockSearchPortfolio from "./StockSearchPortfolio";
 import { NavLink } from 'react-router-dom';
 import TradingPosition from './alpaca/TradingPosition';
 import PortfolioStatus from './alpaca/PortfolioStatus';
 import TradingPositionsPieChart from './alpaca/TradingPositionPieChart';
+import OrderStatus from './alpaca/OrderStatus';
+import AlpacaStocks from './alpaca/AlpacaStocks';
+import PortfolioGraph from './alpaca/PortfolioGraph';
+import { Modal } from 'react-bootstrap';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
     return savedMode || false; // If no saved mode, default to light mode
@@ -55,32 +63,22 @@ const Portfolio = () => {
   const getBuyButtonStyle = (index) => ({
     fontSize: '14px',
     padding: '6px 20px',
-    color: '#56B678',
-    backgroundColor: isDarkMode ? (index % 2 === 0 ? ' #3B404E' : '#303441') : '#fff',
-    border: 'solid 1px #56B678',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    marginRight: '5px'
+    marginRight: '5px',
   });
 
   const getSellButtonStyle = (index) => ({
     fontSize: '14px',
     padding: '6px 20px',
-    backgroundColor: isDarkMode ? (index % 2 === 0 ? ' #3B404E' : '#303441') : '#fff',
-    color: 'red',
-    border: 'solid 1px red',
-    borderRadius: '4px',
-    cursor: 'pointer'
   });
 
   const [selectedTicker, setSelectedTicker] = useState(null);
+  const [orderType, setOrderType] = useState('buy');
+  const [quantity, setQuantity] = useState(1);
 
-  const handleTickerSelection = (ticker) => {
-    if (selectedTicker && ticker.symbol === selectedTicker.symbol) {
-      // If the same ticker is selected again, do nothing
-      return;
-    }
+  const handleTickerSelection = (ticker, type) => {
+    handleShow();
     setSelectedTicker(ticker);
+    setOrderType(type);
   };
 
   const tickers = [
@@ -95,6 +93,59 @@ const Portfolio = () => {
     { symbol: 'AVGO', name: 'Broadcom Inc.' },
     { symbol: 'QCOM', name: 'QUALCOMM Incorporated' }
   ];
+
+
+  const [stocks, setStocks] = useState([]);
+  const [filteredStocks, setFilteredStocks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [error, setError] = useState(null);
+  const apiKey = import.meta.env.VITE_ALPACA_API_KEY;
+  const secretKey = import.meta.env.VITE_ALPACA_SECRET_KEY;
+  let newTicker;
+
+  useEffect(() => {
+    const fetchStocks = async () => {
+      try {
+        const response = await fetch('https://paper-api.alpaca.markets/v2/assets', {
+          method: 'GET',
+          headers: {
+            'APCA-API-KEY-ID': apiKey,
+            'APCA-API-SECRET-KEY': secretKey,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch stocks');
+        }
+
+        const data = await response.json();
+        setStocks(data);
+        setFilteredStocks(data);
+        setError(null);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchStocks();
+  }, []);
+
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value;
+    setSearchTerm(searchTerm);
+    if (searchTerm.length > 1) {
+      const filtered = stocks.filter(stock =>
+        stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        stock.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        stock.exchange.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        stock.class.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredStocks(filtered);
+    } else {
+      setFilteredStocks([]);
+    }
+  };
 
   return (
     <><div className={isDarkMode ? 'darkMode' : 'lightMode'}>
@@ -117,47 +168,94 @@ const Portfolio = () => {
         <Col size="lg-12">
           <PortfolioStatus />
         </Col>
-        {/* <Col size="lg-6">
-          <div className='px-lg-5 my-3'>
-          <button type="button" className="btn btn-outline-success btn-md mx-2 py-3" style={{ width: '45%' }}>Deposit</button>
-          <button type="button" className="btn btn-outline-success btn-md mx-2 py-3" style={{ width: '45%' }}>Withdraw</button>
-          </div>
-        </Col> */}
       </div>
-      <div className="container m-auto d-md-flex">
+      <div className="container m-auto d-md-flex mt-4">
         <Col size="md-6">
+          {/* <AlpacaStocks /> */}
           <div style={getMainDivStyle()}>
             <div style={getTickerContainerStyle()} className='col-md-2'>
-              <h3 style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Available stocks</h3> {/* Adjust color for light mode */}
-              <small className='text-muted mb-2 d-block'>Trade with <NavLink to="https://alpaca.markets/" target="_blank" className='text-info' rel="noopener noreferrer">Alpaca</NavLink> our executing broker.</small>
-              {tickers.map((ticker, index) => (
-                <div key={ticker.symbol} style={getTickerStyle(index)}>
-                  <span style={{ marginRight: '10px' }}>{ticker.symbol} - {ticker.name}</span>
-                  <div style={{ minWidth: '135px' }}>
-                    <button style={getBuyButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Buy</button>
-                    <button style={getSellButtonStyle(index)} onClick={() => handleTickerSelection(ticker)}>Sell</button>
-                  </div>
+
+              <div className='mb-4'>
+                <h3 className="fs-4">Available Stocks to Trade</h3>
+                {error && <p>Error: {error}</p>}
+                <div className="input-group">
+                  <input className='form-control rounded-0 shadow-none search bg-transparent text-uppercase'
+                    type="text"
+                    placeholder="Search by Symbol or Name"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                  /><i className="bi bi-search position-absolute searchBtn" style={{ right: '5px', top: '5px', color: '#6c757d' }}></i>
                 </div>
-              ))}
+                {searchTerm.length > 2 && filteredStocks.length > 0 && (
+                  <div style={{ maxHeight: '210px', overflowY: 'scroll' }}>
+                    <table className='table table-striped mb-0 w-100 mb-4'>
+                      <tbody>
+                        {filteredStocks.map((stock, index) => (
+                          <tr key={index}>
+                            <td>{stock.symbol}</td>
+                            <td>{stock.name}</td>
+                            <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}>
+                              <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, 'buy')}>Buy</button>
+                              <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, 'sell')}>Sell</button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+
+              <h3 className="fs-4" style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3> {/* Adjust color for light mode */}
+              <table className='table table-striped mb-0 w-100 mb-4'>
+                <thead>
+                  <tr>
+                    <th className='bg-primary-color text-white fs-6'>Symbol</th>
+                    <th className='bg-primary-color text-white fs-6' colSpan={3}>Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tickers.map((ticker, index) => (
+                    <tr key={index}>
+                      <td>{ticker.symbol}</td>
+                      <td>{ticker.name}</td>
+                      <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}><div>
+                        <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, 'buy')}>Buy</button>
+                        <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, 'sell')}>Sell</button>
+                      </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <small className='text-muted mb-2 d-block'>Check portfolio at <NavLink to="https://app.alpaca.markets/paper/dashboard/overview" target="_blank" className='text-info' rel="noopener noreferrer">Alpaca</NavLink> our executing broker.</small>
             </div>
           </div>
         </Col>
         <Col size="md-6">
-          <div style={{ flex: '1' }} className='container pt-3'>
-            {selectedTicker && (
-              <div style={{ padding: '20px', marginTop: '30px', borderRadius: '8px' }}>
-                <AlpacaOrder symbol={selectedTicker.symbol} isDarkMode={isDarkMode} />
-              </div>
-            )}
-          </div>
+          <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body>
+              {selectedTicker && (
+                <AlpacaOrder
+                  symbol={selectedTicker}
+                  isDarkMode={isDarkMode}
+                  orderType={orderType}
+                  quantity={quantity} 
+                  closeModal={handleClose}
+                />
+              )}
+            </Modal.Body>
+          </Modal>
           <div className='ps-md-5'>
-          <TradingPositionsPieChart />
+            <PortfolioGraph isDarkMode={isDarkMode} />
+            <TradingPositionsPieChart />
           </div>
-          <SearchedStocksTable />
         </Col>
       </div>
       <div className="container m-auto">
         <TradingPosition />
+        <OrderStatus />
       </div>
       <Footer />
     </div>
@@ -165,3 +263,4 @@ const Portfolio = () => {
   );
 };
 export default Portfolio;
+

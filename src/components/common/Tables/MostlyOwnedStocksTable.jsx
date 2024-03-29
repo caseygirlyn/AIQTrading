@@ -16,7 +16,7 @@ const MostlyOwnedStocksTable = () => {
     ];
 
     return (
-        <div className='mb-4 px-2'>
+        <div className='mb-4'>
             <h2 className='fs-4'>Most Owned Stocks</h2>
             <table className='table table-striped mb-0'>
                 <thead>

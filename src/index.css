@@ -361,7 +361,7 @@ i.bi.bi-list {
 }
 
 .darkMode .tab-content > .active {
-  background-color: var(--primary-color);
+  background-color: #2f3443;
   border-color: var(--secondary-color);
 }
 
@@ -412,7 +412,7 @@ footer {
 }
 
 .marquee li {
-  width: 120px;
+  width: 105px;
 }
 
 .darkMode .btn-outline-success {

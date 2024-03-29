@@ -59,13 +59,13 @@ const OrderStatus = () => {
                 <div className="table-responsive">
                     <table className='table table-striped mb-0 w-100'>
                         <thead>
-                            <tr>
-                                <th className='bg-primary-color text-white fs-6'>Symbol</th>
-                                <th className='bg-primary-color text-white fs-6'>Status</th>
-                                <th className='bg-primary-color text-white fs-6'>Qty</th>
-                                <th className='bg-primary-color text-white fs-6'>Side</th>
-                                <th className='bg-primary-color text-white fs-6' style={{ whiteSpace: 'nowrap' }}>Submitted At</th>
-                                <th className='bg-primary-color text-white fs-6' style={{ whiteSpace: 'nowrap' }}>Order ID</th>
+                            <tr className='text-uppercase'>
+                                <th className='bg-primary-color fw-normal text-white'>Symbol</th>
+                                <th className='bg-primary-color fw-normal text-white'>Status</th>
+                                <th className='bg-primary-color fw-normal text-white'>Qty</th>
+                                <th className='bg-primary-color fw-normal text-white'>Side</th>
+                                <th className='bg-primary-color fw-normal text-white'>Submitted At</th>
+                                <th className='bg-primary-color fw-normal text-white'>Order ID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,8 +75,8 @@ const OrderStatus = () => {
                                     <td className='text-capitalize'>{order.status}</td>
                                     <td>{order.qty}</td>
                                     <td className='text-capitalize'>{order.side}</td>
-                                    <td>{formatDateTime(order.submitted_at)}</td>
-                                    <td>{order.id}</td>
+                                    <td className='text-nowrap'>{formatDateTime(order.submitted_at)}</td>
+                                    <td className='text-nowrap'>{order.id}</td>
                                 </tr>
                             ))}
                             {orders.length === 0 && ( <tr><td colSpan={6} className='text-center'>No pending orders.</td></tr>)

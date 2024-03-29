@@ -13,6 +13,7 @@ import OrderStatus from './alpaca/OrderStatus';
 import AlpacaStocks from './alpaca/AlpacaStocks';
 import PortfolioGraph from './alpaca/PortfolioGraph';
 import { Modal } from 'react-bootstrap';
+import MarketStatus from './alpaca/MarketStatus';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
@@ -176,7 +177,10 @@ const Portfolio = () => {
             <div style={getTickerContainerStyle()} className='col-md-2'>
 
               <div className='mb-4'>
-                <h3 className="fs-4">Available Stocks to Trade</h3>
+                <div className='d-flex'>
+                  <h3 className="fs-4">Trade Available Stocks</h3>
+                  <MarketStatus />
+                </div>
                 {error && <p>Error: {error}</p>}
                 <div className="input-group">
                   <input className='form-control rounded-0 shadow-none search bg-transparent'
@@ -241,7 +245,7 @@ const Portfolio = () => {
                   symbol={selectedTicker}
                   isDarkMode={isDarkMode}
                   orderType={orderType}
-                  quantity={quantity} 
+                  quantity={quantity}
                   closeModal={handleClose}
                 />
               )}

@@ -154,7 +154,7 @@ const StockSearch = (props) => {
                     above: bgcolor
                 },
                 borderColor: color,
-                pointBorderWidth: 1,
+                pointBorderWidth: 0,
             },
         ],
     };

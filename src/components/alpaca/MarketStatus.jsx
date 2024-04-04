@@ -16,7 +16,8 @@ const MarketStatus = () => {
                         'Content-Type': 'application/json'
                     }
                 });
-                const { is_open } = response.json();
+                const data = await response.json();
+                const { is_open } = data;
                 setMarketStatus(is_open ? 'Open' : 'Closed');
             } catch (error) {
                 console.error('Error fetching market status:', error);

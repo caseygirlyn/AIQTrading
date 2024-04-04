@@ -64,8 +64,8 @@ const OrderStatus = () => {
                                 <th className='bg-primary-color fw-normal text-white'>Status</th>
                                 <th className='bg-primary-color fw-normal text-white'>Qty</th>
                                 <th className='bg-primary-color fw-normal text-white'>Side</th>
-                                <th className='bg-primary-color fw-normal text-white'>Submitted At</th>
-                                <th className='bg-primary-color fw-normal text-white'>Order ID</th>
+                                <th className='bg-primary-color fw-normal text-white text-nowrap'>Submitted At</th>
+                                <th className='bg-primary-color fw-normal text-white text-nowrap'>Order ID</th>
                             </tr>
                         </thead>
                         <tbody>

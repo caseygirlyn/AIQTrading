@@ -14,10 +14,12 @@ import AlpacaStocks from './alpaca/AlpacaStocks';
 import PortfolioGraph from './alpaca/PortfolioGraph';
 import { Modal } from 'react-bootstrap';
 import MarketStatus from './alpaca/MarketStatus';
+import axios from 'axios';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
   const [show, setShow] = useState(false);
+  const [assetQty, setAssetQty] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -80,6 +82,7 @@ const Portfolio = () => {
     handleShow();
     setSelectedTicker(ticker);
     setOrderType(type);
+    checkAssetQuantity(ticker);
   };
 
   const tickers = [
@@ -147,6 +150,24 @@ const Portfolio = () => {
       setFilteredStocks([]);
     }
   };
+
+  const checkAssetQuantity = async (ticker) => {
+    const apiKey = import.meta.env.VITE_ALPACA_API_KEY;
+    const secretKey = import.meta.env.VITE_ALPACA_SECRET_KEY;
+    console.log(ticker);
+    try {
+        const response = await axios.get(`https://paper-api.alpaca.markets/v2/positions/${ticker}`, {
+            headers: {
+                'APCA-API-KEY-ID': apiKey,
+                'APCA-API-SECRET-KEY': secretKey
+            },
+        });
+        setAssetQty(response.data.qty);
+        setError('');
+    } catch (error) {
+        setAssetQty(null);
+    }
+};
 
   return (
     <><div className={isDarkMode ? 'darkMode' : 'lightMode'}>
@@ -238,7 +259,7 @@ const Portfolio = () => {
         </Col>
         <Col size="md-6">
           <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
-            <Modal.Header closeButton></Modal.Header>
+            <Modal.Header closeButton>Trade Full or Fractional Shares</Modal.Header>
             <Modal.Body>
               {selectedTicker && (
                 <AlpacaOrder
@@ -247,6 +268,7 @@ const Portfolio = () => {
                   orderType={orderType}
                   quantity={quantity}
                   closeModal={handleClose}
+                  assetQty={assetQty}
                 />
               )}
             </Modal.Body>

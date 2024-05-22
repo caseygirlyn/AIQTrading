@@ -32,6 +32,10 @@ module.exports = {
     "url": "http://localhost"
   },
 
+  transformIgnorePatterns: [
+    '/node_modules/',
+  ],
+
   // A map from regular expressions to paths to transformers
   transform: {
     "^.+\\.[t|j]sx?$": "babel-jest"

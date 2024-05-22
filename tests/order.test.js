@@ -19,7 +19,7 @@ describe('AlpacaOrder Component', () => {
     render(<AlpacaOrder symbol="AAPL" orderType="buy" quantity={1} />);
 
     // Check if the component is rendered with the correct symbol
-    expect(screen.getByText(/Trade AAPL/)).toBeInTheDocument();
+    expect(screen.getByText(/buy AAPL/)).toBeInTheDocument();
 
     // Simulate user changing quantity
     const incrementButton = screen.getAllByText('+')[0];

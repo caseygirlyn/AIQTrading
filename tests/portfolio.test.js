@@ -3,6 +3,8 @@ import { render, screen, fireEvent, within, waitFor } from '@testing-library/rea
 import { BrowserRouter as Router } from 'react-router-dom';
 import Portfolio from '../src/components/Portfolio';
 
+global.fetch = require('node-fetch');
+
 // Mock AlpacaOrder to avoid real network requests or complex interactions
 jest.mock('../src/components/alpaca/Order', () => {
   return function DummyAlpacaOrder(props) {

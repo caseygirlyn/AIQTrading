@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
+import axios from 'axios';
 
-const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal }) => {
+const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, assetQty }) => {
     const [response, setResponse] = useState('');
     const [qty, setQty] = useState(quantity);
-    const [side, setSide] = useState(orderType); 
+    const [side, setSide] = useState(orderType);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         // Reset the order state when the symbol changes
         setResponse('');
-        setQty(quantity); 
+        setQty(quantity);
         setSide(orderType);
     }, [symbol, quantity, orderType]);
 
@@ -48,7 +50,6 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal }) =>
         const apiKey = import.meta.env.VITE_ALPACA_API_KEY;
         const secretKey = import.meta.env.VITE_ALPACA_SECRET_KEY;
 
-
         const orderData = {
             symbol: symbol,
             qty: qty,
@@ -85,6 +86,7 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal }) =>
 
             const data = await response.json();
             setResponse(JSON.stringify(data, null, 2));
+
         } catch (error) {
             setResponse(`Error: ${error.message}`);
         }
@@ -101,8 +103,13 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal }) =>
     return (
         <>
             <Paper elevation={0}>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
-                    <Typography variant="h5" gutterBottom style={{fontFamily: 'inherit'}}>Trade {symbol}</Typography>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Typography variant="h5" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>{orderType} {symbol}</Typography>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    {assetQty !== null && (
+                        <p className='text-success'>({assetQty} SHARES)</p>
+                    )}
                 </div>
                 <Grid container spacing={2} alignItems="center" justifyContent='center'>
                     <Grid item xs={12} sx={{ paddingBottom: '10px' }}>
@@ -127,7 +134,6 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal }) =>
                 {response && submitted ? (
                     <div className="px-2 m-2"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
                 ) : ''}
-                
             </Paper>
         </>
     );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 import axios from 'axios';
 
-const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, assetQty }) => {
+const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, assetQty, price }) => {
     const [response, setResponse] = useState('');
     const [qty, setQty] = useState(quantity);
     const [side, setSide] = useState(orderType);
@@ -103,8 +103,11 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
     return (
         <>
             <Paper elevation={0}>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Typography variant="h5" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>{orderType} {symbol}</Typography>
+                <div className='text-center'>
+                    <Typography variant="h6" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>{orderType} {symbol}</Typography>
+                    {price !== null && (
+                        <Typography variant="h4" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>${price}</Typography>
+                    )}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     {assetQty !== null && (

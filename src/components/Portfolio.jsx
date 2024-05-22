@@ -20,6 +20,7 @@ const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
   const [show, setShow] = useState(false);
   const [assetQty, setAssetQty] = useState(null);
+  const [price, setPrice] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -83,6 +84,7 @@ const Portfolio = () => {
     setSelectedTicker(ticker);
     setOrderType(type);
     checkAssetQuantity(ticker);
+    checkAssetPrice(ticker);
   };
 
   const tickers = [
@@ -152,22 +154,41 @@ const Portfolio = () => {
   };
 
   const checkAssetQuantity = async (ticker) => {
-    const apiKey = import.meta.env.VITE_ALPACA_API_KEY;
-    const secretKey = import.meta.env.VITE_ALPACA_SECRET_KEY;
-    console.log(ticker);
     try {
-        const response = await axios.get(`https://paper-api.alpaca.markets/v2/positions/${ticker}`, {
-            headers: {
-                'APCA-API-KEY-ID': apiKey,
-                'APCA-API-SECRET-KEY': secretKey
-            },
-        });
-        setAssetQty(response.data.qty);
-        setError('');
+      const response = await axios.get(`https://paper-api.alpaca.markets/v2/positions/${ticker}`, {
+        headers: {
+          'APCA-API-KEY-ID': apiKey,
+          'APCA-API-SECRET-KEY': secretKey
+        },
+      });
+      setAssetQty(response.data.qty);
+      setError('');
     } catch (error) {
-        setAssetQty(null);
+      setAssetQty(null);
     }
-};
+  };
+
+  const checkAssetPrice = async (ticker) => {
+    try {
+      const response = await axios.get(`https://data.alpaca.markets/v2/stocks/${ticker}/trades/latest`, {
+        headers: {
+          'APCA-API-KEY-ID': apiKey,
+          'APCA-API-SECRET-KEY': secretKey
+        },
+      });
+
+      if (response.data && response.data.trade) {
+        setPrice(response.data.trade.p.toFixed(2));
+        setError('');
+      } else {
+        setPrice(null);
+        setError('No price data available for this symbol.');
+      }
+    } catch (error) {
+      setPrice(null);
+      setError('Failed to fetch asset price. Please check the symbol and try again.');
+    }
+  };
 
   return (
     <><div className={isDarkMode ? 'darkMode' : 'lightMode'}>
@@ -269,6 +290,7 @@ const Portfolio = () => {
                   quantity={quantity}
                   closeModal={handleClose}
                   assetQty={assetQty}
+                  price={price}
                 />
               )}
             </Modal.Body>

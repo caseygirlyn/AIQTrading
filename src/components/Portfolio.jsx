@@ -21,6 +21,9 @@ const Portfolio = () => {
   const [show, setShow] = useState(false);
   const [assetQty, setAssetQty] = useState(null);
   const [price, setPrice] = useState(null);
+  const [marketValue, setMarketValue] = useState(null);
+  const [unrealizedPL, setUnrealizedPL] = useState(null);
+  const [unrealizedPLPC, setUnrealizedPLPC] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -162,6 +165,10 @@ const Portfolio = () => {
         },
       });
       setAssetQty(response.data.qty);
+      setMarketValue(response.data.market_value);
+      setUnrealizedPL(response.data.unrealized_pl);
+      setUnrealizedPLPC(response.data.unrealized_plpc);
+      console.log(response.data);
       setError('');
     } catch (error) {
       setAssetQty(null);
@@ -291,6 +298,9 @@ const Portfolio = () => {
                   closeModal={handleClose}
                   assetQty={assetQty}
                   price={price}
+                  marketValue={marketValue}
+                  unrealizedPL={unrealizedPL}
+                  unrealizedPLPC={unrealizedPLPC}
                 />
               )}
             </Modal.Body>

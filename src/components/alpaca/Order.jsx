@@ -139,6 +139,9 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
                     <Grid item>
                         <Button className="btn btn-outline-success" variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</Button>
                     </Grid>
+                    {response && submitted ? (
+                        <div className="px-2 m-2"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
+                    ) : ''}
                     <div className='w-100 row mx-1'>
                         {assetQty !== null && (
                             <>
@@ -158,9 +161,6 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
                         )}
                     </div>
                 </Grid>
-                {response && submitted ? (
-                    <div className="px-2 m-2"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
-                ) : ''}
             </Paper>
         </>
     );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 import axios from 'axios';
 
-const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, assetQty, price }) => {
+const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, assetQty, price, marketValue, unrealizedPL, unrealizedPLPC }) => {
     const [response, setResponse] = useState('');
     const [qty, setQty] = useState(quantity);
     const [side, setSide] = useState(orderType);
@@ -100,6 +100,15 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
         setQty(prevQty => Math.max(prevQty - 1, 1)); //quantity never goes below 1
     };
 
+    const formatCurrency = (currency, price) => {
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: currency
+        });
+
+        return formatter.format(price);
+    };
+
     return (
         <>
             <Paper elevation={0}>
@@ -108,12 +117,9 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
                     {price !== null && (
                         <Typography variant="h4" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>${price}</Typography>
                     )}
+                    <small className='d-block mb-4'>current price per share</small>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    {assetQty !== null && (
-                        <p className='text-success'>({assetQty} SHARES)</p>
-                    )}
-                </div>
+
                 <Grid container spacing={2} alignItems="center" justifyContent='center'>
                     <Grid item xs={12} sx={{ paddingBottom: '10px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -133,6 +139,24 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
                     <Grid item>
                         <Button className="btn btn-outline-success" variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</Button>
                     </Grid>
+                    <div className='w-100 row mx-1'>
+                        {assetQty !== null && (
+                            <>
+                                <hr className='my-3'></hr>
+                                <div className='col-6'>My {symbol} Asset</div>
+                                <div className='col-6 text-nowrap text-end'>{assetQty} shares</div>
+                                <div className='col-6'>Market Value</div>
+                                <div className='col-6 text-nowrap text-end'>{formatCurrency('USD', marketValue)}</div>
+                                <div className='col-6'>Profit/Loss ($)</div>
+                                <div className={`col-6 text-nowrap text-end ${unrealizedPL > 0.00 ? 'text-success' : 'text-danger'}`}>{formatCurrency('USD', unrealizedPL)}</div>
+                                <div className='col-6'>Profit/Loss (%)</div>
+                                <div className={`col-6 text-nowrap text-end ${unrealizedPL > 0.00 ? 'text-success' : 'text-danger'}`}>
+                                    {(unrealizedPLPC * 100).toFixed(2)}%
+                                    {unrealizedPL > 0.00 ? <i className="bi bi-arrow-up-short text-success"></i> : <i className="bi bi-arrow-down-short text-danger"></i>}
+                                </div>
+                            </>
+                        )}
+                    </div>
                 </Grid>
                 {response && submitted ? (
                     <div className="px-2 m-2"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>

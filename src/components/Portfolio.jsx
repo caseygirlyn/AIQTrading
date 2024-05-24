@@ -79,12 +79,14 @@ const Portfolio = () => {
   });
 
   const [selectedTicker, setSelectedTicker] = useState(null);
+  const [tickerName, setTickerName] = useState(null);
   const [orderType, setOrderType] = useState('buy');
   const [quantity, setQuantity] = useState(1);
 
-  const handleTickerSelection = (ticker, type) => {
+  const handleTickerSelection = (ticker, tickerName, type) => {
     handleShow();
     setSelectedTicker(ticker);
+    setTickerName(tickerName);
     setOrderType(type);
     checkAssetQuantity(ticker);
     checkAssetPrice(ticker);
@@ -248,8 +250,8 @@ const Portfolio = () => {
                             <td>{stock.symbol}</td>
                             <td>{stock.name}</td>
                             <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}>
-                              <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, 'buy')}>Buy</button>
-                              <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, 'sell')}>Sell</button>
+                              <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, stock.name, 'buy')}>Buy</button>
+                              <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, stock.name, 'sell')}>Sell</button>
                             </td>
                           </tr>
                         ))}
@@ -273,8 +275,8 @@ const Portfolio = () => {
                       <td>{ticker.symbol}</td>
                       <td>{ticker.name}</td>
                       <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}><div>
-                        <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, 'buy')}>Buy</button>
-                        <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, 'sell')}>Sell</button>
+                        <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'buy')}>Buy</button>
+                        <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'sell')}>Sell</button>
                       </div>
                       </td>
                     </tr>
@@ -292,6 +294,7 @@ const Portfolio = () => {
               {selectedTicker && (
                 <AlpacaOrder
                   symbol={selectedTicker}
+                  tickerName={tickerName}
                   isDarkMode={isDarkMode}
                   orderType={orderType}
                   quantity={quantity}

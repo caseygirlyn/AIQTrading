@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 import axios from 'axios';
 
-const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, assetQty, price, marketValue, unrealizedPL, unrealizedPLPC }) => {
+const AlpacaOrder = ({ symbol, tickerName, isDarkMode, orderType, quantity, closeModal, assetQty, price, marketValue, unrealizedPL, unrealizedPLPC }) => {
     const [response, setResponse] = useState('');
     const [qty, setQty] = useState(quantity);
     const [side, setSide] = useState(orderType);
@@ -32,15 +32,14 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
     const getPlaceOrderButtonStyle = () => ({
         backgroundColor: isDarkMode ? '#303441' : '#56B678',
         color: '#fff',
-        // border: 'solid 1px #56B678',
-        paddingLeft: '50px',
-        paddingRight: '50px',
         fontFamily: 'inherit',
         margin: '1rem auto',
-        fontSize: '20px'
+        fontSize: '20px',
+        width: '100%'
     });
 
     const handleQuantityChange = (event) => {
+        if (assetQty <= 0.00 && orderType == 'sell') return false;
         const value = String(event.target.value);
         setQty(value);
     };
@@ -93,10 +92,12 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
     };
 
     const handleIncrement = () => {
-        setQty(prevQty => prevQty + 1);
+        if (assetQty <= 0.00 && orderType == 'sell') return false;
+        setQty(prevQty => parseFloat(prevQty) + 1);
     };
 
     const handleDecrement = () => {
+        if (assetQty <= 0.00 && orderType == 'sell') return false;
         setQty(prevQty => Math.max(prevQty - 1, 1)); //quantity never goes below 1
     };
 
@@ -113,41 +114,45 @@ const AlpacaOrder = ({ symbol, isDarkMode, orderType, quantity, closeModal, asse
         <>
             <Paper elevation={0}>
                 <div className='text-center'>
-                    <Typography variant="h6" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>{orderType} {symbol}</Typography>
+                    <div>{tickerName}</div>
+                    <Typography variant="h6" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>({symbol})</Typography>
                     {price !== null && (
-                        <Typography variant="h4" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>${price}</Typography>
+                        <Typography variant="h4" gutterBottom style={{ fontFamily: 'inherit', fontWeight: '900', 'textTransform': 'uppercase' }}>{formatCurrency('USD', price)}</Typography>
                     )}
-                    <small className='d-block mb-4'>current price per share</small>
+                    {assetQty !== null && (
+                        <h5 className='mb-4'>Total: <span className={`${orderType == 'buy' ? 'text-success' : 'text-danger'}`}>{formatCurrency('USD', price * qty)}~</span></h5>
+                    )}
                 </div>
-
                 <Grid container spacing={2} alignItems="center" justifyContent='center'>
-                    <Grid item xs={12} sx={{ paddingBottom: '10px' }}>
+                    <Grid item xs={12} sx={{ paddingBottom: '20px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <Button variant="contained" onClick={handleDecrement} style={getButtonStyle('decrement')}>-</Button>
                             <TextField className='bg-white'
+                                placeholder='QTY'
                                 value={qty}
                                 onChange={handleQuantityChange}
                                 style={getTextFieldStyle()}
-                                InputProps={{ style: { width: '100%' } }}
-                                inputProps={{ style: { textAlign: 'center', paddingTop: '12px', paddingBottom: '12px' } }}
+                                inputProps={{ style: { width: '100%', textAlign: 'center', paddingTop: '12px', paddingBottom: '12px' } }}
                             />
                             <Button variant="contained" onClick={handleIncrement} style={getButtonStyle('increment')}>+</Button>
                         </div>
                     </Grid>
                 </Grid>
+                {assetQty === null && orderType == 'sell' && (
+                    <div className='alert alert-danger text-center py-2'>You don’t have {symbol} to sell.<br></br>Start acquiring some to trade!</div>)}
                 <Grid container spacing={1} justifyContent="center">
-                    <Grid item>
-                        <Button className="btn btn-outline-success" variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>Place Order</Button>
+                    <Grid item className='w-100'>
+                        <Button className={`btn btn-outline-success ${((assetQty <= 0.00 || qty > assetQty) && orderType == 'sell') ? 'disabled' : ''}`} variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>{orderType}</Button>
                     </Grid>
                     {response && submitted ? (
-                        <div className="px-2 m-2"><div className="alert alert-success text-center py-2" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
+                        <div className="px-2 mx-2"><div className="alert alert-success text-center py-2 w-100" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>
                     ) : ''}
                     <div className='w-100 row mx-1'>
                         {assetQty !== null && (
                             <>
                                 <hr className='my-3'></hr>
-                                <div className='col-6'>My {symbol} Asset</div>
-                                <div className='col-6 text-nowrap text-end'>{assetQty} shares</div>
+                                <div className='col-6'>My {symbol} Shares</div>
+                                <div className='col-6 text-nowrap text-end'>{assetQty}</div>
                                 <div className='col-6'>Market Value</div>
                                 <div className='col-6 text-nowrap text-end'>{formatCurrency('USD', marketValue)}</div>
                                 <div className='col-6'>Profit/Loss ($)</div>

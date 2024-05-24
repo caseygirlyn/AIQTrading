@@ -19,14 +19,14 @@ describe('AlpacaOrder Component', () => {
     render(<AlpacaOrder symbol="AAPL" orderType="buy" quantity={1} />);
 
     // Check if the component is rendered with the correct symbol
-    expect(screen.getByText(/buy AAPL/)).toBeInTheDocument();
+    expect(screen.getByText('(AAPL)')).toBeInTheDocument();
 
     // Simulate user changing quantity
     const incrementButton = screen.getAllByText('+')[0];
     fireEvent.click(incrementButton);
 
     // Simulate user clicking 'Place Order' button
-    const placeOrderButton = screen.getByText('Place Order');
+    const placeOrderButton = screen.getByText('buy');
 
     // Using 'act' to wait for the promise to resolve
     await act(async () => {

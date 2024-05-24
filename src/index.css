@@ -425,7 +425,7 @@ footer {
 }
 
 .modal .modal-dialog.custom-modal {
-  max-width: 300px !important;
+  max-width: 335px !important;
   display: flex;
   align-items: center;
   min-height: calc(100% - var(--bs-modal-margin) * 2);

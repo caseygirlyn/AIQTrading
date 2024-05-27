@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale, Filler } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, TimeScale, Tooltip, Legend } from 'chart.js';
+import { CandlestickController, CandlestickElement } from 'chartjs-chart-financial';
+import { Chart } from 'react-chartjs-2';
 import 'chartjs-adapter-date-fns';
+import zoomPlugin from 'chartjs-plugin-zoom';
 import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
+import { Modal } from 'react-bootstrap';
 
 ChartJS.register(
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
     TimeScale,
-    Title,
     Tooltip,
     Legend,
-    Filler
+    CandlestickController,
+    CandlestickElement,
+    zoomPlugin
 );
 
 const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
@@ -28,6 +30,11 @@ const StockSearchPortfolio = (props) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState([]);
+    const [show, setShow] = useState(false);
+    const [candleData, setCandleData] = useState([]);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     let color = (props.isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
     let labelColor = (props.isDarkMode) ? 'rgb(255, 255, 255)' : 'rgb(58, 64, 80)';
@@ -38,6 +45,7 @@ const StockSearchPortfolio = (props) => {
     };
 
     const handleSubmit = async event => {
+        handleShow();
         event.preventDefault();
         setParseQuery('');
         setError(null);
@@ -109,14 +117,16 @@ const StockSearchPortfolio = (props) => {
             }
 
             const dataChart = await responseCHART.json();
-            const timestamps = dataChart.map(timestamp => timestamp.date);
-            const openingPrices = dataChart.map(timestamp => timestamp.open);
-            const closingPrices = dataChart.map(timestamp => timestamp.close);
-            const highPrices = dataChart.map(timestamp => timestamp.high);
-            const lowPrices = dataChart.map(timestamp => timestamp.low);
 
-            setStockData({ timestamps, openingPrices, closingPrices, highPrices, lowPrices });
-
+            const formattedData = dataChart.map(item => ({
+                x: new Date(item.date),
+                o: item.open,
+                h: item.high,
+                l: item.low,
+                c: item.close,
+            }));
+            console.log(formattedData);
+            setCandleData(formattedData);
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
@@ -153,65 +163,71 @@ const StockSearchPortfolio = (props) => {
         return formatter.format(price);
     };
 
-    const chartData = {
-        labels: stockData.timestamps,
+    const data = {
         datasets: [
             {
-                label: 'Opening Price',
-                data: stockData.openingPrices,
-                borderColor: '#43caf0',
-                pointBorderWidth: 0,
+                label: 'Candlestick Data',
+                data: candleData.map(({ x, o, h, l, c }) => ({
+                    x: new Date(x), o, h, l, c,
+                })),
+                borderColor: 'black',
+                borderWidth: 1,
+                barThickness: 10, // Set a fixed bar thickness
+                maxBarThickness: 10, // Alternatively, set a maximum bar thickness
             },
-            {
-                label: 'Closing Price',
-                data: stockData.closingPrices,
-                borderColor: '#80c2d1',
-                pointBorderWidth: 0,
-            },
-            {
-                label: 'High',
-                data: stockData.highPrices,
-                borderColor: '#81d584',
-                pointBorderWidth: 0,
-            },
-            {
-                label: 'Low',
-                data: stockData.lowPrices,
-                borderColor: '#f66384',
-                pointBorderWidth: 0,
-            }
         ],
     };
 
     const options = {
-        plugins: {
-            legend: {
-                labels: {
+        scales: {
+            x: {
+                type: 'time',
+
+            },
+            y: {
+                beginAtZero: false,
+                ticks: {
                     color: labelColor
                 }
             }
         },
-        scales: {
-            x: {
-                type: 'time',
-                time: {
-                    unit: 'day',
-                    displayFormats: {
-                        minute: 'HH:mm'
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function (context) {
+                        const { o, h, l, c } = context.raw;
+                        return [
+                            `Open: $${o.toFixed(2)}`,
+                            `High: $${h.toFixed(2)}`,
+                            `Low: $${l.toFixed(2)}`,
+                            `Close: $${c.toFixed(2)}`
+                        ];
                     }
                 }
             },
-            y: {
-                ticks: {
-                    color: labelColor
+            zoom: {
+                pan: {
+                    enabled: true,
+                    mode: 'x',
+                },
+                zoom: {
+                    wheel: {
+                        enabled: true,
+                    },
+                    pinch: {
+                        enabled: true,
+                    },
+                    mode: 'x',
                 }
-                // Configuration for the y-axis
             }
-        }
+        },
     };
 
     return (
-        <div className='mb-2'>
+        <div className='mb-2' >
             <form onSubmit={handleSubmit} className='searchForm mb-4 m-auto'>
                 <div className="input-group mb-0"><h2 className='fs-4 pe-2 mb-0'>Investment Search</h2>
                     <input
@@ -227,52 +243,55 @@ const StockSearchPortfolio = (props) => {
                     <button className="btn btn-outline-secondary rounded-0" type="submit" id="searchBtn"><i className="bi bi-search"></i></button>
                 </div>
             </form>
-            {
-                (loading) && <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            }
-            {error && <p className='text-center'>{error}</p>}
-            {
-                !loading && searchResults.length > 0 && <div><small className="btn-link text-secondary" role='button' onClick={handleReload}>Clear Search Result</small></div>
-            }
-            <div className='row'>
-                <div className='col-lg-4 my-2'>
-                    {searchResults.map(stock => (
-                        <div key={stock.symbol}>
-                            <div className='common-bg-primary-color float-start p-2 me-3 rounded-2'>
-                                <img src={stock.image} height={50} /></div>
-                            <div>
-                                <span className='fs-5'>
-                                    {stock.companyName} ({stock.symbol})
-                                </span>
-                            </div>
-                            <div>
-                                <span className='fs-5'>{formatCurrency(stock.currency, stock.price)}</span> <span className={stock.changes > 0 ? 'text-success' : 'text-danger'}>({((stock.changes / stock.price) * 100).toFixed(2)}%) {stock.changes}
-                                    {stock.changes > 0 ? <i className="bi bi-arrow-up-short"></i> : <i className="bi bi-arrow-down-short"></i>}
-                                </span>
-                            </div>
 
-                        </div>
-                    ))}
+            <Modal show={show} onHide={handleClose} dialogClassName="asset-modal modal-dialog-centered" className={props.isDarkMode ? 'darkModal' : ''}>
+                <Modal.Header closeButton></Modal.Header>
+                <Modal.Body>
+                    <div className='row'>
+                        <div className='col-lg-4 my-2'>
+                            {searchResults.map(stock => (
+                                <div key={stock.symbol}>
+                                    <div className='common-bg-primary-color float-start p-2 me-3 rounded-2'>
+                                        <img src={stock.image} height={50} /></div>
+                                    <div>
+                                        <span className='fs-5'>
+                                            {stock.companyName} ({stock.symbol})
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='fs-5'>{formatCurrency(stock.currency, stock.price)}</span> <span className={stock.changes > 0 ? 'text-success' : 'text-danger'}>({((stock.changes / stock.price) * 100).toFixed(2)}%) {stock.changes}
+                                            {stock.changes > 0 ? <i className="bi bi-arrow-up-short"></i> : <i className="bi bi-arrow-down-short"></i>}
+                                        </span>
+                                    </div>
 
-                    {!loading && priceChange.length > 0 && (
-                        <div className='mb-4'>
-                            <PriceChange priceChange={priceChange} />
+                                </div>
+                            ))}
+
+                            {!loading && priceChange.length > 0 && (
+                                <div className='mb-4'>
+                                    <PriceChange priceChange={priceChange} />
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-                <div className='col-lg-8'>
+                        <div className='col-lg-8'>
+                            {
+                                !loading && searchResults.length > 0 && (
+                                    <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
+                                        <Chart type="candlestick" data={data} options={options} />
+                                    </div>
+                                )
+                            }
+                        </div>
+                    </div>
                     {
-                        !loading && searchResults.length > 0 && (
-                            <div className={props.isDarkMode ? 'bg-none' : 'bg-light rounded-1'}>
-                                <Line data={chartData} options={options} />
-                            </div>
-                        )
+                        (loading) && <div className="spinner-border text-info mx-auto my-5 d-block" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
                     }
-                </div>
-            </div>
-        </div>
+                    {error && <p className='text-center'>{error}</p>}
+                </Modal.Body>
+            </Modal>
+        </div >
     );
 };
 

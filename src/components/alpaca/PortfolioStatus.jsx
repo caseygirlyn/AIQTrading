@@ -72,7 +72,7 @@ const PortfolioStatus = () => {
                         </div>
                         <div className="px-3 mb-3">
                             <span className="p-1 d-block fs-6">RETURN</span>
-                            <span className={`p-1 fs-3 ${calculatePercentageChange(portfolio.last_equity, portfolio.equity) > 0 ? 'text-success' : 'text-danger'}`}>
+                            <span className={`p-1 fs-3 ${calculatePercentageChange(portfolio.last_equity, portfolio.equity) > 0.00 ? 'text-success' : 'text-danger'}`}>
                                 {calculatePercentageChange(portfolio.last_equity, portfolio.equity)}%
                                 {calculatePercentageChange(portfolio.last_equity, portfolio.equity) > 0 ? <i className="bi bi-arrow-up-short text-success"></i> : <i className="bi bi-arrow-down-short text-danger"></i>}
                             </span>

@@ -54,7 +54,7 @@ const StockSearchPortfolio = (props) => {
         const today = new Date();
         const startDate = new Date(today);
 
-        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 2) : startDate.setDate(today.getDate() - 1)
+        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 3) : startDate.setDate(today.getDate() - 1)
 
         let todayFormatted = formatDate(today);
         let startDateFormatted = formatDate(startDate);
@@ -172,8 +172,8 @@ const StockSearchPortfolio = (props) => {
                 })),
                 borderColor: 'black',
                 borderWidth: 1,
-                barThickness: 10, // Set a fixed bar thickness
-                maxBarThickness: 10, // Alternatively, set a maximum bar thickness
+                barThickness: 5, // Set a fixed bar thickness
+                maxBarThickness: 5, // Alternatively, set a maximum bar thickness
             },
         ],
     };

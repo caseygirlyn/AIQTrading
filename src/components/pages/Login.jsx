@@ -132,13 +132,25 @@ function Login() {
   }// End of function handleLogin
 
   function handlePasswordReset() {
+    const email = prompt("Please enter a valid email to reset your password!");
 
-    const email = prompt("Please enter a valid email to reset password!");
-    sendPasswordResetEmail(auth, email)
-    alert('Email sent! Please check your inbox for password reset instructions!')
+    if (validateEmail(email)) {
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert('Email sent! Please check your inbox for password reset instructions!');
+            })
+            .catch(error => {
+                alert('Error sending email: ' + error.message);
+            });
+    } else {
+        alert('Invalid email format. Please enter a valid email address.');
+    }
+}
 
-
-  }// End of function handlePasswordsReset
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}// End of function handlePasswordsReset
 
 
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import axios from 'axios';
-import { Chart, ArcElement } from 'chart.js'
+import { Chart, ArcElement, Tooltip } from 'chart.js';
 
-Chart.register(ArcElement);
+Chart.register(ArcElement, Tooltip);
 
 const TradingPositionsPieChart = () => {
     const [positionsData, setPositionsData] = useState(null);
@@ -23,10 +23,11 @@ const TradingPositionsPieChart = () => {
                     },
                 });
                 const positions = response.data;
-
+                
                 // Process data for Chart.js
                 const labels = positions.map(position => position.symbol);
-                const data = positions.map(position => position.qty);
+                const data = positions.map(position => parseFloat(position.market_value));
+                const quantities = positions.map(position => parseFloat(position.qty));
                 const bgColor = [
                     '#f66384',
                     '#39a2eb',
@@ -39,7 +40,7 @@ const TradingPositionsPieChart = () => {
                     '#80c2d1',
                     '#ffc2d1',
                 ];
-                const backgroundColors = positions.map((_, index) => bgColor[index]);
+                const backgroundColors = positions.map((_, index) => bgColor[index % bgColor.length]);
 
                 setPositionsData({
                     labels: labels,
@@ -49,6 +50,7 @@ const TradingPositionsPieChart = () => {
                             backgroundColor: backgroundColors,
                             borderColor: '#eee',
                             borderWidth: 1,
+                            quantity: quantities,
                         },
                     ],
                 });
@@ -74,6 +76,19 @@ const TradingPositionsPieChart = () => {
                     data={positionsData}
                     options={{
                         maintainAspectRatio: false, // Prevent chart from being cut off
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const index = context.dataIndex;
+                                        const label = context.label;
+                                        const marketValue = context.raw;
+                                        const quantity = context.dataset.quantity[index];
+                                        return `$${marketValue.toFixed(2)} (Qty: ${quantity})`;
+                                    }
+                                }
+                            }
+                        }
                     }}
                 />
             )}

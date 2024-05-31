@@ -143,10 +143,12 @@ const Portfolio = () => {
     setSearchTerm(searchTerm);
     if (searchTerm.length > 1) {
       const filtered = stocks.filter(stock =>
-        stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        stock.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        stock.exchange.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        stock.class.toLowerCase().includes(searchTerm.toLowerCase())
+        (stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          stock.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          stock.exchange.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          stock.class.toLowerCase().includes(searchTerm.toLowerCase())) &&
+        stock.tradable &&
+        stock.latestPrice !== null
       );
       setFilteredStocks(filtered);
     } else {
@@ -244,7 +246,7 @@ const Portfolio = () => {
                           <tr key={index}>
                             <td>{stock.symbol}</td>
                             <td>{stock.name}</td>
-                            <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}>
+                            <td colSpan={2} className='text-end' style={{ minWidth: '154px' }}>
                               <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, stock.name, 'buy')}>Buy</button>
                               <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, stock.name, 'sell')}>Sell</button>
                             </td>
@@ -256,7 +258,7 @@ const Portfolio = () => {
                 )}
               </div>
 
-              <h3 className="fs-4" style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3> 
+              <h3 className="fs-4" style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3>
               <table className='table table-striped mb-0 w-100 mb-4'>
                 <thead>
                   <tr>

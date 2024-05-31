@@ -12,12 +12,12 @@ import BiggestGainers from "./BiggestGainers";
 import BiggestLosers from "./BiggestLosers";
 
 const Container = () => {
-  const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
+  const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
 
   // Function to get initial mode from localStorage if available
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
-    return savedMode || false; // If no saved mode, default to light mode
+    return savedMode !== null ? savedMode : true; // Default to dark mode if no saved mode
   }
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {

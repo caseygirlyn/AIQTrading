@@ -138,11 +138,16 @@ const AlpacaOrder = ({ symbol, tickerName, isDarkMode, orderType, quantity, clos
                         </div>
                     </Grid>
                 </Grid>
-                {assetQty === null && orderType == 'sell' && (
+                {assetQty === null && price !== null && orderType == 'sell' && (
                     <div className='alert alert-danger text-center py-2'>You don’t have {symbol} to sell.<br></br>Start acquiring some to trade!</div>)}
+                {price === null && (
+                            <div className='alert alert-danger text-center py-2 mb-0'>Error: Failed to fetch asset price.</div>)}
                 <Grid container spacing={1} justifyContent="center">
                     <Grid item className='w-100'>
-                        <Button className={`btn btn-outline-success ${((assetQty <= 0.00 || qty > assetQty) && orderType == 'sell') ? 'disabled' : ''}`} variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>{orderType}</Button>
+                        {orderType == 'sell' && (
+                            <Button className={`btn btn-outline-success ${(assetQty <= 0.00 || qty > assetQty) ? 'disabled' : ''}`} variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>{orderType}</Button>)}
+                        {orderType == 'buy' && (
+                            <Button className={`btn btn-outline-success ${(price === null) ? 'disabled' : ''}`} variant="contained" onClick={placeOrder} style={getPlaceOrderButtonStyle()}>{orderType}</Button>)}
                     </Grid>
                     {response && submitted ? (
                         <div className="px-2 mx-2"><div className="alert alert-success text-center py-2 w-100" role="alert">Order Submitted<span className='d-none'>{response}</span></div></div>

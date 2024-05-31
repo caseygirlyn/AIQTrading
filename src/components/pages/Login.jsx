@@ -135,22 +135,22 @@ function Login() {
     const email = prompt("Please enter a valid email to reset your password!");
 
     if (validateEmail(email)) {
-        sendPasswordResetEmail(auth, email)
-            .then(() => {
-                alert('Email sent! Please check your inbox for password reset instructions!');
-            })
-            .catch(error => {
-                alert('Error sending email: ' + error.message);
-            });
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          alert('Email sent! Please check your inbox for password reset instructions!');
+        })
+        .catch(error => {
+          alert('Error sending email: ' + error.message);
+        });
     } else {
-        alert('Invalid email format. Please enter a valid email address.');
+      alert('Invalid email format. Please enter a valid email address.');
     }
-}
+  }
 
-function validateEmail(email) {
+  function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-}// End of function handlePasswordsReset
+  }// End of function handlePasswordsReset
 
 
 
@@ -232,7 +232,7 @@ function validateEmail(email) {
 
               }
 
-              {(loginType === 'login') && <p onClick={handlePasswordReset} className="forgot-password">Forgot Password?</p>}
+              {(loginType === 'login') && <p onClick={handlePasswordReset} className="forgot-password" role="button">Forgot Password?</p>}
 
             </form>
           </section>

@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import AlpacaOrder from './alpaca/Order'
 import Col from "./common/Theme/Col";
-import Row from "./common/Theme/Row";
 import Header from './common/Header';
 import Footer from './common/Footer';
 import StockSearchPortfolio from "./StockSearchPortfolio";
-import { NavLink } from 'react-router-dom';
 import TradingPosition from './alpaca/TradingPosition';
 import PortfolioStatus from './alpaca/PortfolioStatus';
 import TradingPositionsPieChart from './alpaca/TradingPositionPieChart';
 import OrderStatus from './alpaca/OrderStatus';
-import AlpacaStocks from './alpaca/AlpacaStocks';
 import PortfolioGraph from './alpaca/PortfolioGraph';
 import { Modal } from 'react-bootstrap';
 import MarketStatus from './alpaca/MarketStatus';
 import axios from 'axios';
 
 const Portfolio = () => {
-  const [isDarkMode, setIsDarkMode] = useState(getInitialMode(true));
+  const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
   const [show, setShow] = useState(false);
   const [assetQty, setAssetQty] = useState(null);
   const [price, setPrice] = useState(null);
@@ -30,7 +27,7 @@ const Portfolio = () => {
 
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
-    return savedMode || false; // If no saved mode, default to light mode
+    return savedMode !== null ? savedMode : true; // Default to dark mode if no saved mode
   }
 
   // Update localStorage when mode changes
@@ -104,7 +101,6 @@ const Portfolio = () => {
     { symbol: 'AVGO', name: 'Broadcom Inc.' },
     { symbol: 'QCOM', name: 'QUALCOMM Incorporated' }
   ];
-
 
   const [stocks, setStocks] = useState([]);
   const [filteredStocks, setFilteredStocks] = useState([]);
@@ -226,7 +222,6 @@ const Portfolio = () => {
           {/* <AlpacaStocks /> */}
           <div style={getMainDivStyle()}>
             <div style={getTickerContainerStyle()} className='col-md-2'>
-
               <div className='mb-4'>
                 <div className='d-flex'>
                   <h3 className="fs-4">Trade Available Stocks</h3>
@@ -261,7 +256,7 @@ const Portfolio = () => {
                 )}
               </div>
 
-              <h3 className="fs-4" style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3> {/* Adjust color for light mode */}
+              <h3 className="fs-4" style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3> 
               <table className='table table-striped mb-0 w-100 mb-4'>
                 <thead>
                   <tr>
@@ -283,7 +278,6 @@ const Portfolio = () => {
                   ))}
                 </tbody>
               </table>
-              <small className='text-muted mb-2 d-block'>Check portfolio at <NavLink to="https://app.alpaca.markets/paper/dashboard/overview" target="_blank" className='text-info' rel="noopener noreferrer">Alpaca</NavLink> our executing broker.</small>
             </div>
           </div>
         </Col>
@@ -324,4 +318,3 @@ const Portfolio = () => {
   );
 };
 export default Portfolio;
-

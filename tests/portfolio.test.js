@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, within, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Portfolio from '../src/components/Portfolio';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 global.fetch = require('node-fetch');
 
@@ -45,10 +46,15 @@ HTMLCanvasElement.prototype.getContext = () => ({
 
 describe('Portfolio Component', () => {
   test('renders tickers and interacts with AlpacaOrder component', async () => {
+
+    const queryClient = new QueryClient();
+
     render(
-      <Router>
-        <Portfolio />
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <Portfolio />
+        </Router>
+      </QueryClientProvider>
     );
 
     await waitFor(() => {

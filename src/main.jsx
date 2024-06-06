@@ -8,13 +8,18 @@ import * as bootstrap from 'bootstrap';
 import './index.css'
 import { Provider } from 'react-redux';
 import store from './store/store.js';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+    <React.StrictMode>
         <BrowserRouter>
-        <Provider store={store}>
-            <App />
-        </Provider>
+            <Provider store={store}>
+                <QueryClientProvider client={queryClient}>
+                    <App />
+                </QueryClientProvider>
+            </Provider>
         </BrowserRouter>
     </React.StrictMode>
 )

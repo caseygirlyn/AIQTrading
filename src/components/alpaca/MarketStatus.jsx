@@ -1,41 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 
 const MarketStatus = () => {
-    const [marketStatus, setMarketStatus] = useState('');
     const apiKey = import.meta.env.VITE_ALPACA_API_KEY;
     const secretKey = import.meta.env.VITE_ALPACA_SECRET_KEY;
-
-    useEffect(() => {
-        const fetchMarketStatus = async () => {
-            try {
-                const response = await fetch('https://paper-api.alpaca.markets/v2/clock', {
-                    method: 'GET',
-                    headers: {
-                        'APCA-API-KEY-ID': apiKey,
-                        'APCA-API-SECRET-KEY': secretKey,
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const data = await response.json();
-                const { is_open } = data;
-                setMarketStatus(is_open ? 'Open' : 'Closed');
-            } catch (error) {
-                console.error('Error fetching market status:', error);
-                setMarketStatus('Error');
+    const { data, error, isLoading } = useQuery('marketStatus', async () => {
+        const response = await fetch('https://paper-api.alpaca.markets/v2/clock', {
+            method: 'GET',
+            headers: {
+                'APCA-API-KEY-ID': apiKey,
+                'APCA-API-SECRET-KEY': secretKey,
+                'Content-Type': 'application/json'
             }
-        };
+        });
 
-        // Fetch market status initially and then every hour
-        fetchMarketStatus();
-        const interval = setInterval(fetchMarketStatus, 3600000);
+        if (!response.ok) {
+            throw new Error('Failed to fetch market status');
+        }
 
-        return () => clearInterval(interval); // Cleanup interval
-    }, []);
+        const data = await response.json();
+        const { is_open } = data;
+        const status = is_open ? 'Open' : 'Closed';
+        localStorage.setItem('marketStatus', status);
+        return status;
+    });
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
 
     return (
-        <>
-            <small className={`mt-1 small ${marketStatus === 'Open' ? 'text-success' : 'text-secondary'}`}><i className="bi bi-info-circle ms-3 me-1"></i>Market {marketStatus}</small>
-        </>
+        <small className={`mt-1 small ${data === 'Open' ? 'text-success' : 'text-secondary'}`}><i className="bi bi-info-circle ms-3 me-1"></i>Market {data}</small>
     );
 };
 

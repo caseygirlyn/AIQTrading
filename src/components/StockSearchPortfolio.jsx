@@ -54,7 +54,9 @@ const StockSearchPortfolio = (props) => {
         const today = new Date();
         const startDate = new Date(today);
 
-        (today.getDay() === 0 || today.getDay() === 1) ? startDate.setDate(today.getDate() - 3) : startDate.setDate(today.getDate() - 1)
+        const savedStatus = localStorage.getItem('marketStatus');
+
+        (savedStatus === 'Open') ? startDate.setDate(today.getDate() ) : startDate.setDate(today.getDate() - 3)
 
         let todayFormatted = formatDate(today);
         let startDateFormatted = formatDate(startDate);
@@ -83,21 +85,6 @@ const StockSearchPortfolio = (props) => {
             setSearchResults(data);
             setPriceChange(dataPC);
 
-            const searchedStocks = JSON.parse(localStorage.getItem('searchedStocks')) || [];
-            const stockInfo = {
-                symbol: query,
-                name: data[0].companyName,
-            };
-            const existingIndex = searchedStocks.findIndex(stock => stock.symbol === query);
-            if (existingIndex !== -1) {
-                // If the symbol exists, remove it from its current position
-                searchedStocks.splice(existingIndex, 1);
-            }
-
-            searchedStocks.unshift(stockInfo); // Add the new search to the beginning of the array
-            searchedStocks.splice(10); // Keep only the last 10 searches
-            localStorage.setItem('searchedStocks', JSON.stringify(searchedStocks));
-
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
@@ -109,7 +96,7 @@ const StockSearchPortfolio = (props) => {
             // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            const endPoint = `${baseUrl}historical-chart/15min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // [PROD] Start Fetch Stock Historical Chart Data
+            const endPoint = `${baseUrl}historical-chart/5min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // [PROD] Start Fetch Stock Historical Chart Data
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {
@@ -125,8 +112,8 @@ const StockSearchPortfolio = (props) => {
                 l: item.low,
                 c: item.close,
             }));
-            console.log(formattedData);
             setCandleData(formattedData);
+
         } catch (error) {
             setError('An error occurred while fetching data');
         } finally {
@@ -163,10 +150,16 @@ const StockSearchPortfolio = (props) => {
         return formatter.format(price);
     };
 
+    const dates = candleData.map(d => d.x);
+    const minDate = new Date(Math.min(...dates));
+    const maxDate = new Date(Math.max(...dates));
+    minDate.setMinutes(minDate.getMinutes() - 1); 
+    maxDate.setMinutes(maxDate.getMinutes() + 1); 
+
     const data = {
         datasets: [
             {
-                label: 'Candlestick Data',
+                label: '',
                 data: candleData.map(({ x, o, h, l, c }) => ({
                     x: new Date(x), o, h, l, c,
                 })),
@@ -182,10 +175,22 @@ const StockSearchPortfolio = (props) => {
         scales: {
             x: {
                 type: 'time',
-
+                offset: true,
+                min: minDate,
+                max: maxDate,
+                ticks: {
+                    major: {
+                        enabled: true,
+                    },
+                    source: 'data',
+                    maxRotation: 0,
+                    autoSkip: true,
+                    autoSkipPadding: 75,
+                    sampleSize: 100
+                },
             },
             y: {
-                beginAtZero: false,
+                type: 'linear',
                 ticks: {
                     color: labelColor
                 }
@@ -196,6 +201,9 @@ const StockSearchPortfolio = (props) => {
                 display: false
             },
             tooltip: {
+                display: false,
+                intersect: false,
+                mode: 'index',
                 callbacks: {
                     label: function (context) {
                         const { o, h, l, c } = context.raw;

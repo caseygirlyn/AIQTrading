@@ -1,61 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
 
-const OrderStatus = () => {
-    const [orders, setOrders] = useState([]);
-    const [error, setError] = useState(null);
+const fetchOrders = async () => {
     const apiKey = import.meta.env.VITE_ALPACA_API_KEY;
     const secretKey = import.meta.env.VITE_ALPACA_SECRET_KEY;
 
-    const fetchOrders = async () => {
-        try {
-            const response = await fetch('https://paper-api.alpaca.markets/v2/orders', {
-                method: 'GET',
-                headers: {
-                    'APCA-API-KEY-ID': apiKey,
-                    'APCA-API-SECRET-KEY': secretKey,
-                    'Content-Type': 'application/json'
-                },
-            });
+    const response = await fetch('https://paper-api.alpaca.markets/v2/orders', {
+        method: 'GET',
+        headers: {
+            'APCA-API-KEY-ID': apiKey,
+            'APCA-API-SECRET-KEY': secretKey,
+            'Content-Type': 'application/json',
+        },
+    });
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch orders');
-            }
+    return response.json();
+};
 
-            const data = await response.json();
-            setOrders(data);
-            setError(null);
-        } catch (error) {
-            setError(error.message);
-        }
-    };
+const formatDateTime = (dateTimeString) => {
+    const date = new Date(dateTimeString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
 
-    useEffect(() => {
-        fetchOrders(); // Initial fetch
+    return `${year}-${day}-${month} ${hours}:${minutes}`;
+};
 
-        const interval = setInterval(() => {
-            fetchOrders(); // Fetch positions every 1 minute
-        }, 60000);
+const OrderStatus = () => {
+    const { data: orders, error, isLoading, isError } = useQuery('orders', fetchOrders, {
+        refetchInterval: 60000, // Fetch data every 1 minute
+    });
 
-        return () => clearInterval(interval); // Cleanup on unmount
+    if (isLoading) {
+        return <div className="spinner-border text-info mx-auto my-3 d-block" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>;
+    }
 
-    }, []);
-
-    const formatDateTime = (dateTimeString) => {
-        const date = new Date(dateTimeString);
-
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-
-        return `${year}-${day}-${month} ${hours}:${minutes}`;
-    };
+    if (isError) {
+        return <div>Error: {error.message}</div>;
+    }
 
     return (
         <>
             {orders.length >= 1 && (
-                <div className='mb-4'>
+                <>
                     <h2 className='fs-4'>Order Status</h2>
                     <div className="table-responsive">
                         <table className='table table-striped mb-0 w-100'>
@@ -83,7 +74,7 @@ const OrderStatus = () => {
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </>
             )}
         </>
     );

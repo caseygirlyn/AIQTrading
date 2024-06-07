@@ -22,7 +22,7 @@ const fetchCompanyProfile = async (tickerCP, apiKey) => {
 
 const CompanyLogo = ({ tickerCP }) => {
     
-    const apiKey = import.meta.env.VITE_API_KEY_FMP_1;
+    const apiKey = import.meta.env.VITE_API_KEY_FMP_3;
 
     const { data: companyProfile, error, isLoading, isError } = useQuery(
         ['companyProfile', tickerCP],

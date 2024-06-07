@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
 import axios from 'axios';
+import CompanyLogo from '../common/Tables/CompanyLogo';
 
 const AlpacaOrder = ({ symbol, tickerName, isDarkMode, orderType, quantity, closeModal, assetQty, price, marketValue, unrealizedPL, unrealizedPLPC }) => {
     const [response, setResponse] = useState('');
@@ -114,6 +115,7 @@ const AlpacaOrder = ({ symbol, tickerName, isDarkMode, orderType, quantity, clos
         <>
             <Paper elevation={0}>
                 <div className='text-center'>
+                    <CompanyLogo tickerCP={symbol}/>
                     <div>{tickerName}</div>
                     <Typography variant="h6" gutterBottom style={{ fontFamily: 'inherit', 'textTransform': 'uppercase' }}>({symbol})</Typography>
                     {price !== null && (
@@ -140,8 +142,6 @@ const AlpacaOrder = ({ symbol, tickerName, isDarkMode, orderType, quantity, clos
                 </Grid>
                 {assetQty === null && price !== null && orderType == 'sell' && (
                     <div className='alert alert-danger text-center py-2'>You don’t have {symbol} to sell.<br></br>Start acquiring some to trade!</div>)}
-                {price === null && (
-                            <div className='alert alert-danger text-center py-2 mb-0'>Error: Failed to fetch asset price.</div>)}
                 <Grid container spacing={1} justifyContent="center">
                     <Grid item className='w-100'>
                         {orderType == 'sell' && (

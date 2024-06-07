@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import AlpacaOrder from '../src/components/alpaca/Order';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 // Mocking global fetch
 global.fetch = jest.fn(() =>
@@ -16,7 +17,14 @@ beforeEach(() => {
 
 describe('AlpacaOrder Component', () => {
   test('renders and handles order placement', async () => {
-    render(<AlpacaOrder symbol="AAPL" orderType="buy" quantity={1} />);
+
+    const queryClient = new QueryClient();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <AlpacaOrder symbol="AAPL" orderType="buy" quantity={1} />
+      </QueryClientProvider>
+    );
 
     // Check if the component is rendered with the correct symbol
     expect(screen.getByText('(AAPL)')).toBeInTheDocument();

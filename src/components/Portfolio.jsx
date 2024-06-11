@@ -12,18 +12,33 @@ import PortfolioGraph from './alpaca/PortfolioGraph';
 import { Modal } from 'react-bootstrap';
 import MarketStatus from './alpaca/MarketStatus';
 import axios from 'axios';
+import DataPriceChange from './common/Tables/DataPriceChange';
+import TransactionHistory from './alpaca/TransactionHistory';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
   const [show, setShow] = useState(false);
+  const [showCP, setShowCP] = useState(false);
   const [assetQty, setAssetQty] = useState(null);
   const [price, setPrice] = useState(null);
   const [marketValue, setMarketValue] = useState(null);
   const [unrealizedPL, setUnrealizedPL] = useState(null);
   const [unrealizedPLPC, setUnrealizedPLPC] = useState(null);
+  const [tickerCP, setTickerCP] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseCP = () => {
+    setTickerCP(null);
+    setShowCP(false);
+  }
+  const handleShowCP = (tickerCP) => {
+    setTickerCP(tickerCP);
+    setShowCP(true);
+  }
 
   function getInitialMode() {
     const savedMode = JSON.parse(localStorage.getItem('darkMode'));
@@ -168,7 +183,6 @@ const Portfolio = () => {
       setMarketValue(response.data.market_value);
       setUnrealizedPL(response.data.unrealized_pl);
       setUnrealizedPLPC(response.data.unrealized_plpc);
-      console.log(response.data);
       setError('');
     } catch (error) {
       setAssetQty(null);
@@ -244,7 +258,7 @@ const Portfolio = () => {
                       <tbody>
                         {filteredStocks.map((stock, index) => (
                           <tr key={index}>
-                            <td>{stock.symbol}</td>
+                            <td onClick={() => handleShowCP(stock.symbol)}  role='button'>{stock.symbol}</td>
                             <td>{stock.name}</td>
                             <td colSpan={2} className='text-end' style={{ minWidth: '154px' }}>
                               <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, stock.name, 'buy')}>Buy</button>
@@ -269,7 +283,7 @@ const Portfolio = () => {
                 <tbody>
                   {tickers.map((ticker, index) => (
                     <tr key={index}>
-                      <td>{ticker.symbol}</td>
+                      <td onClick={() => handleShowCP(ticker.symbol)} role='button'>{ticker.symbol}</td>
                       <td>{ticker.name}</td>
                       <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}><div>
                         <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'buy')}>Buy</button>
@@ -311,9 +325,31 @@ const Portfolio = () => {
         </Col>
       </div>
       <div className="container m-auto">
-        <TradingPosition />
-        <OrderStatus />
+        <Tabs
+          defaultActiveKey="positions"
+        >
+          <Tab eventKey="positions" title="Trading Positions" className="mb-5 text-center">
+            <TradingPosition />
+          </Tab>
+          <Tab eventKey="history" title="Transaction History" className="mb-5 text-center">
+            <TransactionHistory />
+          </Tab>
+          <Tab eventKey="status" title="Pending Orders" className="mb-5 text-center">
+            <OrderStatus />
+          </Tab>
+        </Tabs>
+
       </div>
+      {tickerCP && (
+        <Modal show={showCP} onHide={handleCloseCP} dialogClassName="asset-modal modal-dialog-centered">
+          <Modal.Header closeButton></Modal.Header>
+          <Modal.Body>
+            <div className="col-lg-4 my-2">
+              <DataPriceChange tickerCP={tickerCP} />
+            </div>
+          </Modal.Body>
+        </Modal>
+      )}
       <Footer />
     </div>
     </>

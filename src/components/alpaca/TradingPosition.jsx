@@ -46,8 +46,7 @@ const TradingPosition = () => {
 
     return (
         <>
-            <h2 className='fs-4'>Trading Positions</h2>
-            <div className="table-responsive mb-4">
+            <div className="table-responsive">
                 <table className='table table-striped mb-0 w-100'>
                     <thead>
                         <tr>

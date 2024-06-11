@@ -331,11 +331,11 @@ const Portfolio = () => {
           <Tab eventKey="positions" title="Trading Positions" className="mb-5 text-center">
             <TradingPosition />
           </Tab>
+          <Tab eventKey="status" title="Orders" className="mb-5 text-center">
+            <OrderStatus />
+          </Tab>
           <Tab eventKey="history" title="Transaction History" className="mb-5 text-center">
             <TransactionHistory />
-          </Tab>
-          <Tab eventKey="status" title="Pending Orders" className="mb-5 text-center">
-            <OrderStatus />
           </Tab>
         </Tabs>
 

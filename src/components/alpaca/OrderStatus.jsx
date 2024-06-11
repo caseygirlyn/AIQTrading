@@ -47,7 +47,6 @@ const OrderStatus = () => {
         <>
             {orders.length >= 1 && (
                 <>
-                    <h2 className='fs-4'>Order Status</h2>
                     <div className="table-responsive">
                         <table className='table table-striped mb-0 w-100'>
                             <thead>
@@ -76,6 +75,7 @@ const OrderStatus = () => {
                     </div>
                 </>
             )}
+            { orders.length == 0 && (<div className='my-2'>No Pending Orders</div>)}
         </>
     );
 };

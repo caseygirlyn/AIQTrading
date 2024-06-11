@@ -4,7 +4,6 @@ import { CandlestickController, CandlestickElement } from 'chartjs-chart-financi
 import { Chart } from 'react-chartjs-2';
 import 'chartjs-adapter-date-fns';
 import zoomPlugin from 'chartjs-plugin-zoom';
-import CompanyProfile from './common/Tables/CompanyProfile';
 import PriceChange from './common/Tables/PriceChange';
 import { Modal } from 'react-bootstrap';
 
@@ -56,7 +55,10 @@ const StockSearchPortfolio = (props) => {
 
         const savedStatus = localStorage.getItem('marketStatus');
 
-        (savedStatus === 'Open') ? startDate.setDate(today.getDate() ) : startDate.setDate(today.getDate() - 3)
+
+        if (savedStatus === 'Open' || (savedStatus !== 'Open' && (today.getDay() !== 6 || today.getDay() !== 7))) startDate.setDate(today.getDate());
+
+        else startDate.setDate(today.getDate() - 3) 
 
         let todayFormatted = formatDate(today);
         let startDateFormatted = formatDate(startDate);
@@ -153,8 +155,8 @@ const StockSearchPortfolio = (props) => {
     const dates = candleData.map(d => d.x);
     const minDate = new Date(Math.min(...dates));
     const maxDate = new Date(Math.max(...dates));
-    minDate.setMinutes(minDate.getMinutes() - 1); 
-    maxDate.setMinutes(maxDate.getMinutes() + 1); 
+    minDate.setMinutes(minDate.getMinutes() - 1);
+    maxDate.setMinutes(maxDate.getMinutes() + 1);
 
     const data = {
         datasets: [

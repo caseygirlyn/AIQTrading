@@ -26,7 +26,7 @@ body,
 }
 
 .bg-primary-color {
-  background-color: var(--primary-color) !important;
+  background-color: #2f3443 !important;
 }
 
 .btn.bg-secondary-color:hover {
@@ -311,7 +311,8 @@ i.bi.bi-list {
 }
 
 .lightMode .table-striped {
-  border: 1px solid #eee;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
 }
 
 .darkMode .table > :not(caption) > * > * {

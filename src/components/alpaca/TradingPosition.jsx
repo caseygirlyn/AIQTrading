@@ -50,8 +50,8 @@ const TradingPosition = () => {
                 <table className='table table-striped mb-0 w-100'>
                     <thead>
                         <tr>
-                            <th className='bg-primary-color text-white fw-normal'>ASSET</th>
-                            <th className='bg-primary-color text-white fw-normal'>QTY</th>
+                            <th className='bg-primary-color text-white fw-normal text-start'>ASSET</th>
+                            <th className='bg-primary-color text-white fw-normal text-end'>QTY</th>
                             <th className='bg-primary-color text-white fw-normal text-end text-nowrap'>AVG. ENTRY PRICE</th>
                             <th className='bg-primary-color text-white fw-normal text-end text-nowrap'>CURRENT PRICE</th>
                             <th className='bg-primary-color text-white fw-normal text-end text-nowrap'>MARKET VALUE</th>
@@ -62,8 +62,8 @@ const TradingPosition = () => {
                     <tbody>
                         {positions.map((position, index) => (
                             <tr key={index}>
-                                <td>{position.symbol}</td>
-                                <td>{position.qty}</td>
+                                <td className='text-start'>{position.symbol}</td>
+                                <td className='text-end'>{position.qty}</td>
                                 <td className='text-end'>{formatCurrency('USD', position.avg_entry_price)}</td>
                                 <td className='text-end'>{formatCurrency('USD', position.current_price)}</td>
                                 <td className='text-end'>{formatCurrency('USD', position.market_value)}</td>

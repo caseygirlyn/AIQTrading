@@ -76,7 +76,7 @@ const TransactionHistory = () => {
                 <table className='table table-striped mb-0 w-100'>
                     <thead>
                         <tr>
-                            <th onClick={() => handleSort('symbol')} role='button' className='bg-primary-color text-white fw-normal text-nowrap'> SYMBOL <i className="bi bi-chevron-expand"></i></th>
+                            <th onClick={() => handleSort('symbol')} role='button' className='bg-primary-color text-white fw-normal text-start text-nowrap'> SYMBOL <i className="bi bi-chevron-expand"></i></th>
                             <th className='bg-primary-color text-white fw-normal'>QTY</th>
                             <th className='bg-primary-color text-white fw-normal'>SIDE</th>
                             <th className='bg-primary-color text-white fw-normal'>PRICE</th>
@@ -88,7 +88,7 @@ const TransactionHistory = () => {
                     <tbody>
                         {currentTransactions.map((transaction) => (
                             <tr key={transaction.id}>
-                                <td>{transaction.symbol}</td>
+                                <td className='text-start'>{transaction.symbol}</td>
                                 <td>{transaction.qty}</td>
                                 <td className='text-capitalize'>{transaction.side}</td>
                                 <td>{formatCurrency('USD', transaction.price)}</td>

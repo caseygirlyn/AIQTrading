@@ -3,7 +3,6 @@ import AlpacaOrder from './alpaca/Order'
 import Col from "./common/Theme/Col";
 import Header from './common/Header';
 import Footer from './common/Footer';
-import StockSearchPortfolio from "./StockSearchPortfolio";
 import TradingPosition from './alpaca/TradingPosition';
 import PortfolioStatus from './alpaca/PortfolioStatus';
 import TradingPositionsPieChart from './alpaca/TradingPositionPieChart';
@@ -16,6 +15,7 @@ import DataPriceChange from './common/Tables/DataPriceChange';
 import TransactionHistory from './alpaca/TransactionHistory';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import CandlestickChart from './alpaca/CandlestickChart';
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(getInitialMode());
@@ -225,17 +225,13 @@ const Portfolio = () => {
         </label>
       </div>
       <Header />
-      <div className="container mt-5 pt-5">
-        <StockSearchPortfolio isDarkMode={isDarkMode} />
-      </div>
-      <div className="container m-auto mb-3 row px-0 text-center">
+      <div className="container m-auto mb-3 mt-5 pt-5 row px-0 text-center">
         <Col size="lg-12">
           <PortfolioStatus />
         </Col>
       </div>
       <div className="container m-auto d-md-flex mt-4">
         <Col size="md-6">
-          {/* <AlpacaStocks /> */}
           <div style={getMainDivStyle()}>
             <div style={getTickerContainerStyle()} className='col-md-2'>
               <div className='mb-4'>
@@ -256,13 +252,16 @@ const Portfolio = () => {
                   <div style={{ maxHeight: '210px', overflowY: 'scroll' }}>
                     <table className='table table-striped mb-0 w-100 mb-4'>
                       <tbody>
-                        {filteredStocks.map((stock, index) => (
+                        {filteredStocks.map((ticker, index) => (
                           <tr key={index}>
-                            <td onClick={() => handleShowCP(stock.symbol)}  role='button'>{stock.symbol}</td>
-                            <td>{stock.name}</td>
+                            <td style={{ width: '25px' }} onClick={() => handleShowCP(ticker.symbol)} role='button'>
+                              <i className="bi bi-graph-up text-info  "></i>
+                            </td>
+                            <td>{ticker.symbol}</td>
+                            <td onClick={() => handleShowCP(ticker.symbol)} role='button'>{ticker.name}</td>
                             <td colSpan={2} className='text-end' style={{ minWidth: '154px' }}>
-                              <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, stock.name, 'buy')}>Buy</button>
-                              <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(stock.symbol, stock.name, 'sell')}>Sell</button>
+                              <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'buy')}>Buy</button>
+                              <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'sell')}>Sell</button>
                             </td>
                           </tr>
                         ))}
@@ -274,18 +273,15 @@ const Portfolio = () => {
 
               <h3 className="fs-4" style={{ color: isDarkMode ? 'white' : '#3d4354' }}>Most Owned Stocks</h3>
               <table className='table table-striped mb-0 w-100 mb-4'>
-                <thead>
-                  <tr>
-                    <th className='bg-primary-color text-white fs-6'>Symbol</th>
-                    <th className='bg-primary-color text-white fs-6' colSpan={3}>Name</th>
-                  </tr>
-                </thead>
                 <tbody>
                   {tickers.map((ticker, index) => (
                     <tr key={index}>
-                      <td onClick={() => handleShowCP(ticker.symbol)} role='button'>{ticker.symbol}</td>
+                      <td style={{ width: '25px' }} onClick={() => handleShowCP(ticker.symbol)} role='button'>
+                        <i className="bi bi-graph-up text-info  "></i>
+                      </td>
+                      <td>{ticker.symbol}</td>
                       <td>{ticker.name}</td>
-                      <td colSpan={2} className='text-end' style={{ minWidth: '152px' }}><div>
+                      <td colSpan={2} className='text-end' style={{ minWidth: '154px' }}><div>
                         <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'buy')}>Buy</button>
                         <button className="btn btn-outline-danger m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'sell')}>Sell</button>
                       </div>
@@ -334,18 +330,22 @@ const Portfolio = () => {
           <Tab eventKey="status" title="Orders" className="mb-5 text-center">
             <OrderStatus />
           </Tab>
-          <Tab eventKey="history" title="Transaction History" className="mb-5 text-center">
+          <Tab eventKey="history" title="Transactions" className="mb-5 text-center">
             <TransactionHistory />
           </Tab>
         </Tabs>
-
       </div>
       {tickerCP && (
-        <Modal show={showCP} onHide={handleCloseCP} dialogClassName="asset-modal modal-dialog-centered">
+        <Modal show={showCP} onHide={handleCloseCP} dialogClassName="asset-modal modal-dialog-centered" className={isDarkMode ? 'darkModal' : ''}>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
-            <div className="col-lg-4 my-2">
-              <DataPriceChange tickerCP={tickerCP} />
+            <div className='row'>
+              <div className="col-lg-4 my-2">
+                <DataPriceChange tickerCP={tickerCP} />
+              </div>
+              <div className='col-lg-8'>
+                <CandlestickChart tickerCP={tickerCP} isDarkMode={isDarkMode} />
+              </div>
             </div>
           </Modal.Body>
         </Modal>

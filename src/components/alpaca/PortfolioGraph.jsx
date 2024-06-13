@@ -72,6 +72,7 @@ const PortfolioGraph = (props) => {
                     target: 'origin',
                     above: bgcolor
                 },
+                borderWidth: 1,
                 borderColor: color,
                 pointBorderWidth: 0,
             },

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
-import { Chart as ChartJS, CategoryScale, LinearScale, TimeScale, Tooltip, Legend } from 'chart.js';
+import { useQuery } from 'react-query';
+import { Chart as ChartJS, CategoryScale, LinearScale, TimeScale, Tooltip, Legend, LineElement, PointElement, LineController } from 'chart.js';
 import { CandlestickController, CandlestickElement } from 'chartjs-chart-financial';
 import { Chart } from 'react-chartjs-2';
 import 'chartjs-adapter-date-fns';
@@ -14,6 +14,9 @@ ChartJS.register(
   Legend,
   CandlestickController,
   CandlestickElement,
+  LineController,
+  LineElement,
+  PointElement,
   zoomPlugin
 );
 
@@ -39,40 +42,67 @@ const formatDate = (date) => {
   const day = String(date.getDate()).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
-}
+};
+
+// Check if a date is within market hours (9:30 AM to 4:00 PM Eastern Time)
+const isMarketOpen = (date) => {
+  const openHour = 9;
+  const openMinute = 30;
+  const closeHour = 16;
+  const closeMinute = 0;
+
+  const hours = date.getUTCHours();
+  const minutes = date.getUTCMinutes();
+
+  const openTime = openHour * 60 + openMinute;
+  const closeTime = closeHour * 60 + closeMinute;
+  const currentTime = hours * 60 + minutes;
+
+  return currentTime >= openTime && currentTime <= closeTime;
+};
 
 const CandlestickChart = ({ tickerCP, isDarkMode }) => {
   const [candleData, setCandleData] = useState([]);
-  let color = (isDarkMode) ? 'rgb(13, 202, 240)' : 'rgb(58, 64, 80)';
-  let labelColor = (isDarkMode) ? 'rgb(255, 255, 255)' : 'rgb(58, 64, 80)';
-  let bgcolor = (isDarkMode) ? 'rgb(67 202 240 / 10%)' : 'rgb(0 0 0 / 10%)';
+  const [range, setRange] = useState('1d'); // Default range
+  const [chartType, setChartType] = useState('candlestick'); // Default chart type
   const baseUrl = "https://financialmodelingprep.com/api/v3/";
   const apiKey = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
 
   const today = new Date();
-  const startDate = new Date(today);
-  const savedStatus = localStorage.getItem('marketStatus');
+  const calculateStartDate = (range) => {
+    const startDate = new Date(today);
+    if (range === '1d') {
+      startDate.setDate(today.getDate() - 1);
+    } else if (range === '5d') {
+      startDate.setDate(today.getDate() - 5);
+    } else if (range === '10d') {
+      startDate.setDate(today.getDate() - 10);
+    }
+    return startDate;
+  };
 
-  if (savedStatus === 'Open' || (savedStatus !== 'Open' && (today.getDay() !== 6 || today.getDay() !== 7))) startDate.setDate(today.getDate());
-  else startDate.setDate(today.getDate() - 3);
+  const startDate = calculateStartDate(range);
 
   let todayFormatted = formatDate(today);
   let startDateFormatted = formatDate(startDate);
 
   const { data: dataChart, error, isLoading, isError } = useQuery(
-    ['dataChart', tickerCP],
+    ['dataChart', tickerCP, startDateFormatted],
     () => fetchPriceChange(tickerCP, apiKey, baseUrl, startDateFormatted, todayFormatted),
+    { keepPreviousData: true }
   );
 
   useEffect(() => {
     if (dataChart) {
-      const formattedData = dataChart.map(item => ({
-        x: new Date(item.date),
-        o: item.open,
-        h: item.high,
-        l: item.low,
-        c: item.close,
-      }));
+      const formattedData = dataChart
+        .filter(item => isMarketOpen(new Date(item.date))) // Filter out data outside market hours
+        .map(item => ({
+          x: new Date(item.date),
+          o: item.open,
+          h: item.high,
+          l: item.low,
+          c: item.close,
+        }));
       setCandleData(formattedData);
     }
   }, [dataChart]);
@@ -91,7 +121,7 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
   minDate.setMinutes(minDate.getMinutes() - 1);
   maxDate.setMinutes(maxDate.getMinutes() + 1);
 
-  const data = {
+  const candlestickData = {
     datasets: [
       {
         label: '',
@@ -100,8 +130,28 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
         })),
         borderColor: 'black',
         borderWidth: 1,
-        barThickness: 5, // Set a fixed bar thickness
-        maxBarThickness: 5, // Alternatively, set a maximum bar thickness
+        barThickness: 3, // Set a fixed bar thickness
+        maxBarThickness: 3, // Alternatively, set a maximum bar thickness
+      },
+    ],
+  };
+
+  const lineData = {
+    labels: candleData.map(d => d.x),
+    datasets: [
+      {
+        label: '',
+        data: candleData.map(d => ({ x: d.x, y: d.c })),
+        borderColor: 'rgb(13, 202, 240)',
+        elements: {
+          point: {
+            radius: 0
+          }
+        },
+        fill: false,
+        tension: 0,
+        pointBorderWidth: 0,
+        borderWidth: 1,
       },
     ],
   };
@@ -127,7 +177,7 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
       y: {
         type: 'linear',
         ticks: {
-          color: labelColor
+          color: isDarkMode ? 'white' : '#3d4354',
         }
       }
     },
@@ -136,20 +186,7 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
         display: false
       },
       tooltip: {
-        display: false,
-        intersect: false,
-        mode: 'index',
-        callbacks: {
-          label: function (context) {
-            const { o, h, l, c } = context.raw;
-            return [
-              `Open: $${o.toFixed(2)}`,
-              `High: $${h.toFixed(2)}`,
-              `Low: $${l.toFixed(2)}`,
-              `Close: $${c.toFixed(2)}`
-            ];
-          }
-        }
+        enabled: false
       },
       zoom: {
         pan: {
@@ -170,7 +207,17 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
   };
 
   return (
-    <Chart type="candlestick" data={data} options={options} />
+    <>
+      <Chart type={chartType} data={chartType === 'candlestick' ? candlestickData : lineData} options={options} />
+      <div className="btn-group btn-group-toggle">
+        <button onClick={() => setRange('1d')} className='btn btn-outline-info btn-sm'>1-day</button>
+        <button onClick={() => setRange('5d')} className='btn btn-outline-info btn-sm'>5-day</button>
+        <button onClick={() => setRange('10d')} className='btn btn-outline-info btn-sm'>10-day</button>
+        <button onClick={() => setChartType(chartType === 'candlestick' ? 'line' : 'candlestick')} className='btn btn-outline-info btn-sm'>
+          {chartType === 'candlestick' ? 'Switch to Line Chart' : 'Switch to Candlestick Chart'}
+        </button>
+      </div>
+    </>
   );
 };
 

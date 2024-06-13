@@ -255,7 +255,7 @@ const Portfolio = () => {
                         {filteredStocks.map((ticker, index) => (
                           <tr key={index}>
                             <td style={{ width: '25px' }} onClick={() => handleShowCP(ticker.symbol)} role='button'>
-                              <i className="bi bi-graph-up text-info  "></i>
+                              <i className="bi bi-graph-up" data-toggle="tooltip" title="View Price Change Chart"></i>
                             </td>
                             <td>{ticker.symbol}</td>
                             <td onClick={() => handleShowCP(ticker.symbol)} role='button'>{ticker.name}</td>
@@ -276,10 +276,8 @@ const Portfolio = () => {
                 <tbody>
                   {tickers.map((ticker, index) => (
                     <tr key={index}>
-                      <td style={{ width: '25px' }} onClick={() => handleShowCP(ticker.symbol)} role='button'>
-                        <i className="bi bi-graph-up text-info  "></i>
-                      </td>
-                      <td>{ticker.symbol}</td>
+                      <td onClick={() => handleShowCP(ticker.symbol)} role='button' data-toggle="tooltip" title="View Price Change Chart">
+                        <i className="bi bi-graph-up" ></i> {ticker.symbol}</td>
                       <td>{ticker.name}</td>
                       <td colSpan={2} className='text-end' style={{ minWidth: '154px' }}><div>
                         <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'buy')}>Buy</button>
@@ -340,10 +338,10 @@ const Portfolio = () => {
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
             <div className='row'>
-              <div className="col-lg-4 my-2">
+              <div className="col-lg-4 mb-2">
                 <DataPriceChange tickerCP={tickerCP} />
               </div>
-              <div className='col-lg-8'>
+              <div className='col-lg-8 text-center'>
                 <CandlestickChart tickerCP={tickerCP} isDarkMode={isDarkMode} />
               </div>
             </div>

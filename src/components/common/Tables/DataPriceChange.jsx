@@ -49,7 +49,7 @@ const formatCurrency = (currency, price) => {
 const DataPriceChange = ({ tickerCP }) => {
     
     const apiKey = import.meta.env.VITE_API_KEY_FMP_1;
-    const apiKey2 = import.meta.env.VITE_API_KEY_FMP_2;
+    const apiKey3 = import.meta.env.VITE_API_KEY_FMP_3;
 
     const { data: priceChange, error, isLoading, isError } = useQuery(
         ['priceChange', tickerCP],
@@ -58,7 +58,7 @@ const DataPriceChange = ({ tickerCP }) => {
 
     const { data: companyProfile, error2, isLoading2, isError2 } = useQuery(
         ['companyProfile', tickerCP],
-        () => fetchCompanyProfile(tickerCP, apiKey2),
+        () => fetchCompanyProfile(tickerCP, apiKey3),
     );
 
     if (isLoading || isLoading2) {

@@ -19,7 +19,7 @@ ChartJS.register(
     Filler
 );
 
-const apiKey3 = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
+const apiKey = import.meta.env.VITE_API_KEY_FMP_1; // Netlify ENV variable
 const apiKeyNews = import.meta.env.VITE_API_KEY_POLYGON_2; // Netlify ENV variable
 
 const StockSearch = (props) => {
@@ -59,8 +59,8 @@ const StockSearch = (props) => {
             // Define multiple fetch requests
             // https://financialmodelingprep.com/api/v3/profile/AAPL?apikey={APIKEY}
 
-            const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey3}`); // [PROD] Start Fetch Company Profile Data
-            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey3}`); // [PROD] Start Fetch Stock Price Change Data 
+            const response = await fetch(`${baseUrl}profile/${query}?apikey=${apiKey}`); // [PROD] Start Fetch Company Profile Data
+            const responsePC = await fetch(`${baseUrl}stock-price-change/${query}?apikey=${apiKey}`); // [PROD] Start Fetch Stock Price Change Data 
 
             // Make both requests concurrently using Promise.all()
             const [dataResponse, dataResponsePC] = await Promise.all([response, responsePC]);
@@ -103,7 +103,7 @@ const StockSearch = (props) => {
             // https://financialmodelingprep.com/api/v3/historical-chart/1hour/AAPL?from=2023-08-10&to=2023-09-10&apikey={APIKEY}
             // 1min, 5min, 15min, 30min, 1hour, 4hour
 
-            const endPoint = `${baseUrl}historical-chart/15min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey3}`; // [PROD] Start Fetch Stock Historical Chart Data
+            const endPoint = `${baseUrl}historical-chart/15min/${query}?from=${startDateFormatted}&to=${todayFormatted}&apikey=${apiKey}`; // [PROD] Start Fetch Stock Historical Chart Data
             const responseCHART = await fetch(endPoint);
 
             if (!responseCHART.ok) {

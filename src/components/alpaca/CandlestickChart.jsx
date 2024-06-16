@@ -65,19 +65,33 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
   const [candleData, setCandleData] = useState([]);
   const [range, setRange] = useState('1d'); // Default range
   const [chartType, setChartType] = useState('candlestick'); // Default chart type
+  const [weekend, setWeekend] = useState();
   const baseUrl = "https://financialmodelingprep.com/api/v3/";
   const apiKey = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
 
   const today = new Date();
+
+  useEffect(() => {
+    if (today.getDay() === 0 || today.getDay() === 1) {
+      setWeekend(true);
+    }
+  }, []);
+
   const calculateStartDate = (range) => {
     const startDate = new Date(today);
-    if (range === '1d') {
-      startDate.setDate(today.getDate() - 1);
-    } else if (range === '5d') {
-      startDate.setDate(today.getDate() - 5);
-    } else if (range === '10d') {
-      startDate.setDate(today.getDate() - 10);
+
+    if (startDate.getDay() === 0 || startDate.getDay() === 6) {
+      startDate.setDate(today.getDate() - 2);
+    } else {
+      if (range === '1d') {
+        startDate.setDate(today.getDate() - 1);
+      } else if (range === '5d') {
+        startDate.setDate(today.getDate() - 5);
+      } else if (range === '10d') {
+        startDate.setDate(today.getDate() - 10);
+      }
     }
+
     return startDate;
   };
 
@@ -210,9 +224,13 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
     <>
       <Chart type={chartType} data={chartType === 'candlestick' ? candlestickData : lineData} options={options} />
       <div className="btn-group btn-group-toggle">
-        <button onClick={() => setRange('1d')} className='btn btn-outline-info btn-sm'>1-day</button>
-        <button onClick={() => setRange('5d')} className='btn btn-outline-info btn-sm'>5-day</button>
-        <button onClick={() => setRange('10d')} className='btn btn-outline-info btn-sm'>10-day</button>
+        {!weekend && (
+          <>
+            <button onClick={() => setRange('1d')} className='btn btn-outline-info btn-sm'>1-day</button>
+            <button onClick={() => setRange('5d')} className='btn btn-outline-info btn-sm'>5-day</button>
+            <button onClick={() => setRange('10d')} className='btn btn-outline-info btn-sm'>10-day</button>
+          </>
+        )}
         <button onClick={() => setChartType(chartType === 'candlestick' ? 'line' : 'candlestick')} className='btn btn-outline-info btn-sm'>
           {chartType === 'candlestick' ? 'Switch to Line Chart' : 'Switch to Candlestick Chart'}
         </button>

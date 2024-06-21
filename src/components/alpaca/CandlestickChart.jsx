@@ -65,7 +65,7 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
   const [candleData, setCandleData] = useState([]);
   const [range, setRange] = useState('5d'); // Default range
   const [chartType, setChartType] = useState('line'); // Default chart type
-  const [weekend, setWeekend] = useState([]);
+  const [weekend, setWeekend] = useState(false);
   const baseUrl = "https://financialmodelingprep.com/api/v3/";
   const apiKey = import.meta.env.VITE_API_KEY_FMP_3; // Netlify ENV variable
 

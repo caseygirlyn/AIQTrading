@@ -255,7 +255,7 @@ const Portfolio = () => {
                         {filteredStocks.map((ticker, index) => (
                           <tr key={index}>
                             <td onClick={() => handleShowCP(ticker.symbol)} role='button' style={{ minWidth: '84px' }}>
-                              <i className="bi bi-graph-up" data-toggle="tooltip" title="View Price Change Chart"></i> {ticker.symbol}
+                              <i className="bi bi-graph-up text-success" data-toggle="tooltip" title="View Price Change Chart"></i> {ticker.symbol}
                             </td>
                             <td onClick={() => handleShowCP(ticker.symbol)} role='button'>{ticker.name}</td>
                             <td colSpan={2} className='text-end' style={{ minWidth: '154px' }}>
@@ -276,7 +276,7 @@ const Portfolio = () => {
                   {tickers.map((ticker, index) => (
                     <tr key={index}>
                       <td onClick={() => handleShowCP(ticker.symbol)} role='button' data-toggle="tooltip" title="View Price Change Chart" style={{ minWidth: '84px' }}>
-                        <i className="bi bi-graph-up" ></i> {ticker.symbol}</td>
+                        <i className="bi bi-graph-up text-success" ></i> {ticker.symbol}</td>
                       <td>{ticker.name}</td>
                       <td colSpan={2} className='text-end' style={{ minWidth: '154px' }}><div>
                         <button className="btn btn-outline-success m-1 px-3" onClick={() => handleTickerSelection(ticker.symbol, ticker.name, 'buy')}>Buy</button>

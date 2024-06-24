@@ -72,7 +72,7 @@ const CandlestickChart = ({ tickerCP, isDarkMode }) => {
   const today = new Date();
 
   useEffect(() => {
-    if (today.getDay() === 0 || today.getDay() === 1) {
+    if (today.getDay() === 6 || today.getDay() === 0) {
       setWeekend(true);
     }
   }, []);

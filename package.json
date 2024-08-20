@@ -19,7 +19,7 @@
     ]
   },
   "dependencies": {
-    "@alpacahq/alpaca-trade-api": "^3.0.1",
+    "@alpacahq/alpaca-trade-api": "^3.1.1",
     "@emailjs/browser": "^4.2.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
@@ -27,7 +27,6 @@
     "@mui/material": "^5.15.13",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.2.1",
-    "axios": "^1.7.4",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.3",
@@ -62,6 +61,7 @@
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
+    "axios": "^1.7.4",
     "babel-jest": "^29.7.0",
     "babel-plugin-transform-vite-meta-env": "^1.0.3",
     "cypress": "^13.6.6",

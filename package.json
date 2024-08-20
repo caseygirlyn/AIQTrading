@@ -36,6 +36,7 @@
     "firebase": "^10.9.0",
     "node-fetch": "^2.7.0",
     "nth-check": "^2.0.1",
+    "patch-package": "^8.0.0",
     "polygon.io": "^2.1.2",
     "postcss": "^8.4.41",
     "react": "^18.2.0",

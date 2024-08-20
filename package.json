@@ -35,6 +35,7 @@
     "chartjs-plugin-zoom": "^2.0.1",
     "firebase": "^10.9.0",
     "node-fetch": "^2.7.0",
+    "nth-check": "^2.1.1",
     "polygon.io": "^2.1.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",

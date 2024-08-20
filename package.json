@@ -23,6 +23,7 @@
     "@emailjs/browser": "^4.2.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@grpc/grpc-js": "^1.11.1",
     "@mui/material": "^5.15.13",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.2.1",

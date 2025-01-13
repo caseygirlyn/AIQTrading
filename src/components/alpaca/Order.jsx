@@ -195,7 +195,7 @@ const AlpacaOrder = ({
                 {submitted && !error && (
                     <div className="px-2 mx-2">
                         <div className="alert alert-success text-center py-2 w-100" role="alert">
-                            Order Submitted
+                            Order Submitted <span className='d-none'>{response}</span>
                         </div>
                     </div>
                 )}

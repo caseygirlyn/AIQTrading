@@ -75,7 +75,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-transform-stub": "^2.0.0",
     "resize-observer-polyfill": "^1.5.1",
-    "vite": "^5.1.4",
+    "vite": "^5.4.12",
     "whatwg-fetch": "^3.6.20"
   }
 }

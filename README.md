@@ -83,7 +83,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 ## Screen Recording
 ![Home Page](./public/assets/images/AIQTrading.gif)
-
+![Portfolio Page](./public/assets/images/AIQTradingPortfolio.gif)
 ![Home Page](./public/assets/images/AIQ_mobile.gif)
 
 

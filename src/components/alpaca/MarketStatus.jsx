@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 
 const fetchMarketStatus = async () => {
@@ -10,9 +10,12 @@ const fetchMarketStatus = async () => {
         headers: {
             'APCA-API-KEY-ID': apiKey,
             'APCA-API-SECRET-KEY': secretKey,
-            'Content-Type': 'application/json'
         }
     });
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch market status');
+    }
 
     const data = await response.json();
     const { is_open } = data;
@@ -25,7 +28,12 @@ const MarketStatus = () => {
         refetchInterval: 3600000, // Refetch every hour
     });
 
-    localStorage.setItem('marketStatus', marketStatus);
+    // Save market status in localStorage
+    useEffect(() => {
+        if (marketStatus) {
+            localStorage.setItem('marketStatus', marketStatus);
+        }
+    }, [marketStatus]);
 
     if (isLoading) {
         return <small className="ms-3 mt-1 small text-secondary">Loading...</small>;

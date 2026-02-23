@@ -34,6 +34,7 @@
     "chartjs-chart-financial": "^0.2.1",
     "chartjs-plugin-zoom": "^2.0.1",
     "firebase": "^10.9.0",
+    "jsonpath": "^1.2.1",
     "node-fetch": "^2.7.0",
     "nth-check": "^2.0.1",
     "patch-package": "^8.0.0",

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Grid, Paper } from '@mui/material';
-import CompanyLogo from '../common/Tables/CompanyLogo';
 
 const AlpacaOrder = ({
     symbol,
@@ -123,7 +122,7 @@ const AlpacaOrder = ({
     return (
         <Paper elevation={0}>
             <div className='text-center'>
-                <CompanyLogo tickerCP={symbol} />
+                {/* <CompanyLogo tickerCP={symbol} /> */}
                 <div>{tickerName}</div>
                 <Typography variant="h6" gutterBottom style={{ fontFamily: 'inherit', textTransform: 'uppercase' }}>
                     ({symbol})

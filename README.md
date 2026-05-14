@@ -86,14 +86,10 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 ![Portfolio Page](./public/assets/images/AIQTradingPortfolio.gif)
 ![Home Page](./public/assets/images/AIQ_mobile.gif)
 
+## Netlify site
 
-## Questions
-Feel free to reach out for any inquiries at [tradingaiq@gmail.com ](mailto:tradingaiq@gmail.com ).
+<https://aiqtrading.netlify.app/>
 
 [![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
 [![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 
-
-## Netlify site
-
-<https://aiqtrading.netlify.app/>

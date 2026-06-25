@@ -13,7 +13,7 @@ console.log(apiKeyNews);
 
 const fetchNews = async () => {
   try {
-    const response = await axios.get(`https://newsapi.org/v2/everything?q=stocks&apiKey=602085a63c3a4b98b4e7c82ba09ce268`);
+    const response = await axios.get(`https://newsapi.org/v2/everything?q=stocks&apiKey=${apiKeyNews}`);
     newsData = response.data.articles;
   } catch (error) {
     console.log('An error occurred while fetching data');

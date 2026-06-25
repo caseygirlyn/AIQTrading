@@ -12,7 +12,7 @@ const News = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const response = await fetch(`https://api.polygon.io/v2/reference/news?apiKey=${apiKeyNews}`); // PROD
+                //const response = await fetch(`https://api.polygon.io/v2/reference/news?apiKey=${apiKeyNews}`); // PROD
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }

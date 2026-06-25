@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "./common/Header";
-import News from "./News";
+import News from "./news/News";
 import Col from "./common/Theme/Col";
 import Row from "./common/Theme/Row";
 import MostlyOwnedStocksTable from "./common/Tables/MostlyOwnedStocksTable";
 import StockSearch from "./StockSearch";
+import StockSearchForm from "./StockSearchForm";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Footer from "./common/Footer";
@@ -52,7 +53,7 @@ const Container = () => {
     <div className="container mb-5 mt-5 pt-5">
       <Row>
         <Col size="md-12">
-          <StockSearch isDarkMode={isDarkMode} />
+          <StockSearchForm isDarkMode={isDarkMode} />
         </Col>
       </Row>
       <Row>

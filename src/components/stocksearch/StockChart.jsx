@@ -58,8 +58,6 @@ export default function StockChart({ symbol, isDarkMode }) {
                 const endpoint =
                     `https://api.polygon.io/v2/aggs/ticker/${symbol}/range/15/minute/${fromDate}/${toDate}?adjusted=true&sort=asc&limit=50000&apiKey=${POLYGON_API_KEY}`;
 
-                console.log(endpoint);
-
                 const response = await fetch(endpoint);
 
                 if (!response.ok) {

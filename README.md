@@ -82,6 +82,7 @@ This project is licensed under the [MIT License](LICENSE).
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or create a pull request.
 
 ## Screen Recording
+![Home Page](./public/assets/images/ai-analysis.png)
 ![Home Page](./public/assets/images/AIQTrading.gif)
 ![Portfolio Page](./public/assets/images/AIQTradingPortfolio.gif)
 ![Home Page](./public/assets/images/AIQ_mobile.gif)

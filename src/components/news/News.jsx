@@ -1,5 +1,4 @@
-// src/components/News/News.jsx
-
+import React from 'react';
 import { useNews } from '../../hooks/useNews';
 import NewsCard from './NewsCard';
 

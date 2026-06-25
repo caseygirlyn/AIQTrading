@@ -1,10 +1,22 @@
-// services/aiAnalysis.js
+let ai = null;
 
-import { GoogleGenAI } from "@google/genai";
+async function getAiClient() {
+    if (ai) return ai;
 
-const ai = new GoogleGenAI({
-    apiKey: import.meta.env.VITE_GEMINI_API_KEY,
-});
+    if (typeof window === "undefined") {
+        return null;
+    }
+
+    try {
+        const { GoogleGenAI } = await import("@google/genai");
+        ai = new GoogleGenAI({
+            apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+        });
+        return ai;
+    } catch {
+        return null;
+    }
+}
 
 export async function analyzeWithAI(input = {}) {
     const prompt = `
@@ -27,7 +39,20 @@ Return JSON:
 }
 `;
 
-    const res = await ai.models.generateContent({
+    const client = await getAiClient();
+
+    if (!client) {
+        return {
+            bias: "Neutral",
+            confidence: 0,
+            analysis: "AI analysis is unavailable in this environment.",
+            risk: "Unknown",
+            opportunity: "Unknown",
+            scenarios: [],
+        };
+    }
+
+    const res = await client.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: prompt,
         config: {

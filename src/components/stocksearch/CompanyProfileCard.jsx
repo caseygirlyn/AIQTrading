@@ -1,13 +1,10 @@
 import React from "react";
 import { formatCurrency, formatCurrencyShort } from "../../utils/formatters";
 
-export default function CompanyProfileCard({ profile }) {
+export default function CompanyProfileCard({ profile, priceChange }) {
     if (!profile) return null;
 
-    const changePercent =
-        profile.price && profile.changes
-            ? (profile.changes / profile.price) * 100
-            : 0;
+    const changePercent = priceChange ? priceChange["1D"] : 0;
 
     return (
         <table className="table table-striped mt-2 mb-0 rounded-1 mb-4">
@@ -29,9 +26,9 @@ export default function CompanyProfileCard({ profile }) {
                                 {formatCurrency(profile.currency, profile.price)}
                             </span>{" "}
 
-                            <span className={profile.changes > 0 ? "text-success" : "text-danger"}>
-                                ({changePercent.toFixed(2)}%) {profile.changes}
-                                {profile.changes > 0 ? (
+                            <span className={changePercent > 0 ? "text-success" : "text-danger"}>
+                                ({changePercent?.toFixed(2) ?? "0.00"}%) {profile.changes}
+                                {changePercent > 0 ? (
                                     <i className="bi bi-arrow-up-short"></i>
                                 ) : (
                                     <i className="bi bi-arrow-down-short"></i>

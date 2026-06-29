@@ -60,7 +60,7 @@ export default function StockSearch({ isDarkMode }) {
             {error && <div className="alert alert-danger">{error}</div>}
             <div className="row">
                 <div className="col-lg-4">
-                    <CompanyProfileCard profile={profile} />
+                    <CompanyProfileCard profile={profile} priceChange={priceChange} />
                     <PriceChangeCard priceChange={priceChange} />
                 </div>
 

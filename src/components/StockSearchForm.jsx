@@ -30,7 +30,16 @@ export default function StockSearch({ isDarkMode }) {
             const insight = await getTradingInsight(symbol);
             setAnalysis(insight);
         } catch (err) {
-            setError(err.message);
+            let errorMessage = err.message;
+            try {
+                const errorObj = JSON.parse(err.message);
+                if (errorObj?.error?.message) {
+                    errorMessage = errorObj.error.message;
+                }
+            } catch {
+                // If not JSON, use the original message
+            }
+            setError(errorMessage);
         } finally {
             setLoading(false);
         }
@@ -57,7 +66,6 @@ export default function StockSearch({ isDarkMode }) {
                 </div>
             </form>
 
-            {error && <div className="alert alert-danger">{error}</div>}
             <div className="row">
                 <div className="col-lg-4">
                     <CompanyProfileCard profile={profile} priceChange={priceChange} />
@@ -71,6 +79,7 @@ export default function StockSearch({ isDarkMode }) {
 
                             <div className="card mt-3 p-3">
                                 <h4 className="mb-3">AI Analysis</h4>
+                                {error && <div className="alert alert-danger">{error}</div>}
                                 {loading ? (
                                     <p className="text-muted mb-0">Loading AI analysis...</p>
                                 ) : analysis ? (
